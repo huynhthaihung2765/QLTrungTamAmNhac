@@ -30,7 +30,7 @@
       $connection->query("SET NAMES utf8");
       //Thực hiện execute truy vấn
       $result = $connection->query($queryString);
-      $connection->close();
+      //$connection->close();
       return $result;
     }
 
