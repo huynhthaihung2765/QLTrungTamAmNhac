@@ -12,7 +12,7 @@
       if (!isset(self::$connection)) {
         //Lấy thông tin kết nối từ tập tin
         $config = parse_ini_file("config.ini");
-        self::$connection = new mysqli("localhost", $config["user"], $config["pass"], $config["dbname"]);
+        self::$connection = new mysqli("localhost", $config["username"], $config["password"], $config["dbname"]);
       }
       //Xử lý lỗi nếu không kết nối được tới CSDL
       if (self::$connection == false) {
