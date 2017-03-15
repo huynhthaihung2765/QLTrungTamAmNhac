@@ -64,13 +64,13 @@
               <div class="profile_img">
                 <div id="crop-avatar">
                   <!-- Current avatar -->
-                  <img class="img-responsive avatar-view" src="images/picture.jpg" alt="Avatar" title="Change the avatar">
+                  <img class="img-responsive avatar-view" src="public/images/HocVien/<?php echo isset($hv['HinhAnhHV']) ? $hv['HinhAnhHV'] : "user.png" ; ?>" alt="Avatar" title="Change the avatar">
                 </div>
               </div>
               <h3>Samuel Doe</h3>
 
               <ul class="list-unstyled user_data">
-                <li><i class="fa fa-map-marker user-profile-icon"></i> <?php echo $hv['HoTenHocVien']; ?>
+                <li><i class="fa fa-map-marker user-profile-icon"></i> <?php echo $hv['NoiOHienTai']; ?>
                 </li>
 
                 <li>
