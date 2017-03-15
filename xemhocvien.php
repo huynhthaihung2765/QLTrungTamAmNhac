@@ -1,7 +1,5 @@
 <?php include_once("entities/hocvien.class.php"); ?>
-
 <?php include_once("header.php") ?>
-
 <?php
   //$hocviens = Hocvien::list_All_HocVien();
   $hocvienlearn = HocVien::Get_All_HV_Learn();

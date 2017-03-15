@@ -1,9 +1,9 @@
 <?php 
-	require_once('../config/db.class.php');
+	require_once('config/db.class.php');
 	/*
 	
 	 */
-	class Giaovien
+	class GiaoVien
 	{
 		public $idGiaovien;
 		public $hoTenGV;
@@ -14,10 +14,11 @@
 		public $bangCap;
 		public $chuyenMon;
 		public $soDienThoai;
+		public $hinhAnh;
+		public $diaChi;
 
 
-
-		public function __construct($idGiaovien, $hoTenGV, $gioiTinh, $ngaySinh, $cMND, $email, $bangCap, $chuyenMon, $soDienThoai)
+		public function __construct($idGiaovien, $hoTenGV, $gioiTinh, $ngaySinh, $cMND, $email, $bangCap, $chuyenMon, $soDienThoai, $hinhAnh, $diaChi)
 		{
 			$this->idGiaovien = $idGiaovien;
 			$this->hoTenGV = $hoTenGV;
@@ -28,33 +29,65 @@
 			$this->bangCap = $bangCap;
 			$this->chuyenMon = $chuyenMon;
 			$this->soDienThoai = $soDienThoai;
+			$this->hinhAnh = $hinhAnh;
+			$this->diaChi = $diaChi;
 		}
 
 
-		// lưu giáo viên
+		// thêm giáo viên
 		public function insert()
 		{
 			$db = new Db();
-			//
-			//thêm giáo viên vào CSDL
-			//
-			$sql = "INSERT INTO Giaovien (HoTenGV, GioiTinh, NgaySinh, CMND, Email, ChuyenMon, SDT) VALUES
-			('$this->hoTenGV','$this->gioiTinh','$this->cMND','$this->email', '$this->chuyenMon','$this->soDienThoai')";
-
+			$sql = "INSERT INTO giaovien (HoTenGV, GioiTinh, NgaySinh, CMND, Email,BangCap, ChuyenMon, SDT, HinhAnh, DiaChi) VALUES
+			('$this->hoTenGV','$this->gioiTinh','$this->ngaySinh',$this->cMND','$this->email','$this->bangCap', '$this->chuyenMon','$this->soDienThoai', '$this->hinhAnh', 'this->diaChi')";
 			$result = $db->query_execute($sql);
 			return $result;
 		}
+		//
+		// Sửa giáo viên
+		// 
+		public function edit($id){
+	      $db = new Db();
+	      $sql = "UPDATE hocvien SET HoTenGV='$this->hoTenGV', GioiTinh='$this->gioiTinh',NgaySinh='$this->ngaySinh',CMND='$this->cMND',Email='$this->email',BangCap='$this->bangCap',ChuyenMon='$this->chuyenMon', SDT='$this->soDienThoai', HinhAnh = '$this->hinhAnh', DiaChi='this->diaChi' ";
+	       $result = $db->query_execute($sql);
+	       return $result;
+    	}
+    	//
+    	// Xoá giáo viên
+    	// 
+    	public function delete($id)
+    	{
+    		$sql = "DELETE FROM giaovien WHERE IDGiaoVien='$id'";
+	      	$result = $db->query_execute($sql);
+	      	$db->connection->close();
+	      	return $result;
+    	}
+    	//
+    	// Xem một giáo viên
+    	//
+    	public static function Get_A_HV($id)
+    	{
+	      $db = new Db();
+	      $sql = "SELECT * FROM giaovien gv WHERE gv.IDGiaoVien='$id'";
+	      $result = $db->select_to_array($sql); 
+	      return $result;
+	    }
+	    //
+	    // Xem tất cả giáo viên
+	    //
+	    public static function Get_All_GV()
+	    {
+	    	$db = new Db();
+	    	$sql = "SELECT * FROM giaovien";
+	    	$result = $db-> select_to_array($sql);
+	    	return $result;
+	    }
+	    //
+	    //Tìm giáo viên
+	    //
+	    public static function Search_GV()
+	    {
 
-		public static function selectAll()
-		{
-			$db = new Db();
-			//
-			//lay tat ca records 
-			//
-			$sql = "SELECT * from giaovien";
-
-			$result = $db->select_to_array($sql);
-			return $result;
-		}
+	    }
 	}
  ?>
