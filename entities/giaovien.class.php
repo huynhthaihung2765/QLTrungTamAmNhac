@@ -5,7 +5,6 @@
 	 */
 	class GiaoVien
 	{
-		public $idGiaovien;
 		public $hoTenGV;
 		public $gioiTinh;
 		public $ngaySinh;
@@ -18,9 +17,8 @@
 		public $diaChi;
 
 
-		public function __construct($idGiaovien, $hoTenGV, $gioiTinh, $ngaySinh, $cMND, $email, $bangCap, $chuyenMon, $soDienThoai, $hinhAnh, $diaChi)
+		public function __construct($hoTenGV, $gioiTinh, $ngaySinh, $cMND, $email, $bangCap, $chuyenMon, $soDienThoai, $hinhAnh, $diaChi)
 		{
-			$this->idGiaovien = $idGiaovien;
 			$this->hoTenGV = $hoTenGV;
 			$this->gioiTinh = $gioiTinh;
 			$this->ngaySinh = $ngaySinh;
@@ -37,9 +35,17 @@
 		// thêm giáo viên
 		public function insert()
 		{
+			$file_temp = $this->hinhAnh['tmp_name'];
+		    $user_file = $this->hinhAnh['name'];
+		    $timestamp = date("Y").date("m").date("d").date("h").date("i").date("s");
+		    $filepath = "public/images/GiaoVien/".$timestamp.$user_file;
+		    if(move_uploaded_file($file_temp, $filepath) == false){
+		      return false;
+		    }
+		    //end upload file
 			$db = new Db();
-			$sql = "INSERT INTO giaovien (HoTenGV, GioiTinh, NgaySinh, CMND, Email,BangCap, ChuyenMon, SDT, HinhAnh, DiaChi) VALUES
-			('$this->hoTenGV','$this->gioiTinh','$this->ngaySinh',$this->cMND','$this->email','$this->bangCap', '$this->chuyenMon','$this->soDienThoai', '$this->hinhAnh', 'this->diaChi')";
+			$sql = "INSERT INTO GiaoVien (HoTenGV, GioiTinh, NgaySinh, CMND, Email,BangCap, ChuyenMon, SDT, HinhAnh, DiaChi) VALUES
+			('$this->hoTenGV','$this->gioiTinh','$this->ngaySinh',$this->cMND','$this->email','$this->bangCap', '$this->chuyenMon','$this->soDienThoai', '$filepath', '$this->diaChi')";
 			$result = $db->query_execute($sql);
 			return $result;
 		}

@@ -13,7 +13,7 @@
 		$bangCap = $_POST["txtBangCap"];
 		$chuyenMon = $_POST["txtChuyenMon"];
 		$soDienThoai = $_POST["txtSDT"];
-		$hinhAnh = $_POST["txtHinhAnh"];
+		$hinhAnh = $_FILES["txtHinhAnh"];
 		$diaChi = $_POST["txtDiaChi"];
 		//
 		// khởi tạo đối tượng giáo viên
@@ -33,16 +33,6 @@
 	}
  ?>
  <?php include_once("header.php"); ?>
- <?php 
- 	if(isset($_GET["inserted"]))
- 	{
- 		echo "thêm giáo viên thành công";
- 	}
- 	else
- 	{
- 		echo "Thêm giáo viên thất bại";
- 	}
-  ?>
  <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
@@ -51,6 +41,14 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Thêm giáo viên</h2>
+                    <?php
+		               if (isset($_GET["inserted"])){
+		                 echo "<h2>Thêm học viên thành công</h2>";
+		               }
+		               if(isset($_GET["failure"])) {
+		                 echo "<h2>Thêm học viên thất bại</h2>";
+		               }
+		             ?>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -70,12 +68,12 @@
                   </div>
                   <div class="x_content">
                     <br />
-                    <form class="form-horizontal form-label-left" method="post">
+                    <form class="form-horizontal form-label-left" method="post" enctype="multipart/form-data">
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Têm giáo viên</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" placeholder="Họ/tên" name="txtHoTenGV" value="<?php echo isset($_POST["txtHoTenGV"]) ? $_POST["txtHoTenGV"] : "" ; ?>">
+                          <input type="text" class="form-control" placeholder="Họ/tên" name="txtHoTenGV" >
                         </div>
                       </div>
 
@@ -98,48 +96,53 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày sinh</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="date" class="form-control" placeholder="Ngày/tháng/năm" name="txtNgaySinh" value="<?php echo isset($_POST["txtNgaySinh"]) ? $_POST["txtNgaySinh"] : "" ; ?>">
+                          <input type="date" class="form-control" placeholder="Ngày/tháng/năm" name="txtNgaySinh">
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">CMND</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="number" class="form-control" placeholder="Ngày/tháng/năm" name="txtCMND" value="<?php echo isset($_POST["txtCMND"]) ? $_POST["txtCMND"] : "" ; ?>">
+                          <input type="number" class="form-control" placeholder="CMND" name="txtCMND">
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Điện thoại <span class="required">*</span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="number" name="txtSDT" class="form-control" value="<?php echo isset($_POST["txtSDT"]) ? $_POST["txtSDT"] : "" ; ?>">
+                          <input type="number" name="txtSDT" class="form-control">
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <textarea class="form-control" rows="3" placeholder='Số nhà, Đường, Phường, Quận, TP' name="txtDiaChi" value="<?php echo isset($_POST["txtDiaChi"]) ? $_POST["txtDiaChi"] : "" ; ?>"></textarea>
+                          <textarea class="form-control" rows="3" placeholder='Số nhà, Đường, Phường, Quận, TP' name="txtDiaChi""></textarea>
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" id="autocomplete-custom-append" class="form-control col-md-10" name="txtEmail" value="<?php echo isset($_POST["txtEmail"]) ? $_POST["txtEmail"] : "" ; ?>"/>
+                          <input type="text" id="autocomplete-custom-append" class="form-control col-md-10" name="txtEmail" />
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Chuyên môn</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" name="txtChuyenMon" id="autocomplete-custom-append" class="form-control col-md-10" value="<?php echo isset($_POST["txtChuyenMon"]) ? $_POST["txtChuyenMon"] : "" ; ?>"/>
+                          <input type="text" name="txtChuyenMon" id="autocomplete-custom-append" class="form-control col-md-10" />
                         </div>
                       </div>
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Bằng cấp</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" name="txtBangCap" id="autocomplete-custom-append" class="form-control col-md-10" value="<?php echo isset($_POST["txtBangCap"]) ? $_POST["txtBangCap"] : "" ; ?>"/>
+                          <input type="text" name="txtBangCap" id="autocomplete-custom-append" class="form-control col-md-10" />
                         </div>
                       </div>
-
+                      <div class="form-group">
+	                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Chọn ảnh giáo viên</label>
+	                 <div class="col-md-9 col-sm-9 col-xs-12">
+	                   <input type="file" name="txtHinhAnh" accept=".PNG,.JPG,.GIF" class="form-control col-md-10"/>
+	                 </div>
+	               </div>
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
