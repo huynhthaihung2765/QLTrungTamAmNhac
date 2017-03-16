@@ -34,9 +34,17 @@ class MonHoc
   }
 
   //1. Lấy tất cả môn học theo cấp độ
-  public static function Select_MH_by_IDCDvsTenMH($idCD, $tenLopHoc){
+  public static function Select_MH_by_IDCDvsIDLH($idCD, $idLopHoc){
     $db = new Db();
-    $sql = "SELECT * FROM monhoc mh where mh.IDCapDo = '$idCD' and mh.TenLopHoc = '$tenLopHoc'";
+    $sql = "SELECT * FROM monhoc mh where mh.IDCapDo = '$idCD' and mh.IDLopHoc = '$idLopHoc'";
+    $result = $db->select_to_array($sql);
+    return $result;
+  }
+
+  //1. Lấy tất cả môn học theo cấp độ
+  public static function Get_All_Mh_Has_In_KhoaHoc(){
+    $db = new Db();
+    $sql = "SELECT * from khoahoc kh left join monhoc mh on kh.IDLopHoc = mh.IDLopHoc group BY mh.TenLopHoc";
     $result = $db->select_to_array($sql);
     return $result;
   }

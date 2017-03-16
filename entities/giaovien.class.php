@@ -1,7 +1,7 @@
-<?php 
+<?php
 	require_once('config/db.class.php');
 	/*
-	
+
 	 */
 	class GiaoVien
 	{
@@ -51,7 +51,7 @@
 		}
 		//
 		// Sửa giáo viên
-		// 
+		//
 		public function edit($id){
 	      $db = new Db();
 	      $sql = "UPDATE hocvien SET HoTenGV='$this->hoTenGV', GioiTinh='$this->gioiTinh',NgaySinh='$this->ngaySinh',CMND='$this->cMND',Email='$this->email',BangCap='$this->bangCap',ChuyenMon='$this->chuyenMon', SDT='$this->soDienThoai', HinhAnh = '$this->hinhAnh', DiaChi='this->diaChi' ";
@@ -60,7 +60,7 @@
     	}
     	//
     	// Xoá giáo viên
-    	// 
+    	//
     	public function delete($id)
     	{
     		$sql = "DELETE FROM giaovien WHERE IDGiaoVien='$id'";
@@ -75,9 +75,10 @@
     	{
 	      $db = new Db();
 	      $sql = "SELECT * FROM giaovien gv WHERE gv.IDGiaoVien='$id'";
-	      $result = $db->select_to_array($sql); 
+	      $result = $db->select_to_array($sql);
 	      return $result;
 	    }
+
 	    //
 	    // Xem tất cả giáo viên
 	    //
@@ -88,6 +89,23 @@
 	    	$result = $db-> select_to_array($sql);
 	    	return $result;
 	    }
+
+			public static function Get_GV_By_IDMonHoc($idMH)
+	    {
+	    	$db = new Db();
+	    	$sql = "SELECT * FROM giaovien gv INNER join khoahoc kh on gv.IDGiaoVien = kh.IDGiaoVien WHERE kh.IDLopHoc = '$idMH' GROUP by kh.IDGiaoVien, kh.IDLopHoc";
+	    	$result = $db-> select_to_array($sql);
+	    	return $result;
+	    }
+
+			public static function Get_All_Gv_Has_In_KhoaHoc()
+	    {
+	    	$db = new Db();
+	    	$sql = "SELECT * FROM giaovien";
+	    	$result = $db-> select_to_array($sql);
+	    	return $result;
+	    }
+
 	    //
 	    //Tìm giáo viên
 	    //

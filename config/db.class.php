@@ -47,5 +47,27 @@
       }
       return $rows;
     }
+
+    //lay ve 1 doi tuong, tuong ung voi 1 record trong table
+  	function loadObject(){
+  		if($this->_query){
+  			$result = mysql_query($this->_query);
+  			$count = mysql_num_rows($result);
+  			if($count){
+  				$this->_count = $count;
+  				$result = mysql_fetch_assoc($result);
+  				$robj = new stdClass();
+  				foreach($result AS $key=>$value){
+  					$robj->$key = $value;
+  				}
+  				return $robj;
+  			}
+  		}
+  		$this->_count = 0;
+  		return null;
+  	}
+
+
+
   }
 ?>

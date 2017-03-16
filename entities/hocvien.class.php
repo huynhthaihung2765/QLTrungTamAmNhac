@@ -15,7 +15,8 @@
     public $email;
     public $picture;
 
-    public function __construct( $hoTenHocVien, $gioiTinh, $ngaySinh, $soDienThoai, $diaChi, $email, $picture){
+    public function __construct($idHocVien, $hoTenHocVien, $gioiTinh, $ngaySinh, $soDienThoai, $diaChi, $email, $picture){
+      $this->idHocVien = $idHocVien;
       $this->hoTenHocVien = $hoTenHocVien;
       $this->gioiTinh = $gioiTinh;
       $this->ngaySinh = $ngaySinh;
@@ -32,15 +33,19 @@
       $timestamp = date("Y").date("m").date("d").date("h").date("i").date("s");
       $filepath = "public/images/HocVien/".$timestamp.$user_file;
       if(move_uploaded_file($file_temp, $filepath) == false){
-        return false;
+        $filepath = "public/images/HocVien/user.png";
       }
 
+
+
       $db = new Db();
-      $sql = "INSERT INTO hocvien (HoTenHocVien, GioiTinh, NgaySinh, SDT, NoiOHienTai, Email, HinhAnhHV) VALUES
-      ('$this->hoTenHocVien', '$this->gioiTinh', '$this->ngaySinh', '$this->soDienThoai', '$this->diaChi', '$this->email', '$filepath')";
+      $sql = "INSERT INTO hocvien (IDHocVien, HoTenHocVien, GioiTinh, NgaySinh, SDT, NoiOHienTai, Email, HinhAnhHV) VALUES
+      ('$this->idHocVien', '$this->hoTenHocVien', '$this->gioiTinh', '$this->ngaySinh', '$this->soDienThoai', '$this->diaChi', '$this->email', '$filepath')";
       $result = $db->query_execute($sql);
       return $result;
     }
+
+
 
     public function edit($id){
       $db = new Db();
@@ -85,5 +90,13 @@
       $result = $db->select_to_array($sql);
       return $result;
     }
+
+    public static function Get_Last_HV(){
+      $db = new Db();
+      $sql = "SELECT * from hocvien hv ORDER BY hv.IDHocVien DESC LIMIT 1";
+      $result = $db->select_to_array($sql);
+      return $result;
+    }
+
   }
  ?>

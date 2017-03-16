@@ -25,9 +25,9 @@ class CapDo
   }
 
   //Hàm Lấy cấp độ theo tên lớp
-  public static function Select_CD_By_TenMH($enLop){
+  public static function Get_All_Capo_Has_In_MonHoc($idLopHoc){
     $db = new Db();
-    $sql = "SELECT * from capdo cd inner join monhoc mh WHERE mh.TenLopHoc = '$enLop' GROUP BY cd.IDCapDo";
+    $sql = "SELECT * from monhoc mh left join capdo cd on mh.IDCapDo = cd.IDCapDo GROUP by mh.IDCapDo";
     $result = $db->select_to_array($sql);
     return $result;
   }

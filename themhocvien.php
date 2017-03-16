@@ -1,9 +1,12 @@
 <?php include_once("entities/hocvien.class.php"); ?>
 <?php include_once("entities/monhoc.class.php"); ?>
 <?php include_once("entities/capdo.class.php"); ?>
+<?php include_once("entities/phieudangky.class.php"); ?>
+<?php date_default_timezone_set('Asia/Ho_Chi_Minh'); ?>
 
 <?php
   if (isset($_POST["btnSubmit"])){
+    $maHocVien = $_POST["txtMaHocVien"];
      $hoTenHocVien = $_POST["txtName"];
      $gioiTinh = $_POST["iCheck"];
      $ngaySinh = $_POST["txtNgaySinh"];
@@ -11,14 +14,29 @@
      $diaChi = $_POST["txtDiaChi"];
      $email = $_POST["txtEmail"];
      $picture = $_FILES["txtpic"];
-     $newHocVien = new Hocvien($hoTenHocVien, $gioiTinh, $ngaySinh, $soDienThoai, $diaChi, $email, $picture);
+
+     //$ngayHienTai = $_POST["ngayHienTai"];
+     //$format = 'Y-m-d H:i:s';
+     //$date = DateTime::createFromFormat($format, $ngayHienTai);
+
+     $newHocVien = new Hocvien($maHocVien, $hoTenHocVien, $gioiTinh, $ngaySinh, $soDienThoai, $diaChi, $email, $picture);
      $result = $newHocVien->insert();
      if(!$result)
      {
        header("location: themhocvien.php?fail");
      }
      else {
-       header("location: themhocvien.php?inserted");
+       $lastPDK = PhieuDangKy::Get_Last_PDK();
+       foreach ($lastPDK as $key => $itempdk) {
+          $lastpdk = $itempdk['IDPhieu'];
+          $idPDKnext = intval($lastpdk) + 1;
+       }
+       $datenow = date('Y-m-d H:i:s');
+       $tenPhieu = "Phieu Dang Ky";
+        $newPDK = new PhieuDangKy($idPDKnext, $maHocVien, $tenPhieu, $datenow);
+        $insertPHK = $newPDK->insert();
+
+       header("location: themhocvien.php?inserted&id=$maHocVien");
      }
   }
 ?>
@@ -32,6 +50,7 @@
   //$hocviens = Hocvien::list_All_HocVien();
   $hocvienlearn = HocVien::Get_All_HV_Learn();
   $capdos = CapDo::SelectAllCD();
+  $hvLast = Hocvien::Get_Last_HV();
 
  ?>
 
@@ -71,6 +90,18 @@
              ?>
              <br />
              <form class="form-horizontal form-label-left" method="post" enctype="multipart/form-data">
+               <?php foreach ($hvLast as $key => $itemhv): ?>
+                <?php
+                $idHVLast = $itemhv['IDHocVien'];
+                $idHVNext = intval($idHVLast) + 1;
+                 ?>
+              <?php endforeach; ?>
+               <div class="form-group">
+                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Mã học viên</label>
+                 <div class="col-md-9 col-sm-9 col-xs-12">
+                   <input type="text" style="width: 50%;" name="txtMaHocVien" value="<?php echo $idHVNext ?>" class="form-control" readonly="yes">
+                 </div>
+               </div>
                <div class="form-group">
                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Tên học viên</label>
                  <div class="col-md-9 col-sm-9 col-xs-12">
@@ -160,27 +191,7 @@
                    </select>
                  </div>
                </div>
-             -->
-             <input type="text" placeholder="chào bạn" name="" value="">
-
-               <div class="form-group">
-                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Khóa học</label>
-                 <div class="col-md-9 col-sm-9 col-xs-12">
-                   <select name="slcMonHocCapDo" class="select2_group form-control">
-                     <?php foreach ($monhocs as $key => $itemMH): ?>
-                       <optgroup label="<?php echo $itemMH['TenLopHoc'];?>">
-                         <?php $tenlopi = $itemMH['TenLopHoc']; ?>
-                          <?php $capdosByTenMH = CapDo::Select_CD_By_TenMH($tenlopi); ?>
-                          <?php foreach ($capdosByTenMH as $key => $itemCD): ?>
-                            <?php $idcapdoi = $itemCD['IDCapDo']; ?>
-                            <?php $monhocByIDCDvsTenMH = MonHoc::Select_MH_by_IDCDvsTenMH($idcapdoi, $tenlopi); ?>
-                           <option value="<?php $monhocByIDCDvsTenMH['IDLopHoc']; ?>"><?php echo $itemCD['TenCapDo']; ?></option>
-                          <?php endforeach; ?>
-                       </optgroup>
-                     <?php endforeach; ?>
-                   </select>
-                 </div>
-               </div>
+             --> 
                <button type="submit" class="btn btn-success" name="btnSubmit">Đăng ký học viên</button>
              </form>
            </div>
