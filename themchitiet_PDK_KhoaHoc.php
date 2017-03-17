@@ -53,7 +53,9 @@
           <div class="x_content">
 
             <div class="row">
+              <?php $demsl =0; ?>
               <?php foreach ($allMonHocHasInKhoaHoc as $key => $itemMonHoc){ ?>
+                <?php $demsl++; ?>
                 <p>Lớp học: <?php echo $itemMonHoc['TenLopHoc']; ?></p>
                 <?php
                   $idMonHoc = $itemMonHoc['IDLopHoc'];
@@ -63,11 +65,10 @@
                  <?php foreach ($allCapDoHasInLopHoc as $key => $itemCapdo){
                     $dem++;
                    ?>
-
                    <div class="col-md-55">
                      <div class="thumbnail">
                        <div class="image view view-first">
-                         <img style="width: 100%; display: block;" src="images/media.jpg" alt="image" />
+                         <img style="width: 100%; display: block;" src="public/images/VatLieu/GuiTar/1.png" alt="image" />
                          <div class="mask">
                            <p>Your Text</p>
                            <div class="tools tools-bottom">
@@ -85,7 +86,12 @@
                    </div>
                    <?php if ($dem == 5){ ?>
                       <div class="clearfix"> </div>
+                      <?php $dem = 0 ?>
                    <?php } ?>
+                 <?php } ?>
+                 <?php if ($demsl == 1){ ?>
+                   <div class="clearfix"> </div>
+                   <?php $demsl = 0; ?>
                  <?php } ?>
               <?php } ?>
             </div>
