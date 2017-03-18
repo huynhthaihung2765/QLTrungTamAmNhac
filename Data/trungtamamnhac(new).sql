@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `baiviet` (
-  `IDBaiVIet` int(11) NOT NULL,
+  `IDBaiVIet` int(11) NOT NULL AUTO_INCREMENT,
   `IDNhanVien` int(11) NOT NULL,
   `TenBaiViet` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `TheALT` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE `baiviet` (
 --
 
 CREATE TABLE `capdo` (
-  `IDCapDo` int(11) NOT NULL,
+  `IDCapDo` int(11) NOT NULL AUTO_INCREMENT,
   `TenCapDo` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `MoTaCapDo` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -54,7 +54,7 @@ CREATE TABLE `capdo` (
 --
 
 CREATE TABLE `chitiet_nv_cv` (
-  `IDChiTiet` int(11) NOT NULL,
+  `IDChiTiet` int(11) NOT NULL AUTO_INCREMENT,
   `NgayBatDauLam` datetime DEFAULT NULL,
   `NgayKetThucLam` datetime DEFAULT NULL,
   `IDChucVu` int(11) NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE `chitiet_nv_cv` (
 --
 
 CREATE TABLE `chitiet_pdk_lh` (
-  `IDChiTiet_PDK_LH` int(11) NOT NULL,
+  `IDChiTiet_PDK_LH` int(11) NOT NULL AUTO_INCREMENT,
   `IDPhieu` int(11) NOT NULL,
   `NgayBatDauKhoaHoc` datetime DEFAULT NULL,
   `NgayKetThucKhoiaHoc` datetime DEFAULT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE `chitiet_pdk_lh` (
 --
 
 CREATE TABLE `chitiet_q_tk` (
-  `IDChiTiet` int(11) NOT NULL,
+  `IDChiTiet` int(11) NOT NULL AUTO_INCREMENT,
   `IDTaiKhoan` int(11) NOT NULL,
   `IDQuyenHan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -95,7 +95,7 @@ CREATE TABLE `chitiet_q_tk` (
 --
 
 CREATE TABLE `chucvu` (
-  `IDChucVu` int(11) NOT NULL,
+  `IDChucVu` int(11) NOT NULL AUTO_INCREMENT,
   `TenChucVu` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `MoTaChucVu` varchar(500) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -107,7 +107,7 @@ CREATE TABLE `chucvu` (
 --
 
 CREATE TABLE `cosovatchat` (
-  `IDCSVC` int(11) NOT NULL,
+  `IDCSVC` int(11) NOT NULL AUTO_INCREMENT,
   `IDLoai` int(11) NOT NULL,
   `TenVatChat` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `GiaMua` double DEFAULT NULL,
@@ -121,7 +121,7 @@ CREATE TABLE `cosovatchat` (
 --
 
 CREATE TABLE `giaovien` (
-  `IDGiaoVien` int(11) NOT NULL,
+  `IDGiaoVien` int(11) NOT NULL AUTO_INCREMENT,
   `HoTenGV` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `GioiTinh` bit(1) DEFAULT NULL,
   `NgaySinh` datetime DEFAULT NULL,
@@ -139,7 +139,7 @@ CREATE TABLE `giaovien` (
 --
 
 CREATE TABLE `hocvien` (
-  `IDHocVien` int(11) NOT NULL,
+  `IDHocVien` int(11) NOT NULL AUTO_INCREMENT,
   `HoTenHocVien` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `GioiTinh` bit(1) DEFAULT NULL,
   `NgaySinh` datetime DEFAULT NULL,
@@ -156,7 +156,7 @@ CREATE TABLE `hocvien` (
 --
 
 CREATE TABLE `lichhoc` (
-  `IDLichHoc` int(11) NOT NULL,
+  `IDLichHoc` int(11) NOT NULL AUTO_INCREMENT,
   `BuoiTrongNgay` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `NgayTrongTuan` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -168,7 +168,7 @@ CREATE TABLE `lichhoc` (
 --
 
 CREATE TABLE `lienhe` (
-  `IDLienHe` int(11) NOT NULL,
+  `IDLienHe` int(11) NOT NULL AUTO_INCREMENT,
   `SDT` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   `HoTen` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `Email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -182,7 +182,7 @@ CREATE TABLE `lienhe` (
 --
 
 CREATE TABLE `loaicsvc` (
-  `IDLoai` int(11) NOT NULL,
+  `IDLoai` int(11) NOT NULL AUTO_INCREMENT,
   `TenLoai` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `MoTaLoai` varchar(500) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -194,7 +194,7 @@ CREATE TABLE `loaicsvc` (
 --
 
 CREATE TABLE `lophoc` (
-  `IDLopHoc` int(11) NOT NULL,
+  `IDLopHoc` int(11) NOT NULL AUTO_INCREMENT,
   `IDLichHoc` int(11) NOT NULL,
   `IDGiaoVien` int(11) NOT NULL,
   `IDMonHoc` int(11) NOT NULL,
@@ -209,7 +209,7 @@ CREATE TABLE `lophoc` (
 --
 
 CREATE TABLE `monhoc` (
-  `IDMonHoc` int(11) NOT NULL,
+  `IDMonHoc` int(11) NOT NULL AUTO_INCREMENT,
   `TenNonHoc` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `MoTaMonHoc` char(1) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -221,7 +221,7 @@ CREATE TABLE `monhoc` (
 --
 
 CREATE TABLE `nhanvien` (
-  `IDNhanVien` int(11) NOT NULL,
+  `IDNhanVien` int(11) NOT NULL AUTO_INCREMENT,
   `HoTenNV` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `CMND` varchar(12) COLLATE utf8_unicode_ci DEFAULT NULL,
   `GioiTinh` bit(1) DEFAULT NULL,
@@ -237,7 +237,7 @@ CREATE TABLE `nhanvien` (
 --
 
 CREATE TABLE `phieuchi` (
-  `IDPhieuCjhi` int(11) NOT NULL,
+  `IDPhieuCjhi` int(11) NOT NULL AUTO_INCREMENT,
   `IDNhanVien` int(11) NOT NULL,
   `NoiDungChi` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
   `SoTienChi` double DEFAULT NULL
@@ -250,7 +250,7 @@ CREATE TABLE `phieuchi` (
 --
 
 CREATE TABLE `phieudangky` (
-  `IDPhieu` int(11) NOT NULL,
+  `IDPhieu` int(11) NOT NULL AUTO_INCREMENT,
   `IDHocVien` int(11) NOT NULL,
   `TenPhieu` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `NgayLapPhieu` datetime DEFAULT NULL
@@ -263,7 +263,7 @@ CREATE TABLE `phieudangky` (
 --
 
 CREATE TABLE `quyenhan` (
-  `IDQuyenHan` int(11) NOT NULL,
+  `IDQuyenHan` int(11) NOT NULL AUTO_INCREMENT,
   `TenQuyenHan` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `MoTaQuyenHan` varchar(500) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -275,7 +275,7 @@ CREATE TABLE `quyenhan` (
 --
 
 CREATE TABLE `taikhoan` (
-  `IDTaiKhoan` int(11) NOT NULL,
+  `IDTaiKhoan` int(11) NOT NULL AUTO_INCREMENT,
   `TenTaiKhoan` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `MatKhau` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
