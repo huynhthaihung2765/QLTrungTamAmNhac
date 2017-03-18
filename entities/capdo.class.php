@@ -25,12 +25,11 @@ class CapDo
   }
 
   //Hàm Lấy cấp độ theo tên lớp
-  public static function Get_All_Capo_Has_In_MonHoc($idLopHoc){
+  public static function Get_All_Capo_HasIn_LopHoc($idMonHoc){
     $db = new Db();
-    $sql = "SELECT * FROM khoahoc kh LEFT join monhoc mh on kh.IDLopHoc = mh.IDLopHoc LEFT join capdo cd on mh.IDCapDo = cd.IDCapDo where mh.IDLopHoc GROUP by cd.TenCapDo, kh.IDLopHoc, mh.TenLopHoc";
+    $sql = "SELECT * from lophoc lh LEFT join capdo cd on lh.IDCapDo = cd.IDCapDo WHERE lh.IDMonHoc = '$idMonHoc' GROUP BY lh.IDCapDo, lh.IDMonHoc";
     $result = $db->select_to_array($sql);
     return $result;
   }
  }
-
  ?>

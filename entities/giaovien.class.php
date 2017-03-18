@@ -106,6 +106,15 @@
 	    	return $result;
 	    }
 
+			//select * from lophoc lh left JOIN giaovien gv on lh.IDGiaoVien = gv.IDGiaoVien WHERE lh.IDMonHoc = AND lh.IDCapDo = lh.IDLichHoc =  group BY lh.IDMonHoc, lh.IDCapDo, lh.IDLichHoc
+			public static function Get_All_GiaoVien_HasIn_LopHoc($idMonHoc, $idCapDo, $idLich)
+	    {
+	    	$db = new Db();
+	    	$sql = "SELECT * from lophoc lh left JOIN giaovien gv on lh.IDGiaoVien = gv.IDGiaoVien WHERE lh.IDMonHoc = '$idMonHoc' AND lh.IDCapDo = '$idCapDo' and lh.IDLichHoc = '$idLich'  group BY lh.IDMonHoc, lh.IDCapDo, lh.IDLichHoc";
+	    	$result = $db-> select_to_array($sql);
+	    	return $result;
+	    }
+
 	    //
 	    //Tìm giáo viên
 	    //
