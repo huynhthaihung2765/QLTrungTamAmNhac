@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 17, 2017 lúc 07:29 SA
+-- Thời gian đã tạo: Th3 18, 2017 lúc 06:18 SA
 -- Phiên bản máy phục vụ: 10.1.21-MariaDB
 -- Phiên bản PHP: 7.1.1
 
@@ -47,6 +47,15 @@ CREATE TABLE `capdo` (
   `MoTaCapDo` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `capdo`
+--
+
+INSERT INTO `capdo` (`IDCapDo`, `TenCapDo`, `MoTaCapDo`) VALUES
+(1, 'Dễ', 'Cấp độ cho người mới học'),
+(2, 'Trung bình', 'có thể đệm hát một số bài cơ bản'),
+(3, 'Khó', 'đệm hát nâng cao');
+
 -- --------------------------------------------------------
 
 --
@@ -75,6 +84,14 @@ CREATE TABLE `chitiet_pdk_lh` (
   `TrangThaiHoc` bit(1) DEFAULT NULL,
   `IDLopHoc` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitiet_pdk_lh`
+--
+
+INSERT INTO `chitiet_pdk_lh` (`IDChiTiet_PDK_LH`, `IDPhieu`, `NgayBatDauKhoaHoc`, `NgayKetThucKhoiaHoc`, `TrangThaiHoc`, `IDLopHoc`) VALUES
+(1, 1, '2017-03-27 00:00:00', NULL, b'1111111111111111111111111111111', 1),
+(2, 2, '2017-03-29 00:00:00', NULL, b'1111111111111111111111111111111', 2);
 
 -- --------------------------------------------------------
 
@@ -132,6 +149,15 @@ CREATE TABLE `giaovien` (
   `SDT` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `giaovien`
+--
+
+INSERT INTO `giaovien` (`IDGiaoVien`, `HoTenGV`, `GioiTinh`, `NgaySinh`, `CMND`, `Email`, `BangCap`, `ChuyenMon`, `SDT`) VALUES
+(1, 'Thái Hưng', b'1111111111111111111111111111111', '2017-03-16 00:00:00', '123', 'huynhthaihung2765@gmail.com', 'Sư phạm', 'Guitar', '0123'),
+(2, 'Dương Cường', b'1111111111111111111111111111111', '2017-03-23 00:00:00', '122', 'duongcuong@gmail.com', 'sư phạm', 'Piano', '01243'),
+(3, 'Cao Phát', b'1111111111111111111111111111111', '2017-03-16 00:00:00', '0925', 'caophat@gmail.com', 'sư phạm', 'Ukulele', '02756');
+
 -- --------------------------------------------------------
 
 --
@@ -149,6 +175,14 @@ CREATE TABLE `hocvien` (
   `HinhAnh` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `hocvien`
+--
+
+INSERT INTO `hocvien` (`IDHocVien`, `HoTenHocVien`, `GioiTinh`, `NgaySinh`, `SDT`, `NoiOHienTai`, `Email`, `HinhAnh`) VALUES
+(1, 'Thái Hưng', b'1111111111111111111111111111111', '2017-03-10 00:00:00', '08275', 'Thủ Đức', 'hung@gmail.com', NULL),
+(2, 'Dương Cường', b'1111111111111111111111111111111', '2017-03-27 00:00:00', '3473', 'BT', 'cuong@gmail.com', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -160,6 +194,15 @@ CREATE TABLE `lichhoc` (
   `BuoiTrongNgay` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `NgayTrongTuan` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `lichhoc`
+--
+
+INSERT INTO `lichhoc` (`IDLichHoc`, `BuoiTrongNgay`, `NgayTrongTuan`) VALUES
+(1, 'Sáng', 'Thứ 2 / 4 / 6'),
+(2, 'Chiều', 'Thứ 2 / 4 / 6'),
+(3, 'Tối', 'Thứ 2 / 4 / 6');
 
 -- --------------------------------------------------------
 
@@ -202,6 +245,14 @@ CREATE TABLE `lophoc` (
   `HocPhi` decimal(18,0) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `lophoc`
+--
+
+INSERT INTO `lophoc` (`IDLopHoc`, `IDLichHoc`, `IDGiaoVien`, `IDMonHoc`, `IDCapDo`, `HocPhi`) VALUES
+(1, 1, 1, 1, 1, '100000'),
+(2, 2, 1, 1, 1, '1000000');
+
 -- --------------------------------------------------------
 
 --
@@ -211,8 +262,17 @@ CREATE TABLE `lophoc` (
 CREATE TABLE `monhoc` (
   `IDMonHoc` int(11) NOT NULL,
   `TenNonHoc` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `MoTaMonHoc` char(1) COLLATE utf8_unicode_ci DEFAULT NULL
+  `MoTaMonHoc` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `monhoc`
+--
+
+INSERT INTO `monhoc` (`IDMonHoc`, `TenNonHoc`, `MoTaMonHoc`) VALUES
+(1, 'Guitar', 'Đệm hát, cover, fingerStyle, classic...'),
+(2, 'Piano', 'học đệm hát cover piano...'),
+(3, 'Ukulele', 'học đệm hát ukulele');
 
 -- --------------------------------------------------------
 
@@ -237,7 +297,7 @@ CREATE TABLE `nhanvien` (
 --
 
 CREATE TABLE `phieuchi` (
-  `IDPhieuCjhi` int(11) NOT NULL,
+  `IDPhieuChi` int(11) NOT NULL,
   `IDNhanVien` int(11) NOT NULL,
   `NoiDungChi` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
   `SoTienChi` double DEFAULT NULL
@@ -255,6 +315,14 @@ CREATE TABLE `phieudangky` (
   `TenPhieu` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `NgayLapPhieu` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `phieudangky`
+--
+
+INSERT INTO `phieudangky` (`IDPhieu`, `IDHocVien`, `TenPhieu`, `NgayLapPhieu`) VALUES
+(1, 1, 'Đăng ký học ', '2017-03-15 00:00:00'),
+(2, 2, 'Đăng ký học', '2017-03-28 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -404,7 +472,7 @@ ALTER TABLE `nhanvien`
 -- Chỉ mục cho bảng `phieuchi`
 --
 ALTER TABLE `phieuchi`
-  ADD PRIMARY KEY (`IDPhieuCjhi`),
+  ADD PRIMARY KEY (`IDPhieuChi`),
   ADD KEY `IDNhanVien` (`IDNhanVien`);
 
 --
@@ -438,6 +506,11 @@ ALTER TABLE `taikhoan`
 ALTER TABLE `baiviet`
   MODIFY `IDBaiVIet` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT cho bảng `capdo`
+--
+ALTER TABLE `capdo`
+  MODIFY `IDCapDo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT cho bảng `chitiet_nv_cv`
 --
 ALTER TABLE `chitiet_nv_cv`
@@ -446,7 +519,7 @@ ALTER TABLE `chitiet_nv_cv`
 -- AUTO_INCREMENT cho bảng `chitiet_pdk_lh`
 --
 ALTER TABLE `chitiet_pdk_lh`
-  MODIFY `IDChiTiet_PDK_LH` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDChiTiet_PDK_LH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT cho bảng `chitiet_q_tk`
 --
@@ -466,12 +539,17 @@ ALTER TABLE `cosovatchat`
 -- AUTO_INCREMENT cho bảng `giaovien`
 --
 ALTER TABLE `giaovien`
-  MODIFY `IDGiaoVien` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDGiaoVien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT cho bảng `hocvien`
 --
 ALTER TABLE `hocvien`
-  MODIFY `IDHocVien` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDHocVien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT cho bảng `lichhoc`
+--
+ALTER TABLE `lichhoc`
+  MODIFY `IDLichHoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT cho bảng `lienhe`
 --
@@ -486,17 +564,27 @@ ALTER TABLE `loaicsvc`
 -- AUTO_INCREMENT cho bảng `lophoc`
 --
 ALTER TABLE `lophoc`
-  MODIFY `IDLopHoc` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDLopHoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT cho bảng `monhoc`
+--
+ALTER TABLE `monhoc`
+  MODIFY `IDMonHoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT cho bảng `nhanvien`
+--
+ALTER TABLE `nhanvien`
+  MODIFY `IDNhanVien` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT cho bảng `phieuchi`
 --
 ALTER TABLE `phieuchi`
-  MODIFY `IDPhieuCjhi` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDPhieuChi` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT cho bảng `phieudangky`
 --
 ALTER TABLE `phieudangky`
-  MODIFY `IDPhieu` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDPhieu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT cho bảng `quyenhan`
 --
