@@ -1,6 +1,4 @@
 <?php include_once("entities/hocvien.class.php"); ?>
-<?php include_once("entities/monhoc.class.php"); ?>
-<?php include_once("entities/capdo.class.php"); ?>
 <?php include_once("entities/phieudangky.class.php"); ?>
 <?php date_default_timezone_set('Asia/Ho_Chi_Minh'); ?>
 
@@ -26,17 +24,28 @@
        header("location: themhocvien.php?fail");
      }
      else {
+       //Lấy phiếu đăng ký co id cao nhat
+       $countPhieuDangKy = PhieuDangKy::Count_PDK();
        $lastPDK = PhieuDangKy::Get_Last_PDK();
-       foreach ($lastPDK as $key => $itempdk) {
-          $lastpdk = $itempdk['IDPhieu'];
-          $idPDKnext = intval($lastpdk) + 1;
+       $idPDKnext = 0;
+       foreach ($countPhieuDangKy as $key => $itemCountPDK) {
+         $soLuongChiTietPhieuDangKy = $itemCountPDK['soluongphieudangky'];
+         if($soLuongChiTietPhieuDangKy == 0){
+           $idPDKnext = 1;
+         }
+         else {
+           foreach ($lastPDK as $key => $itemLastPDK) {
+             $lastIDPhieuDangKy = $itemLastPDK['IDPhieu'];
+             $idPDKnext = intval($lastIDPhieuDangKy) + 1;
+           }
+         }
        }
        $datenow = date('Y-m-d H:i:s');
        $tenPhieu = "Phieu Dang Ky";
-        $newPDK = new PhieuDangKy($idPDKnext, $maHocVien, $tenPhieu, $datenow);
-        $insertPHK = $newPDK->insert();
-
-       header("location: themhocvien.php?inserted&id=$maHocVien");
+       $newPDK = new PhieuDangKy($idPDKnext, $maHocVien, $tenPhieu, $datenow);
+       $insertPHK = $newPDK->insert();
+       //header("location: themhocvien.php?inserted&id=$maHocVien");
+       header("location: themChitiet_PDK_LopHoc.php?inserted&idpdk=$idPDKnext");
      }
   }
 ?>
@@ -45,37 +54,30 @@
 
 
 <?php
-  $monhocs = MonHoc::SelectAllMH();
-
   //$hocviens = Hocvien::list_All_HocVien();
-  $hocvienlearn = HocVien::Get_All_HV_Learn();
-  $capdos = CapDo::SelectAllCD();
+  //$hocvienlearn = HocVien::Get_All_HV_Learn();
+  //$capdos = CapDo::SelectAllCD();
   $hvLast = Hocvien::Get_Last_HV();
-
  ?>
 
  <div class="right_col" role="main">
    <div class="">
+     <div class="page-title">
+       <div class="title_left">
+         <ol class="breadcrumb" >
+           <li><a href="index.php"><strong>Trang chủ</strong></a></li>
+           <li class="active">Đăng ký học viên</li>
+         </ol>
+       </div>
+     </div>
+     <div class="clearfix"></div>
+
      <div class="row">
        <div class="col-md-6 col-xs-12">
          <div class="x_panel">
            <div class="x_title">
              <h2>Thêm học viên mới</h2>
-             <ul class="nav navbar-right panel_toolbox">
-               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-               </li>
-               <li class="dropdown">
-                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                 <ul class="dropdown-menu" role="menu">
-                   <li><a href="#">Settings 1</a>
-                   </li>
-                   <li><a href="#">Settings 2</a>
-                   </li>
-                 </ul>
-               </li>
-               <li><a class="close-link"><i class="fa fa-close"></i></a>
-               </li>
-             </ul>
+             <br/>
              <div class="clearfix"></div>
            </div>
            <div class="x_content">
@@ -191,7 +193,7 @@
                    </select>
                  </div>
                </div>
-             --> 
+             -->
                <button type="submit" class="btn btn-success" name="btnSubmit">Đăng ký học viên</button>
              </form>
            </div>

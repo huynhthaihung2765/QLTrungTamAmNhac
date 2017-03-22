@@ -47,7 +47,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="public/images/img.jpg" alt="">John Doe
+                    <img src="public/images/img.jpg" alt="">Phùng Văn A
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -169,7 +169,7 @@
                   <li><a><i class="fa fa-edit"></i> Quản lí học viên <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="xemhocvien.php">Xem học viên</a></li>
-                      <li><a href="form_advanced.html">Thêm học viên</a></li>
+                      <li><a href="themhocvien.php">Thêm học viên</a></li>
                       <li><a href="form_validation.html">Đăng ký mới</a></li>
                       <li><a href="form_wizards.html">Học viên đã nghỉ</a></li>
                       <li><a href="form_upload.html">Học viên bảo lưu</a></li>

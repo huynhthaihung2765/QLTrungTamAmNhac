@@ -3,8 +3,29 @@
 <?php include_once("entities/capdo.class.php"); ?>
 <?php include_once("entities/lichhoc.class.php"); ?>
 <?php include_once("entities/giaovien.class.php"); ?>
-
-
+<?php
+function generateRandomString($length) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+} ?>
+<?php
+  if(!isset($_GET["idpdk"]))
+  {
+     header("Location: 404.php");
+  }else {
+    $idphieudangky = $_GET["idpdk"];
+    session_start();
+    //Lấy 1 chuỗi ký tự bất kỳ 20 phần tử
+    $randomString = generateRandomString(20);
+    //Tạo 1 biến session chứa random string khi trang này dc gọi
+    $_SESSION['random'] = $randomString;
+  }
+ ?>
 <?php include_once("header.php") ?>
 
 <div class="right_col" role="main">
@@ -20,9 +41,9 @@
       <div class="title_right">
         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
+            <input type="text" class="form-control" placeholder="Tìm kiếm...">
             <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Go!</button>
+                <button class="btn btn-default" type="button">Tìm!</button>
             </span>
           </div>
         </div>
@@ -35,7 +56,7 @@
       <div class="col-md-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Trung tâm hiện đang còn trống các lớp:</small></h2>
+            <h2>Trung tâm hiện đang còn trống các lớp:</h2>
             <ul class="nav navbar-right panel_toolbox">
               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
               </li>
@@ -114,6 +135,7 @@
                                     <tbody>
                                       <?php $soluong = 0; ?>
                                       <?php foreach ($allGiaoVienHasInLopHoc as $key => $itemGiaoVien){ ?>
+                                        <?php $idGiaoVien = $itemGiaoVien['IDGiaoVien']; ?>
                                         <?php $hinhAnhGiaoVien = $itemGiaoVien['HinhAnhGV']; ?>
                                         <?php $soluong++; ?>
                                         <tr>
@@ -131,13 +153,16 @@
                                                   <span class="message">
                                                     Bằng cấp: <?php echo $itemGiaoVien['BangCap'] ; ?>.<br />
                                                     SDT: <?php echo $itemGiaoVien['SDT'] ; ?>.
+                                                    id: <?php echo $idGiaoVien; ?>
                                                   </span>
                                                 </a>
                                               </li>
                                             </ul>
                                           </td>
                                           <td><?php echo $itemLichHoc['NgayTrongTuan'] ; ?></td>
-                                          <td><button type="button" class="btn btn-primary" name="button">Đăng ký</button></td>
+                                          <td>
+                                            <a class="btn btn-primary btn-xs" href="xacnhandangky.php?rds=<?php echo $randomString; ?>&idpdk=<?php echo $idphieudangky;?>&idmh=<?php echo $idMonHoc; ?>&idcd=<?php echo $idCapDo; ?>&idlh=<?php echo $idLichHoc; ?>&idgv=<?php echo $idGiaoVien; ?>"><i class="fa fa-user"> </i> Xem thông tin</a>
+                                          </td>
                                         </tr>
                                       <?php } ?>
                                     </tbody>
