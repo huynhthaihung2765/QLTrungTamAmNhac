@@ -69,16 +69,16 @@
       return $result;
     }
 
-    public static function Get_All_HV_Learn(){
+    public static function Get_All_HV_Sign(){
       $db = new Db();
-      $sql = "SELECT * from hocvien hv inner join phieudangky pdk on hv.IDHocVien = pdk.IDHocVien inner join chitiet_pdk_lh ct on pdk.IDPhieu = ct.IDPhieu inner join khoahoc kh on kh.IDKHOAHOC = ct.IDKHOAHOC where ct.TrangThaiHoc = 'true'";
+      $sql = "SELECT * from hocvien hv RIGHT join phieudangky pdk on hv.IDHocVien = pdk.IDHocVien";
       $result = $db->select_to_array($sql);
       return $result;
     }
 
-    public static function Get_Class_HV_Learn($idkh) {
+    public static function Get_A_HV_By_PDK($idpdk) {
       $db = new Db();
-      $sql = "SELECT * FROM khoahoc kh INNER JOIN monhoc mh ON kh.IDLopHoc = mh.IDLopHoc WHERE kh.IDKHOAHOC='$idkh'";
+      $sql = "SELECT * from hocvien hv RIGHT JOIN phieudangky pdk on hv.IDHocVien = pdk.IDHocVien WHERE pdk.IDPhieu = '$idpdk'";
       $result = $db->select_to_array($sql);
       return $result;
     }
