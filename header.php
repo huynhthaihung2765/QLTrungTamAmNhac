@@ -169,55 +169,49 @@
                   <li><a><i class="fa fa-edit"></i> Quản lí học viên <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="xemhocvien.php">Xem học viên</a></li>
-                      <li><a href="form_advanced.html">Thêm học viên</a></li>
-                      <li><a href="form_validation.html">Đăng ký mới</a></li>
-                      <li><a href="form_wizards.html">Học viên đã nghỉ</a></li>
-                      <li><a href="form_upload.html">Học viên bảo lưu</a></li>
-                      <li><a href="form_buttons.html">Form Buttons</a></li>
+                      <li><a href="themhocvien.php">Thêm học viên</a></li>
+                      <li><a href="#">Đăng ký mới</a></li>
+                      <li><a href="#">Học viên đã nghỉ</a></li>
+                      <li><a href="#">Học viên bảo lưu</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-desktop"></i> Quản lí lớp học <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="general_elements.html">Xem lớp học</a></li>
-                      <li><a href="media_gallery.html">Thêm lớp học</a></li>
-                      <li><a href="typography.html">Xem môn học</a></li>
-                      <li><a href="icons.html">Xem cấp độ</a></li>
-                      <li><a href="glyphicons.html"></a></li>
-                      <li><a href="widgets.html">Widgets</a></li>
-                      <li><a href="invoice.html">Invoice</a></li>
-                      <li><a href="inbox.html">Inbox</a></li>
-                      <li><a href="calendar.html">Calendar</a></li>
+                      <li><a href="#">Xem lớp học</a></li>
+                      <li><a href="#">Thêm lớp học</a></li>
+                      <li><a href="#">Xem môn học</a></li>
+                      <li><a href="#">Xem cấp độ</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-desktop"></i> Quản lí giáo viên <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="general_elements.html">Xem giáo viên</a></li>
-                      <li><a href="media_gallery.html">Thêm giáo viên</a></li>
-                      <li><a href="typography.html">Giáo viên đăng ký mới</a></li>
-                      <li><a href="icons.html"></a>Giáo viên đã nghỉ</li>
+                      <li><a href="xemgiaovien.php">Xem giáo viên</a></li>
+                      <li><a href="#">Thêm giáo viên</a></li>
+                      <li><a href="#">Giáo viên đăng ký mới</a></li>
+                      <li><a href="#"></a>Giáo viên đã nghỉ</li>
                       </ul>
                   </li>
                   <li><a><i class="fa fa-table"></i> Quản lí cơ sở vật chất <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="tables.html">Xem nhạc cụ</a></li>
-                      <li><a href="tables_dynamic.html">Xem vật dụng</a></li>
-                      <li><a href="tables_dynamic.html">Đồ hư</a></li>
+                      <li><a href="#">Xem nhạc cụ</a></li>
+                      <li><a href="#">Xem vật dụng</a></li>
+                      <li><a href="#">Đồ hư</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i> Quản lí bài viết <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="chartjs.html">Xem bài viết</a></li>
-                      <li><a href="chartjs2.html">Thêm bài mới</a></li>
-                      <li><a href="morisjs.html">Xem danh mục</a></li>
-                      <li><a href="echarts.html">ECharts</a></li>
-                      <li><a href="other_charts.html">Other Charts</a></li>
+                      <li><a href="#">Xem bài viết</a></li>
+                      <li><a href="#">Thêm bài mới</a></li>
+                      <li><a href="#">Xem danh mục</a></li>
+                      <li><a href="#">ECharts</a></li>
+                      <li><a href="#">Other Charts</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-clone"></i>Quản lí thu chi <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="fixed_sidebar.html">Mục thu</a></li>
-                      <li><a href="fixed_footer.html">Mục chi</a></li>
-                      <li><a href="fixed_footer.html">Báo cáo</a></li>
+                      <li><a href="#">Mục thu</a></li>
+                      <li><a href="#">Mục chi</a></li>
+                      <li><a href="#">Báo cáo</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -227,37 +221,37 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="e_commerce.html">E-commerce</a></li>
-                      <li><a href="projects.html">Projects</a></li>
-                      <li><a href="project_detail.html">Project Detail</a></li>
-                      <li><a href="contacts.html">Contacts</a></li>
-                      <li><a href="profile.html">Profile</a></li>
+                      <li><a href="#">E-commerce</a></li>
+                      <li><a href="#">Projects</a></li>
+                      <li><a href="#">Project Detail</a></li>
+                      <li><a href="#">Contacts</a></li>
+                      <li><a href="#">Profile</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="page_403.html">403 Error</a></li>
-                      <li><a href="page_404.html">404 Error</a></li>
-                      <li><a href="page_500.html">500 Error</a></li>
-                      <li><a href="plain_page.html">Plain Page</a></li>
-                      <li><a href="login.html">Login Page</a></li>
-                      <li><a href="pricing_tables.html">Pricing Tables</a></li>
+                      <li><a href="#">403 Error</a></li>
+                      <li><a href="#">404 Error</a></li>
+                      <li><a href="#">500 Error</a></li>
+                      <li><a href="#">Plain Page</a></li>
+                      <li><a href="#">Login Page</a></li>
+                      <li><a href="#">Pricing Tables</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="#level1_1">Level One</a>
+                        <li><a href="#">Level One</a>
                         <li><a>Level One<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
-                            <li class="sub_menu"><a href="level2.html">Level Two</a>
+                            <li class="sub_menu"><a href="#">Level Two</a>
                             </li>
-                            <li><a href="#level2_1">Level Two</a>
+                            <li><a href="#">Level Two</a>
                             </li>
-                            <li><a href="#level2_2">Level Two</a>
+                            <li><a href="#">Level Two</a>
                             </li>
                           </ul>
                         </li>
-                        <li><a href="#level1_2">Level One</a>
+                        <li><a href="#">Level One</a>
                         </li>
                     </ul>
                   </li>
