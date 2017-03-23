@@ -53,7 +53,7 @@
                           <td><?php echo $item["HoTenGV"]; ?></td>
                           <td><?php echo $item["GioiTinh"]; ?></td>
                           <td><?php echo $item["SDT"]; ?></td>
-                          <td><?php echo $item["DiaChi"]; ?></td>
+                          <td>#</td>
                           <td><?php echo $item["Email"]; ?></td>
                           <td><?php echo $item["ChuyenMon"]; ?></td>
                         </tr>

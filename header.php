@@ -186,7 +186,7 @@
                   <li><a><i class="fa fa-desktop"></i> Quản lí giáo viên <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="xemgiaovien.php">Xem giáo viên</a></li>
-                      <li><a href="#">Thêm giáo viên</a></li>
+                      <li><a href="themgiaovien.php">Thêm giáo viên</a></li>
                       <li><a href="#">Giáo viên đăng ký mới</a></li>
                       <li><a href="#"></a>Giáo viên đã nghỉ</li>
                       </ul>
