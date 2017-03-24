@@ -34,6 +34,7 @@
   </head>
 
   <body class="nav-md">
+
     <div class="container body">
       <div class="main_container">
 
@@ -47,7 +48,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="public/images/img.jpg" alt="">John Doe
+                    <img src="public/images/img.jpg" alt=""> John Due
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -59,7 +60,7 @@
                       </a>
                     </li>
                     <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 
@@ -147,7 +148,7 @@
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>Hung Huynh</h2>
+                <h2>Hưng Huỳnh</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
