@@ -1,4 +1,5 @@
 <?php include_once("entities/cosovatchat.class.php"); ?>
+<?php include_once("entities/loaicsvc.php"); ?>
 <?php include_once("header.php") ?>
 <?php date_default_timezone_set('Asia/Ho_Chi_Minh'); ?>
 
@@ -7,24 +8,22 @@
      $Idcsvc = $_POST["txtIDcsvc"];
      $Idloai = $_POST["txtIDloai"];
      $Tenccsvc = $_POST["txtTencsvc"];
-     $Soluong = $_POST["txtSoluong"];
-     $Ngaymua = $_POST["txtNgaymua"];
+     $GiaMua = $_POST["txtGiaMua"];
      $Diachimua = $_POST["txtDiaChiMua"];
-     $Hinhanhcsvc = $_FILES["txtpic"];
 
      //$ngayHienTai = $_POST["ngayHienTai"];
      //$format = 'Y-m-d H:i:s';
      //$date = DateTime::createFromFormat($format, $ngayHienTai);
 
-     $newCosovatchat = new Cosovatchat($Idcsvc, $Idloai, $Tenccsvc, $Soluong, $Ngaymua, $Diachimua, $Hinhanhcsvc);
+     $newCosovatchat = new Cosovatchat($Idcsvc, $Idloai, $Tenccsvc, $GiaMua, $Diachimua);
      $result = $newCosovatchat->insert();
      if(!$result)
-     {
+     { 
        header("location: themcsvc.php?fail");
      }
      else {
-       
-       header("location: themcsvc.php?inserted&id=$Idcsvc");
+
+       header("location: themcsvc.php?inserted");
      }
   }
 ?>
@@ -34,10 +33,11 @@
 
 <?php
   $cosovatchat = Cosovatchat::SelectAllCSVC();
+  $lastCSVC = Cosovatchat::Get_Last_CSVC();
 
   //$hocviens = Hocvien::list_All_HocVien();
-  $cosovatchatidloai = Cosovatchat::Get_All_CSVC_by_Idloai();
-
+  //$cosovatchatidloai = Cosovatchat::SelectAllCSVC();
+  $allLoaiCSVC = Loaicosovatchat::SelectAllLoaiCSVC();
  ?>
 
  <div class="right_col" role="main">
@@ -65,6 +65,13 @@
              <div class="clearfix"></div>
            </div>
            <div class="x_content">
+              <?php if (isset($_GET['fail'])) {
+                echo "Lỗi không thêm vào được.";
+              }
+                if (isset($_GET['inserted'])) {
+                  echo "Thêm thành công.";
+                }
+              ?>
              <br />
              <?php
                if (isset($_GET["inserted"])){
@@ -76,22 +83,27 @@
              ?>
              <br />
              <form class="form-horizontal form-label-left" method="post" enctype="multipart/form-data">
-               <?php foreach ($hvLast as $key => $itemcsvc): ?>
+               <?php foreach ($lastCSVC as $key => $itemcsvc): ?>
                 <?php
-                $idCSVCLast = $itemcsvc['$Idcsvc'];
-                $idCSVCNext = intval($idcsvcVLast) + 1;
+                  $idCSVCLast = $itemcsvc['IDCSVC'];
+                  $idCSVCNext = intval($idCSVCLast) + 1;
                  ?>
               <?php endforeach; ?>
                <div class="form-group">
                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Mã cơ sở vật chất</label>
                  <div class="col-md-9 col-sm-9 col-xs-12">
-                   <input type="text" style="width: 50%;" name="txtIDcsvc" value="<?php echo $idCSVCNext ?>" class="form-control" readonly="yes">
+                   <input type="text" style="width: 50%;" name="txtIDcsvc" value="<?php echo $idCSVCNext; ?>" class="form-control" readonly="yes">
                  </div>
                </div>
                <div class="form-group">
                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Loại cơ sở vật chất</label>
                  <div class="col-md-9 col-sm-9 col-xs-12">
-                   <input type="text" name="txtIDloai" class="form-control" placeholder="Loại">
+                   <select class="" name="txtIDloai">
+                     <?php foreach ($allLoaiCSVC as $key => $value): ?>
+                       <option value="<?php echo $value['IDLoai']; ?>"><?php echo $value['TenLoai'] ?></option>
+                     <?php endforeach; ?>
+
+                   </select>
                  </div>
                </div>
                <div class="form-group">
@@ -101,9 +113,9 @@
                  </div>
                </div>
                <div class="form-group">
-                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày mua</label>
+                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Giá mua</label>
                  <div class="col-md-9 col-sm-9 col-xs-12">
-                   <input type="date" name="txtNgaymua" class="form-control" placeholder="Ngày/tháng/năm">
+                   <input type="text" name="txtGiaMua" id="autocomplete-custom-append" class="form-control col-md-10"/>
                  </div>
                </div>
                <div class="form-group">
@@ -112,57 +124,7 @@
                    <textarea class="form-control" name="txtDiaChiMua" rows="3" placeholder='Số nhà, Đường, Phường, Quận, TP'></textarea>
                  </div>
                </div>
-               <div class="form-group">
-                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Số lượng</label>
-                 <div class="col-md-9 col-sm-9 col-xs-12">
-                   <input type="text" name="txtSoluong" id="autocomplete-custom-append" class="form-control col-md-10"/>
-                 </div>
-               </div>
-               <div class="form-group">
-                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Chọn ảnh cơ sở vật chất</label>
-                 <div class="col-md-9 col-sm-9 col-xs-12">
-                   <input type="file" name="txtpic" accept=".PNG,.JPG,.GIF" class="form-control col-md-10"/>
-                 </div>
-               </div>
-               <!--
-               <div class="form-group">
-                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Facebook</label>
-                 <div class="col-md-9 col-sm-9 col-xs-12">
-                   <input type="text" name="country" id="autocomplete-custom-append" class="form-control col-md-10"/>
-                 </div>
-               </div>
-             -->
-               <!--
-               <div class="form-group">
-                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Môn học</label>
-                 <div class="col-md-9 col-sm-9 col-xs-12">
-                   <select name="slcMonHoc" class="form-control">
-                     <?php
-                      foreach ($monhocs as $key => $item) {
-                      ?>
-                     <option value="<?php echo $item['IDCSVC']; ?>"><?php echo $item['TenVatChat']; ?></option>
-                     <?php
-                        }
-                      ?>
-                   </select>
-                 </div>
-               </div>
-               <div class="form-group">
-                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Cấp độ</label>
-                 <div class="col-md-9 col-sm-9 col-xs-12">
-                   <select class="select2_single form-control" name="slcCapDo" tabindex="-1">
-                     <?php
-                      foreach ($capdos as $key => $item) {
-                      ?>
-                     <option value="<?php echo $item['IDLoai']; ?>"><?php echo $item['TenLoai']; ?></option>
-                     <?php
-                      }
-                      ?>
-                   </select>
-                 </div>
-               </div>
-             --> 
-               <button type="submit" class="btn btn-success" name="btnSubmit">Đăng ký bổ sung cơ sở vật chất mới</button>
+               <button type="submit" class="btn btn-success" name="btnSubmit">Thêm cơ sở vật chất.</button>
              </form>
            </div>
          </div>

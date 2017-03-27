@@ -169,7 +169,7 @@
                   <li><a><i class="fa fa-edit"></i> Quản lí học viên <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="xemhocvien.php">Xem học viên</a></li>
-                      <li><a href="form_advanced.html">Thêm học viên</a></li>
+                      <li><a href="themhocvien.php">Thêm học viên</a></li>
                       <li><a href="form_validation.html">Đăng ký mới</a></li>
                       <li><a href="form_wizards.html">Học viên đã nghỉ</a></li>
                       <li><a href="form_upload.html">Học viên bảo lưu</a></li>
@@ -199,8 +199,8 @@
                   </li>
                   <li><a><i class="fa fa-table"></i> Quản lí cơ sở vật chất <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="tables_dynamic.html">Thêm cơ sở vật chất
-                      <li><a href="tables_dynamic.html">Xem Cơ sở vật chất</a></li>
+                      <li><a href="themcsvc.php">Thêm cơ sở vật chất</a></li>
+                      <li><a href="xemcosovatchat.php">Xem Cơ sở vật chất</a></li>
                       <li><a href="tables_dynamic.html">Đồ hư</a></li>
                     </ul>
                   </li>

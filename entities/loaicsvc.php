@@ -9,8 +9,6 @@
     public $Idloai;
     public $Tenloai;
     public $Motaloai;
-
-  }
     public function __construct($Idloai,  $Tenloai, $Motaloai)
     {
         $this->Idloai = $Idloai;
@@ -52,13 +50,13 @@
       $result = $db->select_to_array($sql);
       return $result;
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
+    public static function SelectAllLoaiCSVCByIdLoai($idLoai)
+    {
+      $db = new Db();
+      $sql = "SELECT * from loaicsvc lcsvc where lcsvc.IDLoai = '$idLoai'";
+      $result = $db->select_to_array($sql);
+      return $result;
+    }
+  }
     ?>
- 

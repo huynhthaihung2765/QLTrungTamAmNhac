@@ -7,42 +7,23 @@
   class Cosovatchat
   {
     public $Idcsvc;
-    public $Idloai
+    public $Idloai;
     public $Tencsvc;
-    public $Soluong;
-    public $Ngaymua;
+    public $GiaMua;
     public $Diachimua;
-    public $Hinhanhcsvc
-  
-    
 
-    public function __construct($Idcsvc,  $Idloai, $Tencsvc ,$Soluong,$Diachimua, $Giamua ,$Ngaymua , $Hinhanhcsvc){
+    public function __construct($Idcsvc,  $Idloai, $Tencsvc, $GiaMua, $Diachimua){
       $this->Idcsvc = $Idcsvc;
       $this->Idloai = $Idloai;
       $this->Tencsvc = $Tencsvc;
-      $this->Soluong = $Soluong;
-      $this->Giamua = $Giamua;
+      $this->GiaMua = $GiaMua;
       $this->Diachimua = $Diachimua;
-      $this->Ngaymua = $Ngaymua;
-      $this->Hinhanhcsvc = $Hinhanhcsvc;
-
     }
 
     public function insert(){
-      //Xu ly hinh anh
-      $file_temp = $this->Hinhanhcsvc['tmp_name'];
-      $user_file = $this->Hinhanhcsvc['name'];
-      $timestamp = date("Y").date("m").date("d").date("h").date("i").date("s");
-      $filepath = "public/images/Cosovatchat/".$timestamp.$user_file;
-      if(move_uploaded_file($file_temp, $filepath) == false){
-        $filepath = "public/images/Cosovatchat/user.png";
-      }
-
-
-
       $db = new Db();
-      $sql = "INSERT INTO cosovatchat (IDCSVC,	IDLoai,	TenVatChat,	GiaMua,	DiaChiMua, NgayMua	,Soluong, Hinhanhcsvc) VALUES
-      ('$this->Idcsvc', '$this->Idloai', '$this->Tencsvc','$this->Giamua', '$this->Diachimua', '$this->Ngaymua',$this->Soluong , '$filepath')";
+      $sql = "INSERT INTO cosovatchat (IDCSVC,	IDLoai,	TenVatChat,	GiaMua,	DiaChiMua) VALUES
+      ('$this->Idcsvc', '$this->Idloai', '$this->Tencsvc','$this->GiaMua', '$this->Diachimua')";
       $result = $db->query_execute($sql);
       return $result;
     }
@@ -81,7 +62,14 @@
     public static function SelectAllCSVC()
     {
       $db = new Db();
-      $sql = "SELECT * from csvc";
+      $sql = "SELECT * from cosovatchat";
+      $result = $db->select_to_array($sql);
+      return $result;
+    }
+
+    public static function Get_Last_CSVC(){
+      $db = new Db();
+      $sql = "SELECT * from cosovatchat csvc ORDER BY csvc.IDCSVC DESC LIMIT 1";
       $result = $db->select_to_array($sql);
       return $result;
     }
