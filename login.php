@@ -1,4 +1,8 @@
-<?php 
+<?php
+session_start();
+
+
+/*
   if(isset($_SESSION['user'])!="")
   {
     // người dùng đã đăng nhập, trở về trang chủ
@@ -25,6 +29,50 @@
       header("Location: index.php");
     }
   }
+*/
+if(!isset($_SESSION['TenTaiKhoan'])){
+  if (isset($_POST['btn_dangnhap']))
+  {
+    $u_name = $_POST['txtnameLogin'];
+    $u_pass = $_POST['txtpassLogin'];
+
+    //$username = $_POST['username'];
+    //$password = md5($_POST['password']);
+    $conn=mysqli_connect("localhost","root","") or die("can't connect");
+    mysqli_select_db($conn,"qltrungtamamnhac");
+    mysqli_set_charset($conn,"utf8");
+    $stmt = $conn->prepare("SELECT tk.TenTaiKhoan, qh.TenQuyenHan, cv.TenChucVu, nv.HoTenNV
+    from taikhoan tk LEFT join nhanvien nv on tk.IDTaiKhoan = nv.IDTaiKhoan
+    LEFT join quyenhan qh on tk.IDQuyenHan = qh.IDQuyenHan
+    LEFT join chucvu cv on nv.IDChucVu = cv.IDChucVu
+    WHERE tk.TenTaiKhoan = ? and tk.MatKhau = ? LIMIT 1");
+    $stmt->bind_param('ss', $u_name, $u_pass);
+    $stmt->execute();
+   $stmt->bind_result($tentaiKhoan, $tenQuyen, $tenChucVu, $hoTenNhanVien);
+   $stmt->store_result();
+   if ($stmt->num_rows == 1) {
+     if($stmt->fetch()) //fetching the contents of the row
+      {
+        $_SESSION['HoTenNhanVien'] = $hoTenNhanVien;
+         $_SESSION['TenTaiKhoan'] = $tentaiKhoan;
+         $_SESSION['TenQuyen'] = $tenQuyen;
+         $_SESSION['TenChucVu'] = $tenChucVu;
+         echo 'Success!';
+         header("Location: index.php");
+      }
+      else {
+        header("Location: login.php?failfetch");
+      }
+   }
+   else {
+     header("Location: login.php?fail");
+   }
+  }
+}
+else {
+   header("Location: index.php");
+}
+
  ?>
 
 <!DOCTYPE html>
@@ -62,13 +110,13 @@
             <form method="POST" action="login.php">
               <h1>Đăng nhập</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" name="username" />
+                <input type="text" class="form-control" placeholder="Username" required="" name="txtnameLogin" />
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" name="password" />
+                <input type="password" class="form-control" placeholder="Password" required="" name="txtpassLogin" />
               </div>
               <div>
-                <input type="submit" name="btn_submit" value="Đăng nhập" class="btn btn-default submit">
+                <input type="submit" name="btn_dangnhap" value="Đăng nhập" class="btn btn-default submit">
                 <a class="reset_pass" href="#">Quên mật khẩu?</a>
               </div>
 
