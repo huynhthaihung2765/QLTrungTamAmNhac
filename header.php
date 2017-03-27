@@ -225,10 +225,10 @@
               <div class="menu_section">
                 <h3>Live On</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-bug"></i> Quản lí nhân viên <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-bug"></i> Nhân viên <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="themnhanvien.php">Thêm nhân viên</a></li>
-                      <li><a href="#">Quản lí tài khoản</a></li>
+                      <li><a href="#">Xem nhân viên</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
