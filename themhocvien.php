@@ -3,6 +3,7 @@
 <?php date_default_timezone_set('Asia/Ho_Chi_Minh'); ?>
 
 <?php
+session_start();
   if (isset($_POST["btnSubmit"])){
     $maHocVien = $_POST["txtMaHocVien"];
      $hoTenHocVien = $_POST["txtName"];
@@ -17,35 +18,49 @@
      //$format = 'Y-m-d H:i:s';
      //$date = DateTime::createFromFormat($format, $ngayHienTai);
 
-     $newHocVien = new Hocvien($maHocVien, $hoTenHocVien, $gioiTinh, $ngaySinh, $soDienThoai, $diaChi, $email, $picture);
-     $result = $newHocVien->insert();
-     if(!$result)
+     if($_POST['txtCaptcha'] == NULL)
      {
-       header("location: themhocvien.php?fail");
+       header("location: themhocvien.php?failCaptchaNull");
      }
-     else {
-       //Lấy phiếu đăng ký co id cao nhat
-       $countPhieuDangKy = PhieuDangKy::Count_PDK();
-       $lastPDK = PhieuDangKy::Get_Last_PDK();
-       $idPDKnext = 0;
-       foreach ($countPhieuDangKy as $key => $itemCountPDK) {
-         $soLuongChiTietPhieuDangKy = $itemCountPDK['soluongphieudangky'];
-         if($soLuongChiTietPhieuDangKy == 0){
-           $idPDKnext = 1;
-         }
-         else {
-           foreach ($lastPDK as $key => $itemLastPDK) {
-             $lastIDPhieuDangKy = $itemLastPDK['IDPhieu'];
-             $idPDKnext = intval($lastIDPhieuDangKy) + 1;
-           }
-         }
-       }
-       $datenow = date('Y-m-d H:i:s');
-       $tenPhieu = "Phieu Dang Ky";
-       $newPDK = new PhieuDangKy($idPDKnext, $maHocVien, $tenPhieu, $datenow);
-       $insertPHK = $newPDK->insert();
-       //header("location: themhocvien.php?inserted&id=$maHocVien");
-       header("location: themChitiet_PDK_LopHoc.php?inserted&idpdk=$idPDKnext");
+     else
+     {
+      if($_POST['txtCaptcha'] == $_SESSION['security_code'])
+      {
+        $newHocVien = new Hocvien($maHocVien, $hoTenHocVien, $gioiTinh, $ngaySinh, $soDienThoai, $diaChi, $email, $picture);
+        $result = $newHocVien->insert();
+        if(!$result)
+        {
+          header("location: themhocvien.php?failInsert");
+        }
+        else {
+          //Lấy phiếu đăng ký co id cao nhat
+          $countPhieuDangKy = PhieuDangKy::Count_PDK();
+          $lastPDK = PhieuDangKy::Get_Last_PDK();
+          $idPDKnext = 0;
+          foreach ($countPhieuDangKy as $key => $itemCountPDK) {
+            $soLuongChiTietPhieuDangKy = $itemCountPDK['soluongphieudangky'];
+            if($soLuongChiTietPhieuDangKy == 0){
+              $idPDKnext = 1;
+            }
+            else {
+              foreach ($lastPDK as $key => $itemLastPDK) {
+                $lastIDPhieuDangKy = $itemLastPDK['IDPhieu'];
+                $idPDKnext = intval($lastIDPhieuDangKy) + 1;
+              }
+            }
+          }
+          $datenow = date('Y-m-d H:i:s');
+          $tenPhieu = "Phieu Dang Ky";
+          $newPDK = new PhieuDangKy($idPDKnext, $maHocVien, $tenPhieu, $datenow);
+          $insertPHK = $newPDK->insert();
+          //header("location: themhocvien.php?inserted&id=$maHocVien");
+          header("location: themChitiet_PDK_LopHoc.php?inserted&idpdk=$idPDKnext");
+        }
+      }
+      else
+      {
+       header("location: themhocvien.php?failCaptchaInput");
+      }
      }
   }
 ?>
@@ -86,8 +101,15 @@
                if (isset($_GET["inserted"])){
                  echo "<h2>Thêm học viên thành công</h2>";
                }
-               if(isset($_GET["fail"])) {
-                 echo "<h2>Thêm học viên thất bại</h2>";
+               if(isset($_GET["failInsert"])) {
+                 echo "<h2>Email hoặc số điện thoại trùng.</h2>";
+               }
+               if(isset($_GET["failCaptchaNull"])) {
+                 echo "<h2>Captcha còn bỏ trống.</h2>";
+               }
+               //failCaptchaInput
+               if(isset($_GET["failCaptchaInput"])) {
+                 echo "<h2>Captcha nhập vào sai.</h2>";
                }
              ?>
              <br />
@@ -156,6 +178,16 @@
                    <input type="file" name="txtpic" accept=".PNG,.JPG,.GIF" class="form-control col-md-10"/>
                  </div>
                </div>
+
+               <div class="form-group">
+                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Captcha</label>
+                 <div class="col-md-9 col-sm-9 col-xs-12">
+                   <input type="text" name="txtCaptcha" maxlength="10" size="32" />
+                   <img src="random_image.php" />
+                 </div>
+               </div>
+
+
                <!--
                <div class="form-group">
                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Facebook</label>

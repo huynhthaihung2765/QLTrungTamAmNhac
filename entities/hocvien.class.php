@@ -48,8 +48,17 @@
 
 
     public function edit($id){
+
+      $file_temp = $this->picture['tmp_name'];
+      $user_file = $this->picture['name'];
+      $timestamp = date("Y").date("m").date("d").date("h").date("i").date("s");
+      $filepath = "public/images/HocVien/".$timestamp.$user_file;
+      if(move_uploaded_file($file_temp, $filepath) == false){
+        $filepath = "public/images/HocVien/user.png";
+      }
+
       $db = new Db();
-      $sql = "UPDATE hocvien SET HoTenHocVien='$this->hoTenHocVien', GioiTinh='$this->gioiTinh',NgaySinh='$this->ngaySinh', SDT='$this->soDienThoai', NoiOHienTai='$this->diaChi', Email='$this->email'";
+      $sql = "UPDATE hocvien SET HoTenHocVien='$this->hoTenHocVien', GioiTinh='$this->gioiTinh',NgaySinh='$this->ngaySinh', SDT='$this->soDienThoai', NoiOHienTai='$this->diaChi', Email='$this->email', HinhAnhHV='$filepath' where IDHocVien = '$id'";
        $result = $db->query_execute($sql);
        return $result;
     }
@@ -72,6 +81,13 @@
     public static function Get_All_HV_Sign(){
       $db = new Db();
       $sql = "SELECT * from hocvien hv RIGHT join phieudangky pdk on hv.IDHocVien = pdk.IDHocVien";
+      $result = $db->select_to_array($sql);
+      return $result;
+    }
+
+    public static function Get_A_HV_Sign_ByName($nameinput){
+      $db = new Db();
+      $sql = "SELECT * from hocvien hv RIGHT join phieudangky pdk on hv.IDHocVien = pdk.IDHocVien where hv.HoTenHocVien like '%$nameinput%' order by hv.IDHocVien LIMIT 5";
       $result = $db->select_to_array($sql);
       return $result;
     }

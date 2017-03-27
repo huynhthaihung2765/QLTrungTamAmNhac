@@ -1,5 +1,37 @@
+
 <?php include_once("entities/hocvien.class.php"); ?>
 <?php include_once("entities/phieudangky.class.php"); ?>
+<?php include_once("entities/chitiet_PDK_LopHoc.class.php"); ?>
+<?php include_once("entities/lophoc.class.php"); ?>
+
+
+<?php
+  if (isset($_POST["btnSubmit"])){
+    $maHocVien = $_POST["txtMaHocVien"];
+     $hoTenHocVien = $_POST["txtName"];
+     $gioiTinh = $_POST["iCheck"];
+     $ngaySinh = $_POST["txtNgaySinh"];
+     $soDienThoai = $_POST["txtDienThoai"];
+     $diaChi = $_POST["txtDiaChi"];
+     $email = $_POST["txtEmail"];
+     $picture = $_FILES["txtpic"];
+
+     //$ngayHienTai = $_POST["ngayHienTai"];
+     //$format = 'Y-m-d H:i:s';
+     //$date = DateTime::createFromFormat($format, $ngayHienTai);
+
+     $newHocVien = new Hocvien($maHocVien, $hoTenHocVien, $gioiTinh, $ngaySinh, $soDienThoai, $diaChi, $email, $picture);
+     $result = $newHocVien->edit($maHocVien);
+     if(!$result)
+     {
+       header("location: xemchitiethocvien.php?fail&idHV=$maHocVien");
+     }
+     else {
+       header("location: xemchitiethocvien.php?inserted&idHV=$maHocVien");
+     }
+  }
+?>
+
 
 <?php include_once("header.php");
   if(!isset($_GET["idHV"])){
@@ -15,6 +47,8 @@
     //  $idkh = $_GET["idkh"];
     //  $classHVLearn = reset(Hocvien::Get_Class_HV_Learn($idkh));
     //}
+
+    $lichSuHocCuaHocVien = PhieuDangKy::Get_HistoryLearn_ByIDHocVien($idHocVien);
   }
  ?>
 
@@ -22,18 +56,11 @@
   <div class="">
     <div class="page-title">
       <div class="title_left">
-        <h3>User Profile</h3>
-      </div>
-
-      <div class="title_right">
-        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button">Go!</button>
-            </span>
-          </div>
-        </div>
+        <ol class="breadcrumb" >
+          <li><a href="index.php"><strong>Trang chủ</strong></a></li>
+          <li><a href="xemhocvien.php"><strong>Danh sách học viên</strong></a></li>
+          <li class="active">Chi tiết học viên</li>
+        </ol>
       </div>
     </div>
 
@@ -43,25 +70,21 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Chi tiết học viên <small>Activity report</small></h2>
-            <ul class="nav navbar-right panel_toolbox">
-              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Settings 1</a>
-                  </li>
-                  <li><a href="#">Settings 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li><a class="close-link"><i class="fa fa-close"></i></a>
-              </li>
-            </ul>
+            <h2>Chi tiết học viên </h2>
+
             <div class="clearfix"></div>
           </div>
           <?php foreach ($hv as $key => $itemH){ ?>
+            <?php
+              $idHocVien = $itemH['IDHocVien'];
+              $hoTenHocVIen = $itemH['HoTenHocVien'];
+              $gioiTinh = $itemH['GioiTinh'];
+              $ngaySinh = $itemH['NgaySinh'];
+              $sdt = $itemH['SDT'];
+              $noiOHienTai = $itemH['NoiOHienTai'];
+              $Email = $itemH['Email'];
+              $hinhAnhHV = $itemH['HinhAnhHV'];
+             ?>
             <div class="x_content">
               <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
                 <div class="profile_img">
@@ -86,8 +109,155 @@
                      </a>
                   </li>
                 </ul>
+                <br/>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-edit m-right-xs"></i>Sửa thông tin</button>
 
-                <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Sửa học viên</a>
+                <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="gridSystemModalLabel">Sửa thông tin học viên</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+
+                           <div class="col-xs-6">
+                             <h2>THÔNG TIN MUỐN SỬA ĐỔI</h2>
+                             <form class="form-horizontal form-label-left" method="post" enctype="multipart/form-data">
+                               <div class="form-group">
+                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Mã học viên</label>
+                                 <div class="col-md-9 col-sm-9 col-xs-12">
+                                   <input type="text" style="width: 50%;" name="txtMaHocVien" value="<?php echo $idHocVien; ?>" class="form-control" readonly="yes">
+                                 </div>
+                               </div>
+                               <div class="form-group">
+                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Tên học viên</label>
+                                 <div class="col-md-9 col-sm-9 col-xs-12">
+                                   <input type="text" name="txtName" value="<?php echo $hoTenHocVIen; ?>" class="form-control" placeholder="Họ/tên">
+                                 </div>
+                               </div>
+                               <div class="form-group">
+                                 <label class="col-md-3 col-sm-3 col-xs-12 control-label">Giới tính</label>
+                                 <div class="col-md-9 col-sm-9 col-xs-12">
+                                   <div class="radio">
+                                     <label>
+                                       <input type="radio" class="flat" value="Nam" checked name="iCheck">Nam
+                                     </label>
+                                   </div>
+                                   <div class="radio">
+                                     <label>
+                                       <input type="radio" class="flat" value="Nữ" name="iCheck">Nữ
+                                     </label>
+                                   </div>
+                                 </div>
+                               </div>
+                               <div class="form-group">
+                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày sinh: </label>
+                                 <div class="col-md-9 col-sm-9 col-xs-12">
+                                   <?php //<?php echo date("mm/dd/yyyy", strtotime($ngaySinh)); ?>
+                                   <label for=""><?php echo $ngaySinh; ?></label>
+                                   <input type="date" name="txtNgaySinh" value="" class="form-control" placeholder="Ngày/tháng/năm">
+                                 </div>
+                               </div>
+                               <div class="form-group">
+                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Điện thoại <span class="required">*</span>
+                                 </label>
+                                 <div class="col-md-9 col-sm-9 col-xs-12">
+                                   <input type="number" value="<?php echo $sdt; ?>" name="txtDienThoai" class="form-control">
+                                 </div>
+                               </div>
+                               <div class="form-group">
+                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ</label>
+                                 <div class="col-md-9 col-sm-9 col-xs-12">
+                                   <textarea class="form-control" value="<?php echo $noiOHienTai; ?>" name="txtDiaChi" rows="3" placeholder='Số nhà, Đường, Phường, Quận, TP'></textarea>
+                                 </div>
+                               </div>
+                               <div class="form-group">
+                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+                                 <div class="col-md-9 col-sm-9 col-xs-12">
+                                   <input type="text" name="txtEmail" value="<?php echo $Email; ?>" id="autocomplete-custom-append" class="form-control col-md-10"/>
+                                 </div>
+                               </div>
+                               <div class="form-group">
+                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Chọn ảnh học viên</label>
+                                 <div class="col-md-9 col-sm-9 col-xs-12">
+                                   <input type="file" name="txtpic" accept=".PNG,.JPG,.GIF" class="form-control col-md-10"/>
+                                 </div>
+                               </div>
+
+                               <button type="submit" class="btn btn-success" name="btnSubmit">Lưu thông tin sửa</button>
+                             </form>
+                           </div>
+
+                           <div class="col-xs-6">
+                             <h2>THÔNG TIN TRƯỚC KHI SỬA ĐỔI</h2>
+                             <?php
+                             /*
+                             $idHocVien = $itemH['IDHocVien'];
+                             $hoTenHocVIen = $itemH['HoTenHocVien'];
+                             $gioiTinh = $itemH['GioiTinh'];
+                             $ngaySinh = $itemH['NgaySinh'];
+                             $sdt = $itemH['SDT'];
+                             $noiOHienTai = $itemH['NoiOHienTai'];
+                             $Email = $itemH['Email'];
+                             $hinhAnhHV = $itemH['HinhAnhHV'];
+                             */
+                              ?>
+                             <div class="form-group">
+                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ tên</label>
+                               <div class="col-md-9 col-sm-9 col-xs-12">
+                                 <p><?php echo $hoTenHocVIen; ?></p>
+                               </div>
+                             </div>
+                             <div class="form-group">
+                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Giới tính:</label>
+                               <div class="col-md-9 col-sm-9 col-xs-12">
+                                 <p><?php echo $gioiTinh; ?></p>
+                               </div>
+                             </div>
+                             <div class="form-group">
+                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày sinh:</label>
+                               <div class="col-md-9 col-sm-9 col-xs-12">
+                                 <p><?php echo $ngaySinh; ?></p>
+                               </div>
+                             </div>
+                             <div class="form-group">
+                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Số điện thoại</label>
+                               <div class="col-md-9 col-sm-9 col-xs-12">
+                                 <p><?php echo $sdt; ?></p>
+                               </div>
+                             </div>
+                             <div class="form-group">
+                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ</label>
+                               <div class="col-md-9 col-sm-9 col-xs-12">
+                                 <p><?php echo $noiOHienTai; ?></p>
+                               </div>
+                             </div>
+                             <div class="form-group">
+                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+                               <div class="col-md-9 col-sm-9 col-xs-12">
+                                 <p><?php echo $Email; ?></p>
+                               </div>
+                             </div>
+                             <div class="form-group">
+                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Hình ảnh</label>
+                               <div class="col-md-9 col-sm-9 col-xs-12">
+                                     <!-- Current avatar -->
+                                 <img class="img-responsive avatar-view" style="width: 60%; height: 20%;" src="<?php echo isset($itemH['HinhAnhHV']) ? $itemH['HinhAnhHV'] : "user.png" ; ?>" alt="Avatar" title="Change the avatar">
+
+                               </div>
+                             </div>
+                           </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
                 <br />
 
                 <!-- start skills -->
@@ -125,14 +295,9 @@
 
                 <div class="profile_title">
                   <div class="col-md-6">
-                    <h2>Lớp đang học : </h2>
+                    <h2>Lịch sử học: </h2>
                   </div>
-                  <div class="col-md-6">
-                    <div id="reportrange" class="pull-right" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
-                      <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                      <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
-                    </div>
-                  </div>
+
                 </div>
                 <!-- start of user-activity-graph -->
                 <!--<div id="graph_bar" style="width:100%; height:280px;"></div>
@@ -325,37 +490,54 @@
                             <div class="clearfix"></div>
                           </div>
                           <div class="x_content">
-
+                            <a href="ExcelHistoryHocVien.php?idhv=<?php echo $idHocVien; ?>">Xuất file excel</a>
+                            <br/>
+                            <a href="ExcelHistoryHocVien2.php?idhv=<?php echo $idHocVien; ?>">Xuất file excel 2</a>
                             <table class="table">
                               <thead>
                                 <tr>
                                   <th>#</th>
                                   <th>Tên lớp</th>
-                                  <th>Thời gian</th>
+                                  <th>Cấp độ</th>
                                   <th>Giáo viên</th>
+                                  <th>Ngày bắt đầu</th>
+                                  <th>Ngày kết thúc</th>
+                                  <th>Trạng thái học</th>
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr>
-                                  <th scope="row">1</th>
-                                  <td>Guitar vỡ lòng</td>
-                                  <td>1/2/2017 - 1/5/2017</td>
-                                  <td>Tuan Pham</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">2</th>
-                                  <td>Guitar cơ bản</td>
-                                  <td>2/5/2017 - 2/8/2017</td>
-                                  <td>Tuan Pham</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">3</th>
-                                  <td>Guitar Nâng cao</td>
-                                  <td>3/8/2017 - 3/12/2017</td>
-                                  <td>Tuan Pham</td>
-                                </tr>
+
+                                <?php $stt = 0; ?>
+                                <?php foreach ($lichSuHocCuaHocVien as $key => $itemLichSuHocVien){ ?>
+                                  <?php
+                                    $stt++;
+                                    $tenMonHoc = $itemLichSuHocVien['TenMonHoc'];
+                                    $tenCapDo = $itemLichSuHocVien['TenCapDo'];
+                                    $tenGiaoVien = $itemLichSuHocVien['HoTenGV'];
+                                    $ngayBatDau = $itemLichSuHocVien['NgayBatDauKhoaHoc'];
+                                    $ngayKetThuc = $itemLichSuHocVien['NgayKetThucKhoaHoc'];
+                                    $trangThaiHoc = $itemLichSuHocVien['TrangThaiHoc'];
+                                    $stringTrangThaiHoc = "";
+                                    if ($trangThaiHoc == "true"){
+                                      $stringTrangThaiHoc = "Đang học";
+                                    }
+                                    else {
+                                      $stringTrangThaiHoc = "Nghỉ học";
+                                    }
+                                    ?>
+                                    <tr>
+                                      <th scope="row"><?php echo $stt; ?></th>
+                                      <td><?php echo $tenMonHoc; ?></td>
+                                      <td><?php echo $tenCapDo; ?></td>
+                                      <td><?php echo $tenGiaoVien; ?></td>
+                                      <td><?php echo $ngayBatDau; ?></td>
+                                      <td><?php echo $ngayKetThuc; ?></td>
+                                      <td><?php echo $stringTrangThaiHoc; ?></td>
+                                    </tr>
+                                <?php } ?>
                               </tbody>
                             </table>
+
 
                           </div>
                         </div>

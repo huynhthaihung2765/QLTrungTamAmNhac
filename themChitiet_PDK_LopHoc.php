@@ -34,7 +34,7 @@ function generateRandomString($length) {
       <div class="title_left">
         <ol class="breadcrumb" >
           <li><a href="index.php"><strong>Trang chủ</strong></a></li>
-          <li class="active">Đăng ký lớp học</li>
+          <li class="active">Danh sách lớp học</li>
         </ol>
       </div>
 

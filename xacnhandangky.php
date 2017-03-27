@@ -77,6 +77,7 @@ session_start();
       <div class="title_left">
         <ol class="breadcrumb" >
           <li><a href="index.php"><strong>Trang chủ</strong></a></li>
+          <li><a href="themChitiet_PDK_LopHoc.php?inserted&idpdk=<?php echo $xnidpdk; ?>"><strong>Danh sách lớp học</strong></a></li>
           <li class="active">Xác nhận đăng ký</li>
         </ol>
       </div>
@@ -197,7 +198,7 @@ session_start();
                             <?php $idlop = $itemGiaoVien['IDLopHoc']; ?>
                             <input type="hidden" name="txtidLop" value="<?php echo $idlop; ?>" >
                             <button type="submit" class="btn btn-success" name="btnSubmit">Đăng ký</button>
-                          </form> 
+                          </form>
                           <!--
                           <a href="javascript:void(0);" class="btn btn-success btn-block" role="button">Đăng ký</a>
                           <p>

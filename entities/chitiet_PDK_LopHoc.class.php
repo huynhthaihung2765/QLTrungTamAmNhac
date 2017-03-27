@@ -44,9 +44,12 @@
       return $result;
     }
 
-    
-
-
+    public static function Get_All_ChiTietPDK_ByIDPDK($idpdk){
+      $db = new Db();
+      $sql = "SELECT * FROM chitiet_pdk_lh ctpdk LEFT JOIN phieudangky pdk on ctpdk.IDPhieu = pdk.IDPhieu WHERE ctpdk.IDPhieu = '$idpdk'  GROUP by ctpdk.IDPhieu, ctpdk.IDLopHoc";
+      $result = $db->select_to_array($sql);
+      return $result;
+    }
 
   }
 ?>
