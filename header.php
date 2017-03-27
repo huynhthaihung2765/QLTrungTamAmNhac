@@ -191,17 +191,17 @@
                   </li>
                   <li><a><i class="fa fa-desktop"></i> Quản lí giáo viên <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="general_elements.html">Xem giáo viên</a></li>
-                      <li><a href="media_gallery.html">Thêm giáo viên</a></li>
-                      <li><a href="typography.html">Giáo viên đăng ký mới</a></li>
-                      <li><a href="icons.html"></a>Giáo viên đã nghỉ</li>
+                      <li><a href="xemgiaovien.php">Xem giáo viên</a></li>
+                      <li><a href="themgiaovien.php">Thêm giáo viên</a></li>
+                      <li><a href="#">Giáo viên đăng ký mới</a></li>
+                      <li><a href="#"></a>Giáo viên đã nghỉ</li>
                       </ul>
                   </li>
                   <li><a><i class="fa fa-table"></i> Quản lí cơ sở vật chất <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="themcsvc.php">Thêm cơ sở vật chất</a></li>
                       <li><a href="xemcosovatchat.php">Xem Cơ sở vật chất</a></li>
-                      <li><a href="tables_dynamic.html">Đồ hư</a></li>
+                      <li><a href="#">Đồ hư</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i> Quản lí bài viết <span class="fa fa-chevron-down"></span></a>
@@ -225,13 +225,10 @@
               <div class="menu_section">
                 <h3>Live On</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-bug"></i> Quản lí nhân viên <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="e_commerce.html">E-commerce</a></li>
-                      <li><a href="projects.html">Projects</a></li>
-                      <li><a href="project_detail.html">Project Detail</a></li>
-                      <li><a href="contacts.html">Contacts</a></li>
-                      <li><a href="profile.html">Profile</a></li>
+                      <li><a href="themnhanvien.php">Thêm nhân viên</a></li>
+                      <li><a href="#">Quản lí tài khoản</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
