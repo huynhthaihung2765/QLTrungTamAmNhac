@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2017 at 05:26 AM
+-- Generation Time: Mar 28, 2017 at 05:19 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -60,20 +60,6 @@ INSERT INTO `capdo` (`IDCapDo`, `TenCapDo`, `MoTaCapDo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chitiet_nv_cv`
---
-
-CREATE TABLE `chitiet_nv_cv` (
-  `IDChiTiet` int(11) NOT NULL,
-  `NgayBatDauLam` datetime DEFAULT NULL,
-  `NgayKetThucLam` datetime DEFAULT NULL,
-  `IDChucVu` int(11) NOT NULL,
-  `IDNhanVien` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `chitiet_pdk_lh`
 --
 
@@ -96,19 +82,16 @@ INSERT INTO `chitiet_pdk_lh` (`IDChiTiet_PDK_LH`, `IDPhieu`, `IDLopHoc`, `NgayBa
 (3, 7, 7, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'true'),
 (4, 7, 7, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'true'),
 (5, 10, 30, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'true'),
-(6, 11, 7, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'true');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `chitiet_q_tk`
---
-
-CREATE TABLE `chitiet_q_tk` (
-  `IDChiTiet` int(11) NOT NULL,
-  `IDTaiKhoan` int(11) NOT NULL,
-  `IDQuyenHan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+(6, 11, 7, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'true'),
+(7, 6, 32, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'true'),
+(8, 7, 27, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'true'),
+(9, 7, 27, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'false'),
+(10, 7, 17, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'true'),
+(11, 7, 17, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'true'),
+(12, 6, 34, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'true'),
+(13, 7, 34, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'true'),
+(14, 8, 15, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'true'),
+(15, 2, 20, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'true');
 
 -- --------------------------------------------------------
 
@@ -121,6 +104,16 @@ CREATE TABLE `chucvu` (
   `TenChucVu` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `MoTaChucVu` varchar(500) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `chucvu`
+--
+
+INSERT INTO `chucvu` (`IDChucVu`, `TenChucVu`, `MoTaChucVu`) VALUES
+(1, 'Bảo Vệ', ' Nhân viên bảo vệ'),
+(2, 'Trưởng Phòng', 'Nhân viên cấp cao'),
+(3, 'Kế toán', ' Nhân viên kế toán'),
+(4, 'Cộng tác viên', ' Nhân viên cộng tác');
 
 -- --------------------------------------------------------
 
@@ -135,6 +128,16 @@ CREATE TABLE `cosovatchat` (
   `GiaMua` int(11) DEFAULT NULL,
   `DiaChiMua` varchar(200) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `cosovatchat`
+--
+
+INSERT INTO `cosovatchat` (`IDCSVC`, `IDLoai`, `TenVatChat`, `GiaMua`, `DiaChiMua`) VALUES
+(1, 1, 'Đàn guitar', NULL, NULL),
+(2, 1, 'Đàn bà', 10000000, 'Bình Thạnh'),
+(3, 1, 'Đàn ông', 10000000, 'Thủ Đức'),
+(4, 1, 'Đàn tranh', 10000000, 'Tân Bình');
 
 -- --------------------------------------------------------
 
@@ -203,13 +206,13 @@ INSERT INTO `hocvien` (`IDHocVien`, `HoTenHocVien`, `GioiTinh`, `NgaySinh`, `SDT
 (6, 'Trần Văn F', 'Nam', NULL, NULL, NULL, NULL, NULL),
 (7, 'Trần Văn G', 'Nam', NULL, NULL, NULL, NULL, NULL),
 (8, 'Trần Văn H', 'Nam', NULL, NULL, NULL, NULL, NULL),
-(9, 'Nguyễn Văn L', 'Nam', '0000-00-00 00:00:00', '', 'Phú Mỹ Hưng', '', 'public/images/HocVien/user.png'),
+(9, 'Nguyễn Văn L', 'Nam', '2017-03-15 00:00:00', '', 'Phú Mỹ Hưng', '', 'public/images/HocVien/user.png'),
 (10, 'Nguyễn Văn B', 'Nam', '0000-00-00 00:00:00', '35435345', 'Hà Nội', 'NguyenVanB123@gmail.com', 'public/images/HocVien/user.png'),
-(11, 'Cao F', 'Nam', '0000-00-00 00:00:00', '346547', 'Lai Châu', 'CaoF123@gmail.com', 'public/images/HocVien/user.png'),
+(11, 'Cao F', 'Nam', '2017-03-22 00:00:00', '346547', 'Lai Châu', 'CaoF123@gmail.com', 'public/images/HocVien/user.png'),
 (12, 'Cao F cute', 'Nam', '0000-00-00 00:00:00', '34234', '', 'CaoFCute123@gmail.com', 'public/images/HocVien/user.png'),
-(13, 'Nguyễn Văn An', 'Nam', '0000-00-00 00:00:00', '436435', '', 'gfjfgh', 'public/images/HocVien/user.png'),
+(13, 'Nguyễn Văn An', 'Nam', '2017-03-21 00:00:00', '436435', '', 'gfjfgh', 'public/images/HocVien/user.png'),
 (14, 'Thái Hưng Huỳnh', 'Nam', '0000-00-00 00:00:00', '123456789', '', 'ThaiHung@g,mail.com', 'public/images/HocVien/user.png'),
-(15, 'Cao Thành Tấn Phát', 'Nam', '0000-00-00 00:00:00', '12345678905', '', '24234234235', 'public/images/HocVien/20170320102811mau-hop-dong-lao-dong-mau-1-1.jpg'),
+(15, 'Cao Thành Tấn Phát', 'Nam', '0000-00-00 00:00:00', '3435345', 'egdfgdfdg', '2fd4234235@gmail.com', 'public/images/HocVien/user.png'),
 (16, 'as', 'Nam', '0000-00-00 00:00:00', '435', '', 'ewff', 'public/images/HocVien/20170320103117uong.png'),
 (17, 'Thai Hưng CA', 'Nam', '0000-00-00 00:00:00', '35436', '', 'dfgdhgfhf', 'public/images/HocVien/user.png'),
 (18, 'cxvxcv', 'Nam', '0000-00-00 00:00:00', '23434', '', 'fsgfgfg', 'public/images/HocVien/user.png'),
@@ -264,6 +267,13 @@ CREATE TABLE `loaicsvc` (
   `TenLoai` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `MoTaLoai` varchar(500) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `loaicsvc`
+--
+
+INSERT INTO `loaicsvc` (`IDLoai`, `TenLoai`, `MoTaLoai`) VALUES
+(1, 'Dụng cụ dạy nhạc', NULL);
 
 -- --------------------------------------------------------
 
@@ -359,8 +369,20 @@ CREATE TABLE `nhanvien` (
   `GioiTinh` bit(1) DEFAULT NULL,
   `NgaySinh` datetime DEFAULT NULL,
   `Email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `SDT` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL
+  `SDT` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `IDTaiKhoan` int(11) DEFAULT NULL,
+  `IDChucVu` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `nhanvien`
+--
+
+INSERT INTO `nhanvien` (`IDNhanVien`, `HoTenNV`, `CMND`, `GioiTinh`, `NgaySinh`, `Email`, `SDT`, `IDTaiKhoan`, `IDChucVu`) VALUES
+(0, 'Huỳnh Thái Hưng', '1423556', NULL, NULL, NULL, NULL, 1, 2),
+(1, 'Cao Thành Tấn Phát', '1234567890', NULL, NULL, NULL, NULL, 2, 2),
+(2, 'Đặng Dương Cường', '987654321', NULL, NULL, NULL, NULL, 3, 2),
+(3, 'Nguyễn Văn S', '345345', NULL, NULL, NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -417,6 +439,16 @@ CREATE TABLE `quyenhan` (
   `MoTaQuyenHan` varchar(500) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `quyenhan`
+--
+
+INSERT INTO `quyenhan` (`IDQuyenHan`, `TenQuyenHan`, `MoTaQuyenHan`) VALUES
+(1, 'Quản trị', 'Toàn Quyền trong Websites'),
+(2, 'Biên Tập', 'Viết bài cho Websites User(GUI_Uer)'),
+(3, 'Thành Viên', 'Chỉ được xem toàn bộ websites.'),
+(5, 'Ở Không', 'ko có quyền j hết');
+
 -- --------------------------------------------------------
 
 --
@@ -426,8 +458,18 @@ CREATE TABLE `quyenhan` (
 CREATE TABLE `taikhoan` (
   `IDTaiKhoan` int(11) NOT NULL,
   `TenTaiKhoan` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `MatKhau` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL
+  `MatKhau` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `IDQuyenHan` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `taikhoan`
+--
+
+INSERT INTO `taikhoan` (`IDTaiKhoan`, `TenTaiKhoan`, `MatKhau`, `IDQuyenHan`) VALUES
+(1, 'ThaiHung', 'Hung123', 1),
+(2, 'PhatCao', 'Phat123', 2),
+(3, 'DuongCuong', 'Cuong123', 3);
 
 --
 -- Indexes for dumped tables
@@ -448,28 +490,12 @@ ALTER TABLE `capdo`
   ADD UNIQUE KEY `TenCapDo` (`TenCapDo`);
 
 --
--- Indexes for table `chitiet_nv_cv`
---
-ALTER TABLE `chitiet_nv_cv`
-  ADD PRIMARY KEY (`IDChiTiet`),
-  ADD KEY `IDNhanVien` (`IDNhanVien`),
-  ADD KEY `IDChucVu` (`IDChucVu`);
-
---
 -- Indexes for table `chitiet_pdk_lh`
 --
 ALTER TABLE `chitiet_pdk_lh`
   ADD PRIMARY KEY (`IDChiTiet_PDK_LH`),
   ADD KEY `IDLopHoc` (`IDLopHoc`),
   ADD KEY `IDPhieu` (`IDPhieu`);
-
---
--- Indexes for table `chitiet_q_tk`
---
-ALTER TABLE `chitiet_q_tk`
-  ADD PRIMARY KEY (`IDChiTiet`),
-  ADD KEY `IDTaiKhoan` (`IDTaiKhoan`),
-  ADD KEY `IDQuyenHan` (`IDQuyenHan`);
 
 --
 -- Indexes for table `chucvu`
@@ -547,7 +573,9 @@ ALTER TABLE `monhoc`
 ALTER TABLE `nhanvien`
   ADD PRIMARY KEY (`IDNhanVien`),
   ADD UNIQUE KEY `CMND` (`CMND`),
-  ADD UNIQUE KEY `Email` (`Email`);
+  ADD UNIQUE KEY `Email` (`Email`),
+  ADD UNIQUE KEY `IDTaiKhoan` (`IDTaiKhoan`),
+  ADD KEY `IDChucVu` (`IDChucVu`);
 
 --
 -- Indexes for table `phieuchi`
@@ -575,7 +603,8 @@ ALTER TABLE `quyenhan`
 --
 ALTER TABLE `taikhoan`
   ADD PRIMARY KEY (`IDTaiKhoan`),
-  ADD UNIQUE KEY `TenTaiKhoan` (`TenTaiKhoan`);
+  ADD UNIQUE KEY `TenTaiKhoan` (`TenTaiKhoan`),
+  ADD KEY `IDQuyenHan` (`IDQuyenHan`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -587,30 +616,20 @@ ALTER TABLE `taikhoan`
 ALTER TABLE `baiviet`
   MODIFY `IDBaiVIet` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `chitiet_nv_cv`
---
-ALTER TABLE `chitiet_nv_cv`
-  MODIFY `IDChiTiet` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `chitiet_pdk_lh`
 --
 ALTER TABLE `chitiet_pdk_lh`
-  MODIFY `IDChiTiet_PDK_LH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `chitiet_q_tk`
---
-ALTER TABLE `chitiet_q_tk`
-  MODIFY `IDChiTiet` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDChiTiet_PDK_LH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `chucvu`
 --
 ALTER TABLE `chucvu`
-  MODIFY `IDChucVu` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDChucVu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `cosovatchat`
 --
 ALTER TABLE `cosovatchat`
-  MODIFY `IDCSVC` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDCSVC` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `giaovien`
 --
@@ -630,7 +649,7 @@ ALTER TABLE `lienhe`
 -- AUTO_INCREMENT for table `loaicsvc`
 --
 ALTER TABLE `loaicsvc`
-  MODIFY `IDLoai` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDLoai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `lophoc`
 --
@@ -650,12 +669,12 @@ ALTER TABLE `phieudangky`
 -- AUTO_INCREMENT for table `quyenhan`
 --
 ALTER TABLE `quyenhan`
-  MODIFY `IDQuyenHan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDQuyenHan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `taikhoan`
 --
 ALTER TABLE `taikhoan`
-  MODIFY `IDTaiKhoan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDTaiKhoan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Constraints for dumped tables
 --
@@ -667,25 +686,11 @@ ALTER TABLE `baiviet`
   ADD CONSTRAINT `baiviet_ibfk_1` FOREIGN KEY (`IDNhanVien`) REFERENCES `nhanvien` (`IDNhanVien`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `chitiet_nv_cv`
---
-ALTER TABLE `chitiet_nv_cv`
-  ADD CONSTRAINT `chitiet_nv_cv_ibfk_1` FOREIGN KEY (`IDNhanVien`) REFERENCES `nhanvien` (`IDNhanVien`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `chitiet_nv_cv_ibfk_2` FOREIGN KEY (`IDChucVu`) REFERENCES `chucvu` (`IDChucVu`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Constraints for table `chitiet_pdk_lh`
 --
 ALTER TABLE `chitiet_pdk_lh`
   ADD CONSTRAINT `chitiet_pdk_lh_ibfk_1` FOREIGN KEY (`IDLopHoc`) REFERENCES `lophoc` (`IDLopHoc`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `chitiet_pdk_lh_ibfk_2` FOREIGN KEY (`IDPhieu`) REFERENCES `phieudangky` (`IDPhieu`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `chitiet_q_tk`
---
-ALTER TABLE `chitiet_q_tk`
-  ADD CONSTRAINT `chitiet_q_tk_ibfk_1` FOREIGN KEY (`IDTaiKhoan`) REFERENCES `taikhoan` (`IDTaiKhoan`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `chitiet_q_tk_ibfk_2` FOREIGN KEY (`IDQuyenHan`) REFERENCES `quyenhan` (`IDQuyenHan`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `cosovatchat`
@@ -703,6 +708,13 @@ ALTER TABLE `lophoc`
   ADD CONSTRAINT `lophoc_ibfk_4` FOREIGN KEY (`IDLichHoc`) REFERENCES `lichhoc` (`IDLichHoc`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Constraints for table `nhanvien`
+--
+ALTER TABLE `nhanvien`
+  ADD CONSTRAINT `nhanvien_ibfk_1` FOREIGN KEY (`IDTaiKhoan`) REFERENCES `taikhoan` (`IDTaiKhoan`),
+  ADD CONSTRAINT `nhanvien_ibfk_2` FOREIGN KEY (`IDChucVu`) REFERENCES `chucvu` (`IDChucVu`);
+
+--
 -- Constraints for table `phieuchi`
 --
 ALTER TABLE `phieuchi`
@@ -713,6 +725,12 @@ ALTER TABLE `phieuchi`
 --
 ALTER TABLE `phieudangky`
   ADD CONSTRAINT `phieudangky_ibfk_1` FOREIGN KEY (`IDHocVien`) REFERENCES `hocvien` (`IDHocVien`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `taikhoan`
+--
+ALTER TABLE `taikhoan`
+  ADD CONSTRAINT `taikhoan_ibfk_1` FOREIGN KEY (`IDQuyenHan`) REFERENCES `quyenhan` (`IDQuyenHan`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
