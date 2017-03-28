@@ -40,6 +40,7 @@
                           <th>Địa chỉ</th>
                           <th>Email</th>
                           <th>Chuyên môn</th>
+                          <th>Tác vụ</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -56,6 +57,7 @@
                           <td>#</td>
                           <td><?php echo $item["Email"]; ?></td>
                           <td><?php echo $item["ChuyenMon"]; ?></td>
+                          <td><a href="#">Thêm</a> <br> <a href="#">Xoá</a> <br> <a href="#">Sửa</a></td>
                         </tr>
                         <?php
                         }
