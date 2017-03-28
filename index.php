@@ -1,4 +1,11 @@
-
+<?php session_start();
+  if(!isset($_SESSION['TenTaiKhoan'])){
+    header("Location: login.php");
+  }
+  else {
+     header("Location: index.php");
+  }
+ ?>
 <?php include_once("header.php") ?>
 <!-- page content -->
 <div class="right_col" role="main">
