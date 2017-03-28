@@ -1,4 +1,10 @@
-
+<?php
+if(!isset($_SESSION))
+    {
+        session_start();
+    }
+ $tennhanvien = $_SESSION['HoTenNhanVien'];
+ ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,7 +54,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="public/images/img.jpg" alt=""><?php echo $_SESSION['HoTenNhanVien']; ?>
+                    <img src="public/images/img.jpg" alt=""><?php echo $tennhanvien; ?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
