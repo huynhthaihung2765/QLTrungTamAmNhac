@@ -3,9 +3,6 @@
   if(!isset($_SESSION['TenTaiKhoan'])){
     header("Location: login.php");
   }
-  else {
-     header("Location: index.php");
-  }
  ?>
 -->
 
