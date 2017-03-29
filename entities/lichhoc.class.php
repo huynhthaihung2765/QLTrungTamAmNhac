@@ -43,5 +43,21 @@
       $result = $db->select_to_array($sql);
       return $result;
     }
+
+    public static function Get_All_BuoiInLopHoc()
+    {
+      $db = new Db();
+      $sql = "SELECT * FROM lophoc lh LEFT JOIN lichhoc lich on lh.IDLichHoc = lich.IDLichHoc GROUP by lich.BuoiTrongNgay";
+      $result = $db->select_to_array($sql);
+      return $result;
+    }
+
+    public static function Get_All_NgayTrongTuanInLopHoc_ByTenBuoi($tenBuoiHoc)
+    {
+      $db = new Db();
+      $sql = "SELECT * FROM lophoc lh LEFT JOIN lichhoc lich on lh.IDLichHoc = lich.IDLichHoc WHERE lich.BuoiTrongNgay = '$tenBuoiHoc' GROUP by lh.IDLichHoc";
+      $result = $db->select_to_array($sql);
+      return $result;
+    }
   }
 ?>

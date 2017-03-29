@@ -54,15 +54,27 @@
       return $result;
     }
 
-    /*
-
-    */
     public static function Get_All_LichMonHoc_ByIdGiaoVienVsIdMonHoc($idGiaoVien, $idMonHoc){
       $db = new Db();
       $sql = "SELECT *
               FROM lophoc lh LEFT join capdo cd on lh.IDCapDo = cd.IDCapDo
               LEFT JOIN lichhoc lich on lh.IDLichHoc = lich.IDLichHoc
               WHERE lh.IDGiaoVien = '$idGiaoVien' AND lh.IDMonHoc = '$idMonHoc'";
+      $result = $db->select_to_array($sql);
+      return $result;
+    }
+
+
+
+    public static function Get_All_LichMonHoc_ByBuoiVsNgay($buoi, $ngay){
+      $db = new Db();
+      $sql = "SELECT *
+FROM lophoc lh LEFT JOIN giaovien gv on lh.IDGiaoVien = gv.IDGiaoVien
+LEFT JOIN monhoc mh on lh.IDMonHoc = mh.IDMonHoc
+LEFT JOIN capdo cd on lh.IDCapDo = cd.IDCapDo
+LEFT JOIN lichhoc lich on lh.IDLichHoc = lich.IDLichHoc
+WHERE lich.BuoiTrongNgay = '$buoi' and lich.NgayTrongTuan = '$ngay'
+GROUP by lh.IDMonHoc";
       $result = $db->select_to_array($sql);
       return $result;
     }
