@@ -48,6 +48,8 @@
       return $rows;
     }
 
+
+
     //lay ve 1 doi tuong, tuong ung voi 1 record trong table
   	function loadObject(){
   		if($this->_query){

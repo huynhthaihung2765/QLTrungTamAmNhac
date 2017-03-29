@@ -91,8 +91,7 @@
           jQuery("#result").fadeIn();
       });
     });
-  </script>
-
+  </script> 
 
 
 </body>
