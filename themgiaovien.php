@@ -5,6 +5,7 @@
 		//
 		// lấy giá trị từ form collection
 		//
+    $idGiaoVien = $_POST["txtMaGiaoVien"];
 		$hoTenGV = $_POST["txtHoTenGV"];
 		$gioiTinh = $_POST["txtGioiTinh"];
 		$ngaySinh = $_POST["txtNgaySinh"];
@@ -14,11 +15,10 @@
 		$chuyenMon = $_POST["txtChuyenMon"];
 		$soDienThoai = $_POST["txtSDT"];
 		$hinhAnh = $_FILES["txtHinhAnh"];
-		$diaChi = $_POST["txtDiaChi"];
 		//
 		// khởi tạo đối tượng giáo viên
 		//
-		$newGiaoVien = new Giaovien($hoTenGV, $gioiTinh, $ngaySinh, $cMND, $email, $bangCap, $chuyenMon, $soDienThoai, $hinhAnh, $diaChi);
+		$newGiaoVien = new Giaovien($idGiaoVien, $hoTenGV, $gioiTinh, $ngaySinh, $cMND, $email, $bangCap, $chuyenMon, $soDienThoai, $hinhAnh);
 		// lưu xuống CSDL
 		$result = $newGiaoVien->insert();
 		if(!$result)
@@ -69,7 +69,18 @@
                   <div class="x_content">
                     <br />
                     <form class="form-horizontal form-label-left" method="post" enctype="multipart/form-data">
-
+                    <?php foreach ($gvLast as $key => $itemgv): ?>
+                      <?php
+                        $idGVLast = $itemhv['IDGiaoVien'];
+                        $idGVNext = intval($idGVLast) + 1;
+                      ?>
+                      <?php endforeach; ?>
+                      <div class="form-group">
+                       <label class="control-label col-md-3 col-sm-3 col-xs-12">Mã Giáo viên</label>
+                       <div class="col-md-9 col-sm-9 col-xs-12">
+                         <input type="text" style="width: 50%;" name="txtMaGiaoVien" value="<?php echo $idGVNext ?>" class="form-control" readonly="yes">
+                       </div>
+                      </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Têm giáo viên</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">

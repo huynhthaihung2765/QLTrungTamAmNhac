@@ -15,10 +15,9 @@
 		public $chuyenMon;
 		public $soDienThoai;
 		public $hinhAnh;
-		public $diaChi;
 
 
-		public function __construct($idGiaoVien,$hoTenGV, $gioiTinh, $ngaySinh, $cMND, $email, $bangCap, $chuyenMon, $soDienThoai, $hinhAnh, $diaChi)
+		public function __construct($idGiaoVien,$hoTenGV, $gioiTinh, $ngaySinh, $cMND, $email, $bangCap, $chuyenMon, $soDienThoai, $hinhAnh)
 		{
 			$this->idGiaoVien = $idGiaoVien;
 			$this->hoTenGV = $hoTenGV;
@@ -30,7 +29,6 @@
 			$this->chuyenMon = $chuyenMon;
 			$this->soDienThoai = $soDienThoai;
 			$this->hinhAnh = $hinhAnh;
-			$this->diaChi = $diaChi;
 		}
 
 
@@ -46,8 +44,8 @@
 		    }
 		    //end upload file
 			$db = new Db();
-			$sql = "INSERT INTO GiaoVien (HoTenGV, GioiTinh, NgaySinh, CMND, Email,BangCap, ChuyenMon, SDT, HinhAnh, DiaChi) VALUES
-			('$this->hoTenGV','$this->gioiTinh','$this->ngaySinh',$this->cMND','$this->email','$this->bangCap', '$this->chuyenMon','$this->soDienThoai', '$filepath', '$this->diaChi')";
+			$sql = "INSERT INTO giaovien (HoTenGV, GioiTinh, NgaySinh, CMND, Email,BangCap, ChuyenMon, SDT, HinhAnhGV) VALUES
+			('$this->hoTenGV','$this->gioiTinh','$this->ngaySinh','$this->cMND','$this->email','$this->bangCap', '$this->chuyenMon','$this->soDienThoai', '$filepath')";
 			$result = $db->query_execute($sql);
 			return $result;
 		}
@@ -55,10 +53,18 @@
 		// Sửa giáo viên
 		//
 		public function edit($id){
-	      $db = new Db();
-	      $sql = "UPDATE hocvien SET HoTenGV='$this->hoTenGV', GioiTinh='$this->gioiTinh',NgaySinh='$this->ngaySinh',CMND='$this->cMND',Email='$this->email',BangCap='$this->bangCap',ChuyenMon='$this->chuyenMon', SDT='$this->soDienThoai', HinhAnh = '$this->hinhAnh', DiaChi='this->diaChi' ";
-	       $result = $db->query_execute($sql);
-	       return $result;
+			$file_temp = $this->hinhAnh['tmp_name'];
+		    $user_file = $this->hinhAnh['name'];
+		    $timestamp = date("Y").date("m").date("d").date("h").date("i").date("s");
+		    $filepath = "public/images/GiaoVien/".$timestamp.$user_file;
+		    if(move_uploaded_file($file_temp, $filepath) == false){
+		      return false;
+		    }
+		    // end upload file
+	      	$db = new Db();
+	      	$sql = "UPDATE giaovien SET HoTenGV='$this->hoTenGV', GioiTinh='$this->gioiTinh',NgaySinh='$this->ngaySinh',CMND='$this->cMND',Email='$this->email',BangCap='$this->bangCap',ChuyenMon='$this->chuyenMon', SDT='$this->soDienThoai', HinhAnhGV = '$filepath' where IDGiaoVien = '$id' ";
+	       	$result = $db->query_execute($sql);
+	       	return $result;
     	}
     	//
     	// Xoá giáo viên

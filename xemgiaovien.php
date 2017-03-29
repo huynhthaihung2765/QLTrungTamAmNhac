@@ -1,8 +1,34 @@
 <?php include_once("entities/giaovien.class.php"); ?>
+<?php 
+  if (isset($_POST["btnSubmit"])) {
+    # code...
+    $maGiaoVien = $_POST["txtMaGiaoVien"];
+    $hoTenGV = $_POST["txtHoTenGV"];
+    $gioiTinh =  $_POST["txtGioiTinh"];
+    $ngaySinh = $_POST["txtNgaySinh"];
+    $cMND = $_POST["txtCMND"];
+    $email = $_POST["txtEmail"];
+    $chuyenMon = $_POST["txtChuyenMon"];
+    $bangCap = $_POST["txtBangCap"];
+    $soDienThoai = $_POST["txtDienThoai"];
+    $picture = $_FILES["txtpic"];
+
+    $suaGiaoVien = new GiaoVien($maGiaoVien, $hoTenGV, $gioiTinh, $ngaySinh, $cMND, $email, $bangCap, $chuyenMon, $soDienThoai, $picture);
+    $result = $suaGiaoVien->edit($maGiaoVien);
+     if(!$result)
+     {
+       header("location: xemgiaovien.php?fail");
+     }
+     else {
+       header("location: xemgiaovien.php?edited");
+     }
+  }
+  ?>
 <?php include_once("header.php") ?>
 <?php 
   $xemgiaovien = GiaoVien::Get_All_GV();
  ?>
+ 
 <div class ="right_col" role="main">
           <div class ="">
             <div class ="clearfix"></div>
@@ -82,9 +108,9 @@
                                        </div>
                                      </div>
                                      <div class="form-group">
-                                       <label class="control-label col-md-3 col-sm-3 col-xs-12">Tên học viên</label>
+                                       <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ Tên Giáo viên</label>
                                        <div class="col-md-9 col-sm-9 col-xs-12">
-                                         <input type="text" name="txtName" value="<?php echo $item["HoTenGV"] ?>" class="form-control" placeholder="Họ/tên">
+                                         <input type="text" name="txtHoTenGV" value="<?php echo $item["HoTenGV"] ?>" class="form-control" placeholder="Họ/tên">
                                        </div>
                                      </div>
                                      <div class="form-group">
@@ -92,12 +118,12 @@
                                        <div class="col-md-9 col-sm-9 col-xs-12">
                                          <div class="radio">
                                            <label>
-                                             <input type="radio" class="flat" value="Nam" checked name="iCheck">Nam
+                                             <input type="radio" class="flat" value="Nam" checked name="txtGioiTinh">Nam
                                            </label>
                                          </div>
                                          <div class="radio">
                                            <label>
-                                             <input type="radio" class="flat" value="Nữ" name="iCheck">Nữ
+                                             <input type="radio" class="flat" value="Nu" name="txtGioiTinh">Nữ
                                            </label>
                                          </div>
                                        </div>
@@ -107,6 +133,13 @@
                                        <div class="col-md-9 col-sm-9 col-xs-12">
                                          <label for=""><?php echo $item["NgaySinh"] ?></label>
                                          <input type="date" name="txtNgaySinh" value="" class="form-control" placeholder="Ngày/tháng/năm">
+                                       </div>
+                                     </div>
+                                     <div class="form-group">
+                                       <label class="control-label col-md-3 col-sm-3 col-xs-12">CMND: </label>
+                                       <div class="col-md-9 col-sm-9 col-xs-12">
+                                         <label for=""><?php echo $item["CMND"] ?></label>
+                                         <input type="number" name="txtCMND" value="" class="form-control" >
                                        </div>
                                      </div>
                                      <div class="form-group">
@@ -125,15 +158,21 @@
                                      <div class="form-group">
                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Chuyên môn</label>
                                        <div class="col-md-9 col-sm-9 col-xs-12">
-                                         <input type="text" name="txtEmail" value="<?php echo $item["ChuyenMon"] ?>" id="autocomplete-custom-append" class="form-control col-md-10"/>
+                                         <input type="text" name="txtChuyenMon" value="<?php echo $item["ChuyenMon"] ?>" id="autocomplete-custom-append" class="form-control col-md-10"/>
                                        </div>
                                      </div>
                                      <div class="form-group">
                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Bằng cấp</label>
                                        <div class="col-md-9 col-sm-9 col-xs-12">
-                                         <input type="text" name="txtEmail" value="<?php echo $item["BangCap"] ?>" id="autocomplete-custom-append" class="form-control col-md-10"/>
+                                         <input type="text" name="txtBangCap" value="<?php echo $item["BangCap"] ?>" id="autocomplete-custom-append" class="form-control col-md-10"/>
                                        </div>
                                      </div>
+                                     <div class="form-group">
+                                       <label class="control-label col-md-3 col-sm-3 col-xs-12">Chọn ảnh Giáo viên</label>
+                                       <div class="col-md-9 col-sm-9 col-xs-12">
+                                         <input type="file" name="txtpic" accept=".PNG,.JPG,.GIF" class="form-control col-md-10"/>
+                                       </div>
+                                      </div>
                                      <button type="submit" class="btn btn-success" name="btnSubmit">Lưu thông tin sửa đổi</button>
 
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
