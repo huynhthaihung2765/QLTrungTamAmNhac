@@ -5,6 +5,7 @@
 	 */
 	class GiaoVien
 	{
+		public $idGiaoVien;
 		public $hoTenGV;
 		public $gioiTinh;
 		public $ngaySinh;
@@ -17,8 +18,9 @@
 		public $diaChi;
 
 
-		public function __construct($hoTenGV, $gioiTinh, $ngaySinh, $cMND, $email, $bangCap, $chuyenMon, $soDienThoai, $hinhAnh, $diaChi)
+		public function __construct($idGiaoVien,$hoTenGV, $gioiTinh, $ngaySinh, $cMND, $email, $bangCap, $chuyenMon, $soDienThoai, $hinhAnh, $diaChi)
 		{
+			$this->idGiaoVien = $idGiaoVien;
 			$this->hoTenGV = $hoTenGV;
 			$this->gioiTinh = $gioiTinh;
 			$this->ngaySinh = $ngaySinh;
