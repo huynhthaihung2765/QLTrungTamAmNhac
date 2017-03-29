@@ -25,5 +25,23 @@
       $result = $db->select_to_array($sql);
       return $result;
     }
+
+    public static function Get_All_BuoiTrongNgay()
+    {
+      //SELECT * FROM lichhoc lh GROUP BY lh.BuoiTrongNgay
+      $db = new Db();
+      $sql = "SELECT * FROM lichhoc lh GROUP BY lh.BuoiTrongNgay";
+      $result = $db->select_to_array($sql);
+      return $result;
+    }
+
+    public static function Get_All_NgayTrongTuanTheoBuoi($buoiTrongNgay)
+    {
+      //SELECT * FROM lichhoc lh GROUP BY lh.BuoiTrongNgay
+      $db = new Db();
+      $sql = "SELECT * FROM lichhoc lh WHERE lh.BuoiTrongNgay= '$buoiTrongNgay' GROUP BY lh.NgayTrongTuan";
+      $result = $db->select_to_array($sql);
+      return $result;
+    }
   }
 ?>

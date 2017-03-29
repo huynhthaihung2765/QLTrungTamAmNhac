@@ -115,6 +115,27 @@
 	    	return $result;
 	    }
 
+			public static function Get_All_Gv_In_LopHoc()
+	    {
+	    	$db = new Db();
+	    	$sql = "SELECT * FROM lophoc lh LEFT JOIN giaovien gv on lh.IDGiaoVien = gv.IDGiaoVien GROUP by lh.IDGiaoVien";
+	    	$result = $db-> select_to_array($sql);
+	    	return $result;
+	    }
+
+			public static function Get_All_LichGiaoVien_ByIdMonVsIdCapDo($idMonHoc, $idCapDo)
+			{
+				//SELECT * FROM lichhoc lh GROUP BY lh.BuoiTrongNgay
+				$db = new Db();
+				$sql = "SELECT *
+				FROM lophoc lh LEFT JOIN giaovien gv on lh.IDGiaoVien = gv.IDGiaoVien
+				LEFT JOIN lichhoc lich on lh.IDLichHoc = lich.IDLichHoc
+				WHERE lh.IDMonHoc = '$idMonHoc' and lh.IDCapDo = '$idCapDo'";
+				$result = $db->select_to_array($sql);
+				return $result;
+			}
+
+
 	    //
 	    //Tìm giáo viên
 	    //
