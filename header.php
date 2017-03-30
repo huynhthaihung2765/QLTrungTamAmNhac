@@ -3,7 +3,9 @@ if(!isset($_SESSION))
     {
         session_start();
     }
- $tennhanvien = $_SESSION['HoTenNhanVien'];
+  $tennhanvien = $_SESSION['HoTenNhanVien'];
+  $tenQuyenHan = $_SESSION['TenQuyen'];
+  $tenChucVu = $_SESSION['TenChucVu'];
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,14 +60,14 @@ if(!isset($_SESSION))
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
+                    <li><a href="javascript:;"> <?php echo $tenQuyenHan; ?></a></li>
                     <li>
                       <a href="javascript:;">
                         <span class="badge bg-red pull-right">50%</span>
                         <span>Settings</span>
                       </a>
                     </li>
-                    <li><a href="javascript:;">Help</a></li>
+                    <li><a href="javascript:;"><?php echo $tenChucVu; ?></a></li>
                     <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a></li>
                   </ul>
                 </li>
@@ -232,12 +234,16 @@ if(!isset($_SESSION))
               <div class="menu_section">
                 <h3>Live On</h3>
                 <ul class="nav side-menu">
+
                   <li><a><i class="fa fa-bug"></i> Nhân viên <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="themnhanvien.php">Thêm nhân viên</a></li>
+                      <?php if($tenQuyenHan == "Quản trị"){ ?>
+                        <li><a href="themnhanvien.php">Thêm nhân viên</a></li>
+                      <?php } ?>
                       <li><a href="#">Xem nhân viên</a></li>
                     </ul>
                   </li>
+
                   <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="page_403.html">403 Error</a></li>
