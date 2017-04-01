@@ -144,7 +144,7 @@ if(!isset($_SESSION))
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Quản lí nhạc viện</span></a>
+              <a href="admin.php" class="site_title"><i class="fa fa-paw"></i> <span>Quản lí nhạc viện</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -168,7 +168,7 @@ if(!isset($_SESSION))
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a href="index.php"><i class="fa fa-home"></i> Trang chủ <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="admin.php"><i class="fa fa-home"></i> Trang chủ <span class="fa fa-chevron-down"></span></a>
                     <!--<ul class="nav child_menu">
                       <li><a href="index.html">Dashboard</a></li>
                       <li><a href="index2.html">Dashboard2</a></li>

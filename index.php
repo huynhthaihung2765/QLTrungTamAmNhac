@@ -162,7 +162,7 @@
 				<a href="#" id="twitter">twitter</a> 
 				<a href="#" id="facebook">facebook</a> 
 				<a href="#" id="googleplus">google</a>
-				<a href="index1.php">Thành viên</a>
+				<a href="admin.php">Thành viên</a>
 			</div>
 			<p class="footnote">
 				&#169; Copyright 2016. All rights reserved

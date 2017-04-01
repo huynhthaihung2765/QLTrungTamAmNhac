@@ -58,7 +58,7 @@ if(!isset($_SESSION['TenTaiKhoan'])){
          $_SESSION['TenQuyen'] = $tenQuyen;
          $_SESSION['TenChucVu'] = $tenChucVu;
          echo 'Success!';
-         header("Location: index.php");
+         header("Location: admin.php");
       }
       else {
         header("Location: login.php?failfetch");
@@ -71,12 +71,12 @@ if(!isset($_SESSION['TenTaiKhoan'])){
   }
 }
 else {
-   header("Location: index.php");
+   header("Location: admin.php");
 }
 
  ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -130,7 +130,7 @@ else {
               <div class="clearfix"></div>
 
               <div class="separator">
-                  <a href="#signup" class="to_register"> Tạo tài khoản </a>
+                  <a href="index.php" class="to_register" > Quay lại trang chủ </a>
                 </p>
 
                 <div class="clearfix"></div>
