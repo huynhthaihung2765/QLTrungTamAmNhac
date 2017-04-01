@@ -63,11 +63,10 @@
        return $result;
     }
 
-    public function delete($id){
+    public function delete(){
       $db = new Db();
-      $sql = "DELETE FROM hocvien WHERE IDHocVien='$id'";
+      $sql = "DELETE FROM hocvien WHERE IDHocVien='$this->idHocVien'";
       $result = $db->query_execute($sql);
-      $db->connection->close();
       return $result;
     }
 

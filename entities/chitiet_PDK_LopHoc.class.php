@@ -51,5 +51,19 @@
       return $result;
     }
 
+    //SELECT * FROM chitiet_pdk_lh ctpdk LEFT JOIN phieudangky pdk on ctpdk.IDPhieu = pdk.IDPhieu WHERE ctpdk.IDPhieu = 2 and ctpdk.TrangThaiHoc = 'false'
+    public static function Get_All_ChiTietPDK_ByTrangThai_Fail($idHocVien){
+      $db = new Db();
+      $sql = "SELECT ctpdk.IDChiTiet_PDK_LH, ctpdk.TrangThaiHoc,pdk.IDPhieu, hv.IDHocVien from chitiet_pdk_lh ctpdk LEFT JOIN phieudangky pdk ON ctpdk.IDPhieu = pdk.IDPhieu LEFT JOIN hocvien hv ON pdk.IDHocVien = hv.IDHocVien WHERE hv.IDHocVien = '$idHocVien' AND ctpdk.TrangThaiHoc = 'false'";
+      $result = $db->select_to_array($sql);
+      return $result;
+    }
+
+    public function delete(){
+      $db = new Db();
+      $sql = "DELETE FROM chitiet_pdk_lh WHERE IDChiTiet_PDK_LH ='$this->idChiTiet'";
+      $result = $db->query_execute($sql);
+      return $result;
+    }
   }
 ?>

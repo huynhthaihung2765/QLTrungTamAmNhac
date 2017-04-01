@@ -15,6 +15,50 @@ if(!isset($_SESSION))
 
 
 <?php
+/*
+btnXoaHocVienNghiHoc
+btnXoaHocVienChuaDangKyMonHoc
+*/
+$idhocVienXoa = $_GET["idHV"];
+  if (isset($_POST['btnXoaHocVienChuaDangKyMonHoc'])){
+    $allPDK = PhieuDangKy::Get_All_PDK_ByIDHocVien($idhocVienXoa);
+    foreach ($allPDK as $key => $itemPDK) {
+      $idPDK = $itemPDK['IDPhieu'];
+      $newPhieuDangKy = new PhieuDangKy($idPDK, "", "", "");
+      $resultDeletePDK = $newPhieuDangKy->delete();
+    }
+    $newHocVien = new Hocvien($idhocVienXoa, "", "", "", "", "", "", "");
+    $resultDeleteHV = $newHocVien->delete();
+    if ($resultDeleteHV) {
+      header("location: xemhocvien.php?");
+    }
+    else {
+      header("location: xemchitiethocvien.php?faildelete");
+    }
+  }
+
+  if (isset($_POST["btnXoaHocVienNghiHoc"])){
+
+    //Get_All_ChiTietPDK_ByTrangThai_Fail($idhocVienXoa)
+    $all_ChiTietPDK_ByTrangThai_Fail = ChiTiet_PDK_LH::Get_All_ChiTietPDK_ByTrangThai_Fail($idhocVienXoa);
+    foreach ($all_ChiTietPDK_ByTrangThai_Fail as $key => $item_ChiTietPDK_ByTrangThai_Fail) {
+      $idCTPDK_ChiTietPDK_ByTrangThai_Fail = $item_ChiTietPDK_ByTrangThai_Fail['IDChiTiet_PDK_LH'];
+      $idPDK_ChiTietPDK_ByTrangThai_Fail = $item_ChiTietPDK_ByTrangThai_Fail['IDPhieu'];
+      $newChiTietPhieuDangKy = new ChiTiet_PDK_LH($idCTPDK_ChiTietPDK_ByTrangThai_Fail, "", "", "", "", "");
+      $resultDeleteCTPDK = $newChiTietPhieuDangKy->delete();
+      $newPhieuDangKy = new PhieuDangKy($idPDK_ChiTietPDK_ByTrangThai_Fail, "", "", "");
+      $resultDeletePDK = $newPhieuDangKy->delete();
+    }
+    $newHocVien = new Hocvien($idhocVienXoa, "", "", "", "", "", "", "");
+    $resultDeleteHV = $newHocVien->delete();
+    if ($resultDeleteHV) {
+      header("location: xemchitiethocvien.php?deleted");
+    }
+    else {
+      header("location: xemchitiethocvien.php?faildelete");
+    }
+  }
+
   if (isset($_POST["btnSubmit"])){
     $maHocVien = $_POST["txtMaHocVien"];
      $hoTenHocVien = $_POST["txtName"];
@@ -33,10 +77,10 @@ if(!isset($_SESSION))
      $result = $newHocVien->edit($maHocVien);
      if(!$result)
      {
-       header("location: xemchitiethocvien.php?fail&idHV=$maHocVien");
+       header("location: xemhocvien.php");
      }
      else {
-       header("location: xemchitiethocvien.php?inserted&idHV=$maHocVien");
+       header("location: xemchitiethocvien.php?idHV=$maHocVien");
      }
   }
 ?>
@@ -121,6 +165,7 @@ if(!isset($_SESSION))
                 <br/>
                 <?php if ($tenQuyenHan == "Quản trị") { ?>
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-edit m-right-xs"></i>Sửa thông tin</button>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bs-model-xoahocvien"><i class="fa fa-edit m-right-xs"></i>Xóa học viên</button>
                 <?php } ?>
                 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
                   <div class="modal-dialog modal-lg" role="document">
@@ -202,18 +247,6 @@ if(!isset($_SESSION))
 
                            <div class="col-xs-6">
                              <h2>THÔNG TIN TRƯỚC KHI SỬA ĐỔI</h2>
-                             <?php
-                             /*
-                             $idHocVien = $itemH['IDHocVien'];
-                             $hoTenHocVIen = $itemH['HoTenHocVien'];
-                             $gioiTinh = $itemH['GioiTinh'];
-                             $ngaySinh = $itemH['NgaySinh'];
-                             $sdt = $itemH['SDT'];
-                             $noiOHienTai = $itemH['NoiOHienTai'];
-                             $Email = $itemH['Email'];
-                             $hinhAnhHV = $itemH['HinhAnhHV'];
-                             */
-                              ?>
                              <div class="form-group">
                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ tên</label>
                                <div class="col-md-9 col-sm-9 col-xs-12">
@@ -253,9 +286,7 @@ if(!isset($_SESSION))
                              <div class="form-group">
                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Hình ảnh</label>
                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                     <!-- Current avatar -->
                                  <img class="img-responsive avatar-view" style="width: 60%; height: 20%;" src="<?php echo isset($itemH['HinhAnhHV']) ? $itemH['HinhAnhHV'] : "user.png" ; ?>" alt="Avatar" title="Change the avatar">
-
                                </div>
                              </div>
                            </div>
@@ -264,10 +295,147 @@ if(!isset($_SESSION))
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                       </div>
-                    </div><!-- /.modal-content -->
-                  </div><!-- /.modal-dialog -->
+                    </div>
+                  </div>
                 </div><!-- /.modal -->
+                <div class="clearfix"></div>
+                <!--modal Xoa Hoc Vien-->
+                <div class="modal fade bs-model-xoahocvien" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="gridSystemModalLabel">Xóa Học viên: </h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+                          <div class="col-xs-6">
+                            <h2>THÔNG TIN HỌC VIÊN TRƯỚC KHI XÓA</h2>
+                            <?php foreach ($hv as $key => $itemH){ ?>
+                              <?php
+                                $idHocVien = $itemH['IDHocVien'];
+                                $hoTenHocVIen = $itemH['HoTenHocVien'];
+                                $gioiTinh = $itemH['GioiTinh'];
+                                $ngaySinh = $itemH['NgaySinh'];
+                                $sdt = $itemH['SDT'];
+                                $noiOHienTai = $itemH['NoiOHienTai'];
+                                $Email = $itemH['Email'];
+                                $hinhAnhHV = $itemH['HinhAnhHV'];
+                               ?>
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ tên</label>
+                              <div class="col-md-9 col-sm-9 col-xs-12">
+                                <p><?php echo $hoTenHocVIen; ?></p>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Giới tính:</label>
+                              <div class="col-md-9 col-sm-9 col-xs-12">
+                                <p><?php echo $gioiTinh; ?></p>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày sinh:</label>
+                              <div class="col-md-9 col-sm-9 col-xs-12">
+                                <p><?php echo $ngaySinh; ?></p>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Số điện thoại</label>
+                              <div class="col-md-9 col-sm-9 col-xs-12">
+                                <p><?php echo $sdt; ?></p>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ</label>
+                              <div class="col-md-9 col-sm-9 col-xs-12">
+                                <p><?php echo $noiOHienTai; ?></p>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+                              <div class="col-md-9 col-sm-9 col-xs-12">
+                                <p><?php echo $Email; ?></p>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Hình ảnh</label>
+                              <div class="col-md-9 col-sm-9 col-xs-12">
+                                <img class="img-responsive avatar-view" style="width: 60%; height: 20%;" src="<?php echo isset($itemH['HinhAnhHV']) ? $itemH['HinhAnhHV'] : "user.png" ; ?>" alt="Avatar" title="Change the avatar">
+                              </div>
+                            </div>
+                            <?php } ?>
+                          </div>
+                          <div class="col-xs-6">
+                            <h2>Show các lớp học viên đó đã học</h2>
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>Tên lớp</th>
+                                  <th>Cấp độ</th>
+                                  <th>Giáo viên</th>
+                                  <th>Ngày bắt đầu</th>
+                                  <th>Ngày kết thúc</th>
+                                  <th>Trạng thái học</th>
+                                </tr>
+                              </thead>
+                              <tbody>
 
+                                <?php $stt = 0;
+                                $stringTrangThaiHoc = "";?>
+                                <?php foreach ($lichSuHocCuaHocVien as $key => $itemLichSuHocVien){ ?>
+                                  <?php
+                                    $stt++;
+                                    $tenMonHoc = $itemLichSuHocVien['TenMonHoc'];
+                                    $tenCapDo = $itemLichSuHocVien['TenCapDo'];
+                                    $tenGiaoVien = $itemLichSuHocVien['HoTenGV'];
+                                    $ngayBatDau = $itemLichSuHocVien['NgayBatDauKhoaHoc'];
+                                    $ngayKetThuc = $itemLichSuHocVien['NgayKetThucKhoaHoc'];
+                                    $trangThaiHoc = $itemLichSuHocVien['TrangThaiHoc'];
+
+                                    if ($trangThaiHoc == "true"){
+                                      $stringTrangThaiHoc = "Đang học";
+                                    }
+                                    else {
+                                      $stringTrangThaiHoc = "Nghỉ học";
+                                    }
+                                    ?>
+                                    <tr>
+                                      <th scope="row"><?php echo $stt; ?></th>
+                                      <td><?php echo $tenMonHoc; ?></td>
+                                      <td><?php echo $tenCapDo; ?></td>
+                                      <td><?php echo $tenGiaoVien; ?></td>
+                                      <td><?php echo $ngayBatDau; ?></td>
+                                      <td><?php echo $ngayKetThuc; ?></td>
+                                      <td><?php echo $stringTrangThaiHoc; ?></td>
+                                    </tr>
+                                <?php } ?>
+                              </tbody>
+                            </table>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <form class="form-horizontal form-label-left" method="post">
+                          <?php if ($stt != 0){ ?>
+                            <?php if ($stringTrangThaiHoc == "Đang học"){ ?>
+                              <?php echo "Học viên này vẫn còn đang học.Nên không thể xóa." ?>
+                            <?php } else {?>
+                              <?php echo "Học viên đã từng học và không còn học nũa."; ?>
+                                <input type="submit" class="btn btn-primary" name="btnXoaHocVienNghiHoc" value="Xóa học viên nghỉ học">
+                            <?php } ?>
+                          <?php } else {?>
+                              <?php echo "Học viên này chưa đăng ký học lớp học nào của trung tâm."; ?>
+                              <input type="submit" class="btn btn-primary" name="btnXoaHocVienChuaDangKyMonHoc" value="Xóa học viên chưa đăng ký môn">
+                          <?php } ?>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <br />
 
                 <!-- start skills -->
