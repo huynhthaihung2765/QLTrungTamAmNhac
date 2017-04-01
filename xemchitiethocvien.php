@@ -380,8 +380,7 @@ $idhocVienXoa = $_GET["idHV"];
                                   <th>Trạng thái học</th>
                                 </tr>
                               </thead>
-                              <tbody>
-
+                              <tbody> 
                                 <?php $stt = 0;
                                 $stringTrangThaiHoc = "";?>
                                 <?php foreach ($lichSuHocCuaHocVien as $key => $itemLichSuHocVien){ ?>
@@ -727,8 +726,6 @@ $idhocVienXoa = $_GET["idHV"];
                                 <?php } ?>
                               </tbody>
                             </table>
-
-
                           </div>
                         </div>
                       </div>
