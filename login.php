@@ -30,6 +30,9 @@ session_start();
     }
   }
 */
+
+include_once("entities/taikhoan.class.php");
+
 if(!isset($_SESSION['TenTaiKhoan'])){
   if (isset($_POST['btn_dangnhap']))
   {
@@ -41,22 +44,27 @@ if(!isset($_SESSION['TenTaiKhoan'])){
     $conn=mysqli_connect("localhost","root","") or die("can't connect");
     mysqli_select_db($conn,"qltrungtamamnhac");
     mysqli_set_charset($conn,"utf8");
-    $stmt = $conn->prepare("SELECT tk.TenTaiKhoan, qh.TenQuyenHan, cv.TenChucVu, nv.HoTenNV
+    $stmt = $conn->prepare("SELECT tk.TenTaiKhoan, qh.TenQuyenHan, cv.TenChucVu, nv.HoTenNV, nv.IDNhanVien, tk.IDTaiKhoan
     from taikhoan tk LEFT join nhanvien nv on tk.IDTaiKhoan = nv.IDTaiKhoan
     LEFT join quyenhan qh on tk.IDQuyenHan = qh.IDQuyenHan
     LEFT join chucvu cv on nv.IDChucVu = cv.IDChucVu
     WHERE tk.TenTaiKhoan = ? and tk.MatKhau = ? LIMIT 1");
     $stmt->bind_param('ss', $u_name, $u_pass);
     $stmt->execute();
-   $stmt->bind_result($tentaiKhoan, $tenQuyen, $tenChucVu, $hoTenNhanVien);
+   $stmt->bind_result($tentaiKhoan, $tenQuyen, $tenChucVu, $hoTenNhanVien, $idNhanVien, $idTaiKhoan);
    $stmt->store_result();
    if ($stmt->num_rows == 1) {
      if($stmt->fetch()) //fetching the contents of the row
       {
-        $_SESSION['HoTenNhanVien'] = $hoTenNhanVien;
+        $newTaiKhoan = new TaiKhoan("", "", "", "", "Online");
+        $resultEditStatusOnline = $newTaiKhoan->edit_Status_Online($idTaiKhoan);
+          $_SESSION['IDTaiKhoan'] = $idTaiKhoan;
+          $_SESSION['TrangThaiOnline'] = "Online";
+          $_SESSION['HoTenNhanVien'] = $hoTenNhanVien;
          $_SESSION['TenTaiKhoan'] = $tentaiKhoan;
          $_SESSION['TenQuyen'] = $tenQuyen;
          $_SESSION['TenChucVu'] = $tenChucVu;
+         $_SESSION['IDNhanVien'] = $idNhanVien;
          echo 'Success!';
          header("Location: index.php");
       }
@@ -111,7 +119,7 @@ else {
             <form method="POST" action="login.php">
               <h1>Đăng nhập</h1>
               <div>
-                <?php 
+                <?php
                 if(isset($_GET["fail"]))
                   echo "<h4 style="."color:red".">"."Tài khoản hoặc mật khẩu không đúng!</h4>";
                  ?>

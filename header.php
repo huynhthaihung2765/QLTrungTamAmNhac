@@ -64,7 +64,7 @@ if(!isset($_SESSION))
                     <li>
                       <a href="javascript:;">
                         <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
+                        <span>Trạng thái: <?php echo $_SESSION['TrangThaiOnline']; ?></span>
                       </a>
                     </li>
                     <li><a href="javascript:;"><?php echo $tenChucVu; ?></a></li>
