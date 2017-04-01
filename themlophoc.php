@@ -1,4 +1,12 @@
-
+<?php
+if(!isset($_SESSION))
+  {
+      session_start();
+  }
+  if(!isset($_SESSION['TenTaiKhoan'])){
+    header("Location: login.php");
+  }
+ ?>
 <?php include_once("entities/lichhoc.class.php"); ?>
 <?php include_once("entities/monhoc.class.php"); ?>
 <?php include_once("entities/giaovien.class.php"); ?>
@@ -56,7 +64,10 @@ if (isset($_POST["btnSubmit"])){
          <div class="x_panel">
            <div class="x_title">
              <h2>Thêm lớp học mới</h2>
-             <br/>
+             <ul class="nav navbar-right panel_toolbox">
+               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+               </li>
+             </ul>
              <div class="clearfix"></div>
            </div>
            <div class="x_content">
@@ -168,7 +179,10 @@ if (isset($_POST["btnSubmit"])){
          <div class="x_panel">
            <div class="x_title">
              <h2>Danh sách lớp học theo môn học</h2>
-             <br/>
+             <ul class="nav navbar-right panel_toolbox">
+               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+               </li>
+             </ul>
              <div class="clearfix"></div>
            </div>
            <div class="x_content">
@@ -234,12 +248,16 @@ if (isset($_POST["btnSubmit"])){
               </div>
            </div>
          </div>
-       </div>
+        </div>
        <!--RIGHT-->
        <div class="col-md-6">
         <div class="x_panel">
           <div class="x_title">
             <h2>Danh sách lớp học theo Giáo viên</h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+            </ul>
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
@@ -305,10 +323,14 @@ if (isset($_POST["btnSubmit"])){
                </table>
              </div>
           </div>
-        </div> 
+        </div>
         <div class="x_panel">
           <div class="x_title">
             <h2>Danh sách lớp học</h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+            </ul>
             <div class="clearfix"></div>
           </div>
           <div class="x_content">

@@ -1,4 +1,13 @@
-
+<?php
+if(!isset($_SESSION))
+  {
+      session_start();
+  }
+  if(!isset($_SESSION['TenTaiKhoan'])){
+    header("Location: login.php");
+  }
+  $tenQuyenHan = $_SESSION['TenQuyen'];
+ ?>
 <?php include_once("entities/hocvien.class.php"); ?>
 <?php include_once("entities/phieudangky.class.php"); ?>
 <?php include_once("entities/chitiet_PDK_LopHoc.class.php"); ?>
@@ -110,8 +119,9 @@
                   </li>
                 </ul>
                 <br/>
+                <?php if ($tenQuyenHan == "Quản trị") { ?>
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-edit m-right-xs"></i>Sửa thông tin</button>
-
+                <?php } ?>
                 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
                   <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
@@ -490,9 +500,11 @@
                             <div class="clearfix"></div>
                           </div>
                           <div class="x_content">
+                            <?php if ($tenQuyenHan == "Quản trị") { ?>
                             <a href="ExcelHistoryHocVien.php?idhv=<?php echo $idHocVien; ?>">Xuất file excel</a>
                             <br/>
                             <a href="ExcelHistoryHocVien2.php?idhv=<?php echo $idHocVien; ?>">Xuất file excel 2</a>
+                            <?php } ?>
                             <table class="table">
                               <thead>
                                 <tr>

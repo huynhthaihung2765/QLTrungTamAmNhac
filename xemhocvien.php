@@ -1,3 +1,14 @@
+<?php
+if(!isset($_SESSION))
+  {
+      session_start();
+  }
+  if(!isset($_SESSION['TenTaiKhoan'])){
+    header("Location: login.php");
+  }
+  $tenQuyenHan = $_SESSION['TenQuyen'];
+ ?>
+
 <?php include_once("entities/hocvien.class.php"); ?>
 <?php include_once("header.php") ?>
 <?php
@@ -88,8 +99,9 @@
                              <?php
                              $idhd = $itemHVSign['IDPhieu'];
                               ?>
+                              <?php if ($tenQuyenHan == "Quản trị") { ?>
                             <a class="btn btn-success btn-xs" href="themChitiet_PDK_LopHoc.php?idpdk=<?php echo $idhd; ?>"><i class="fa fa-user"> </i> <i class="fa fa-comments-o"></i>Đăng ký môn học</a>
-
+                              <?php } ?>
                              <a class="btn btn-primary btn-xs" href="xemchitiethocvien.php?idHV=<?php echo $itemHVSign['IDHocVien'];  ?>"><i class="fa fa-user"> </i> Xem thông tin</a>
                          </div>
                        </div>
