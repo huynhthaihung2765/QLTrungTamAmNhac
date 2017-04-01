@@ -13,7 +13,7 @@ if(!isset($_SESSION))
       header("location: index.php");
     }
   }
- ?> 
+ ?>
 <?php include_once("entities/nhanvien.class.php"); ?>
 <?php include_once("entities/chucvu.class.php"); ?>
 
@@ -30,13 +30,13 @@ if(!isset($_SESSION))
 
      if ($idChucVu == 1) {
        $idtaiKhoan = NULL;
-       $aNhanVien = new NhanVien($idnv, $hoTenNV, $cmnd, $gioiTinh, $ngaySinh, $email, $sdt, $idtaiKhoan, $idChucVu);
+       $aNhanVien = new NhanVien($maNhanVien, $hoTenNhanVien, $CMND, $gioiTinh, $ngaySinh, $email, $soDienThoai, $idtaiKhoan, $idChucVu);
        $result = $aNhanVien->insertNVBV();
        if($result){
-         echo "Thêm 1 nhân viên bảo vệ thành công thành công.<br/>";
+         header("location: themnhanvien.php?insertednvbv");
        }
        else {
-         echo "Thêm 1 nhân viên bảo vệ thất bại.<br/>";
+         header("location: themnhanvien.php?failinsertnvbv");
        }
      }
      else {
@@ -82,6 +82,16 @@ if(!isset($_SESSION))
                   </div>
                   <div class="x_content">
                     <br />
+                    <?php
+                    if (isset($_GET['insertednvbv'])) {
+                      echo "Thêm nhân viên bảo vệ thành công.";
+                    }
+                    if(isset($_GET['failinsertnvbv']))
+                    {
+                      echo "Thêm nhân viên bảo vệ thất bại.";
+                    }
+                    ?>
+                    <br/>
                     <form class="form-horizontal form-label-left" method="post">
 
                       <div class="form-group">
