@@ -18,7 +18,7 @@ if(!isset($_SESSION))
 include_once("entities/nhanvien.class.php");
 include_once("entities/quyenhan.class.php");
 include_once("entities/taikhoan.class.php");
-?> 
+?>
 <?php
   $idnv = $_GET['idnv'];
   $hoTenNV = $_GET['htnv'];
@@ -34,7 +34,7 @@ include_once("entities/taikhoan.class.php");
     $taiKhoan = $_POST["txtTaiKhoan"];
     $matKhau = $_POST["txtMatKhau"];
     $idQuyenHan = $_POST["txtQuyenhan"];
-    $aTaiKhoan = new TaiKhoan($idTaiKhoan, $taiKhoan, $matKhau, $idQuyenHan);
+    $aTaiKhoan = new TaiKhoan($idTaiKhoan, $taiKhoan, $matKhau, $idQuyenHan, "Offline");
     $insertTaiKhoan = $aTaiKhoan->insert();
     if($insertTaiKhoan){
       $aNhanVien = new NhanVien($idnv, $hoTenNV, $cmnd, $gioiTinh, $ngaySinh, $email, $sdt, $idTaiKhoan, $idChucVu);

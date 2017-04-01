@@ -35,6 +35,13 @@
       return $result;
     }
 
+    public function delete(){
+      $db = new Db();
+      $sql = "DELETE FROM nhanvien WHERE IDNhanVien = '$this->idNhanVien'";
+      $result = $db->query_execute($sql);
+      return $result;
+    }
+
     public function insertNVBV(){
       $db = new Db();
       $sql = "INSERT INTO nhanvien (IDNhanVien, HoTenNV, CMND, GioiTinh, NgaySinh, Email, SDT, IDChucVu) VALUES ('$this->idNhanVien', '$this->hoTenNhanVien', '$this->CMND', '$this->gioiTinh', '$this->ngaySinh', '$this->email', '$this->sdt', '$this->idChucVu')";
@@ -45,6 +52,17 @@
     public static function Get_Last_NhanVien(){
       $db = new Db();
       $sql = "SELECT * from nhanvien nv ORDER BY nv.IDNhanVien DESC LIMIT 1";
+      $result = $db->select_to_array($sql);
+      return $result;
+    }
+
+    public static function Get_All_NhanVienVsChucVu($idNhanVienDangNhap){
+      $db = new Db();
+      $sql = "SELECT nv.IDNhanVien, nv.HoTenNV, nv.SDT, nv.Email, nv.IDChucVu, cv.TenChucVu, tk.TrangThaiOnline, nv.IDTaiKhoan
+      FROM nhanvien nv LEFT JOIN chucvu cv on nv.IDChucVu = cv.IDChucVu
+      LEFT JOIN taikhoan tk on tk.IDTaiKhoan = nv.IDTaiKhoan
+      WHERE nv.IDNhanVien NOT IN
+      (SELECT nv2.IDNhanVien FROM nhanvien nv2 WHERE nv2.IDNhanVien = '$idNhanVienDangNhap')";
       $result = $db->select_to_array($sql);
       return $result;
     }
