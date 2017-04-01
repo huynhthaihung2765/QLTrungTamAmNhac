@@ -408,7 +408,13 @@ $idhocVienXoa = $_GET["idHV"];
                                       <td><?php echo $tenGiaoVien; ?></td>
                                       <td><?php echo $ngayBatDau; ?></td>
                                       <td><?php echo $ngayKetThuc; ?></td>
-                                      <td><?php echo $stringTrangThaiHoc; ?></td>
+                                      <td>
+                                        <?php if ($trangThaiHoc == "true") { ?>
+                                          <img src="public\images\HocVien\Learn\online-icon.png" alt="Đang học.">
+                                        <?php } else { ?>
+                                          <img src="public\images\HocVien\Learn\offline-icon.png" alt="Đã nghỉ học.">
+                                        <?php } ?>
+                                      </td>
                                     </tr>
                                 <?php } ?>
                               </tbody>
@@ -669,9 +675,9 @@ $idhocVienXoa = $_GET["idHV"];
                           </div>
                           <div class="x_content">
                             <?php if ($tenQuyenHan == "Quản trị") { ?>
-                            <a href="ExcelHistoryHocVien.php?idhv=<?php echo $idHocVien; ?>">Xuất file excel</a>
+                            <a class="btn btn-info" href="ExcelHistoryHocVien.php?idhv=<?php echo $idHocVien; ?>">Xuất file excel</a>
                             <br/>
-                            <a href="ExcelHistoryHocVien2.php?idhv=<?php echo $idHocVien; ?>">Xuất file excel 2</a>
+                            <a class="btn btn-info" href="ExcelHistoryHocVien2.php?idhv=<?php echo $idHocVien; ?>">Xuất file excel 2</a>
                             <?php } ?>
                             <table class="table">
                               <thead>
@@ -712,7 +718,11 @@ $idhocVienXoa = $_GET["idHV"];
                                       <td><?php echo $tenGiaoVien; ?></td>
                                       <td><?php echo $ngayBatDau; ?></td>
                                       <td><?php echo $ngayKetThuc; ?></td>
-                                      <td><?php echo $stringTrangThaiHoc; ?></td>
+                                      <td><?php if ($trangThaiHoc == "true") { ?>
+                                        <img src="public\images\HocVien\Learn\online-icon.png" alt="Đang học.">
+                                      <?php } else { ?>
+                                        <img src="public\images\HocVien\Learn\offline-icon.png" alt="Đã nghỉ học.">
+                                      <?php } ?></td>
                                     </tr>
                                 <?php } ?>
                               </tbody>
