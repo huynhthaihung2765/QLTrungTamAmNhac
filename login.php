@@ -62,6 +62,7 @@ if(!isset($_SESSION['TenTaiKhoan'])){
       }
       else {
         header("Location: login.php?failfetch");
+
       }
    }
    else {
@@ -109,6 +110,12 @@ else {
           <section class="login_content">
             <form method="POST" action="login.php">
               <h1>Đăng nhập</h1>
+              <div>
+                <?php 
+                if(isset($_GET["fail"]))
+                  echo "<h4 style="."color:red".">"."Tài khoản hoặc mật khẩu không đúng!</h4>";
+                 ?>
+              </div>
               <div>
                 <input type="text" class="form-control" placeholder="Username" required="" name="txtnameLogin" />
               </div>

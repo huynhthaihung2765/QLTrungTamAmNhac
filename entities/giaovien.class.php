@@ -151,5 +151,11 @@
 	    {
 
 	    }
+	    public static function Get_Last_GV(){
+	      $db = new Db();
+	      $sql = "SELECT * from giaovien gv ORDER BY gv.IDGiaoVien DESC LIMIT 1";
+	      $result = $db->select_to_array($sql);
+	      return $result;
+	    }
 	}
  ?>

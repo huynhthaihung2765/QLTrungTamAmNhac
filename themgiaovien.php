@@ -33,6 +33,9 @@
 	}
  ?>
  <?php include_once("header.php"); ?>
+ <?php 
+ $gvLast = Giaovien::Get_Last_GV();
+  ?>
  <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
@@ -43,10 +46,10 @@
                     <h2>Thêm giáo viên</h2>
                     <?php
 		               if (isset($_GET["inserted"])){
-		                 echo "<h2>Thêm học viên thành công</h2>";
+		                 echo "<h2>Thêm giáo viên thành công</h2>";
 		               }
 		               if(isset($_GET["failure"])) {
-		                 echo "<h2>Thêm học viên thất bại</h2>";
+		                 echo "<h2>Thêm giáo viên thất bại</h2>";
 		               }
 		             ?>
                     <ul class="nav navbar-right panel_toolbox">
@@ -71,7 +74,7 @@
                     <form class="form-horizontal form-label-left" method="post" enctype="multipart/form-data">
                     <?php foreach ($gvLast as $key => $itemgv): ?>
                       <?php
-                        $idGVLast = $itemhv['IDGiaoVien'];
+                        $idGVLast = $itemgv['IDGiaoVien'];
                         $idGVNext = intval($idGVLast) + 1;
                       ?>
                       <?php endforeach; ?>
