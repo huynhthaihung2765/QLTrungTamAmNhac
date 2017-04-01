@@ -179,10 +179,10 @@ if(!isset($_SESSION))
                     <ul class="nav child_menu">
                       <li><a href="xemhocvien.php">Xem học viên</a></li>
                       <li><a href="themhocvien.php">Thêm học viên</a></li>
-                      <li><a href="form_validation.html">Đăng ký mới</a></li>
-                      <li><a href="form_wizards.html">Học viên đã nghỉ</a></li>
-                      <li><a href="form_upload.html">Học viên bảo lưu</a></li>
-                      <li><a href="form_buttons.html">Form Buttons</a></li>
+                      <li><a href="#">Đăng ký mới</a></li>
+                      <li><a href="#">Học viên đã nghỉ</a></li>
+                      <li><a href="#">Học viên bảo lưu</a></li>
+                      <li><a href="#">Form Buttons</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-desktop"></i> Quản lí lớp học <span class="fa fa-chevron-down"></span></a>
