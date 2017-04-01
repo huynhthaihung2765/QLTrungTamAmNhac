@@ -4,17 +4,17 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Trung Tâm Âm Nhạc Thái Hưng</title>
-	<link rel="stylesheet" href="public/userpage/css/style.css" type="text/css">
-	<link rel="stylesheet" href="public/userpage/node_modules/swiper/dist/css/swiper.min.css">
+	<link rel="stylesheet" href="userMusicSchool/css/style.css" type="text/css">
+	<link rel="stylesheet" href="userMusicSchool/node_modules/swiper/dist/css/swiper.min.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
 	<div class="page">
 		<div class="header">
-			<a href="index.html" id="logo"><img src="public/userpage/images/logo.png" alt="logo"></a>
+			<a href="index.php" id="logo"><img src="userMusicSchool/images/logo.png" alt="logo"></a>
 			<ul class="navigation">
 				<li class="selected">
-					<a href="index.html">Trang chủ</a>
+					<a href="index.php">Trang chủ</a>
 				</li>
 				<li>
 					<a href="userMusicSchool/about.html">Giới thiệu</a>
@@ -23,13 +23,13 @@
 					<a href="userMusicSchool/programs.html">Chương trình học</a>
 				</li>
 				<li>
-					<a href="userMusicSchool/register.html">Đăng ký</a>
+					<a href="userMusicSchool/register.php">Đăng ký</a>
 				</li>
 				<li>
 					<a href="userMusicSchool/blog.html">Blog</a>
 				</li>
 				<li>
-					<a href="userMusicSchool/contact.html">Liên hệ</a>
+					<a href="userMusicSchool/contact.php">Liên hệ</a>
 				</li>
 			</ul>
 		</div>
@@ -40,21 +40,21 @@
 						<div>
 							<div class="w3-content w3-display-container">
 								<div class="w3-display-container mySlides">
-									<img src="public/userpage/images/slide/slide1.jpg" style="width:100%">
+									<img src="userMusicSchool/images/slide/slide1.jpg" style="width:100%">
 								<div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
 									Bạn muốn chơi guitar như một nghệ sĩ
 								</div>
 								</div>
 
 								<div class="w3-display-container mySlides">
-									<img src="public/userpage/images/slide/slide2.jpg" style="width:100%">
+									<img src="userMusicSchool/images/slide/slide2.jpg" style="width:100%">
 								<div class="w3-display-bottomright w3-large w3-container w3-padding-16 w3-black">
 									Bạn đang buồn hay có tâm sự muốn kéo Violin cho giãi tỏa 
 								</div>
 								</div>
 
 								<div class="w3-display-container mySlides">
-								<img src="public/userpage/images/slide/slide3.jpg" style="width:100%">
+								<img src="userMusicSchool/images/slide/slide3.jpg" style="width:100%">
 								<div class="w3-display-topleft w3-large w3-container w3-padding-16 w3-black">
 									Hãy đến với Trung Tâm Âm Nhạc Thái Hưng
 								</div>
@@ -75,22 +75,22 @@
 						<h3>Chương Trình</h3>
 						<ul>
 							<li>
-								<span>Piano</span> <a href="userMusicSchool/programs.html"><img src="public/userpage/images/piano.jpg" alt=""></a>
+								<span>Piano</span> <a href="userMusicSchool/programs.html"><img src="userMusicSchool/images/piano.jpg" alt=""></a>
 							</li>
 							<li>
-								<span>Violin</span> <a href="userMusicSchool/violin.html"><img src="public/userpage/images/violin.jpg" alt=""></a>
+								<span>Violin</span> <a href="userMusicSchool/violin.html"><img src="userMusicSchool/images/violin.jpg" alt=""></a>
 							</li>
 							<li>
-								<span>Guitar</span><a href="userMusicSchool/guitar.html"><img src="public/userpage/images/guitar.jpg" alt=""></a>
+								<span>Guitar</span><a href="userMusicSchool/guitar.html"><img src="userMusicSchool/images/guitar.jpg" alt=""></a>
 							</li>
 							<li>
-								<span>Saxophone</span> <a href="userMusicSchool/saxophone.html"><img src="public/userpage/images/saxophone.jpg" alt=""></a>
+								<span>Saxophone</span> <a href="userMusicSchool/saxophone.html"><img src="userMusicSchool/images/saxophone.jpg" alt=""></a>
 							</li>
 							<li>
-								<span>Drums</span> <a href="userMusicSchool/drums.html"><img src="public/userpage/images/drums.jpg" alt=""></a>
+								<span>Drums</span> <a href="userMusicSchool/drums.html"><img src="userMusicSchool/images/drums.jpg" alt=""></a>
 							</li>
 							<li>
-								<span>Voice Lesson</span> <a href="userMusicSchool/vioce-lesson.html"><img src="public/userpage/images/voice-lesson.jpg" alt=""></a>
+								<span>Voice Lesson</span> <a href="userMusicSchool/vioce-lesson.html"><img src="userMusicSchool/images/voice-lesson.jpg" alt=""></a>
 							</li>
 						</ul>
 					</div>
@@ -100,7 +100,7 @@
 						<li>
 							<span>9/2016</span>
 							<h2>Trung Tâm Thái Hưng chính thức khai trương</h2>
-							<a href="userMusicSchool/blog.html"><img src="public/userpage/images/singing-kids.jpg" alt=""></a>
+							<a href="userMusicSchool/blog.html"><img src="userMusicSchool/images/singing-kids.jpg" alt=""></a>
 							<p>
 								Trung Tâm Âm Nhạc Thái Hưng chuyên đào tạo về các loại nhạc cụ: Piano , Guitar , ... <a href="userMusicSchool/blog.html" class="more">Xem Thêm</a>
 							</p>
@@ -113,7 +113,7 @@
 							</p>
 						</li>
 						<li>
-							<span>12/2016</span> <a href="userMusicSchool/blog.html"><img src="public/userpage/images/singer.jpg" alt=""></a>
+							<span>12/2016</span> <a href="userMusicSchool/blog.html"><img src="userMusicSchool/images/singer.jpg" alt=""></a>
 							<h2>Chào đón ca sĩ </h2>
 							<p>
 								Một ca sĩ nổi tiếng đã đến Trung Tâm để khảo sát chất lượng đề con gái của mình học <a href="userMusicSchool/blog.html" class="more">Xem Thêm</a>
@@ -128,7 +128,7 @@
 			<div class="about">
 				<h3>Giới Thiệu</h3>
 				<div>
-					<a href="userMusicSchool/about.html"><img src="public/userpage/images/instructors.jpg" alt=""></a>
+					<a href="userMusicSchool/about.html"><img src="userMusicSchool/images/instructors.jpg" alt=""></a>
 					<p>
 						<strong>Bạn muốn 1 lớp học</strong> dành cho Guitar hay Violin. Lắng nghe chúng tôi , <em> Không nơi nào</em> tốt hơn chúng tôi. 
 					</p>
@@ -162,7 +162,7 @@
 				<a href="#" id="twitter">twitter</a> 
 				<a href="#" id="facebook">facebook</a> 
 				<a href="#" id="googleplus">google</a>
-				<a href="index1.php">Thành viên</a>
+				<a href="admin.php">Thành viên</a>
 			</div>
 			<p class="footnote">
 				&#169; Copyright 2016. All rights reserved

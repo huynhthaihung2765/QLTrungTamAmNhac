@@ -12,7 +12,7 @@
 			<a href="index.html" id="logo"><img src="images/logo.png" alt="logo"></a>
 			<ul class="navigation">
 				<li>
-					<a href="index.html">Trang chủ</a>
+					<a href="./">Trang chủ</a>
 				</li>
 				<li>
 					<a href="about.html">Giới thiệu</a>
@@ -21,7 +21,7 @@
 					<a href="programs.html">Chương trình học</a>
 				</li>
 				<li class="selected">
-					<a href="register.html">Đăng ký</a>
+					<a href="register.php">Đăng ký</a>
 				</li>
 				<li>
 					<a href="blog.html">Blog</a>
@@ -91,49 +91,43 @@
 				</div>
 				<div>
 					<h2 style="color:#ec7500; ">Đăng ký học</h2>
-					<form action="index.html">
+					<form action="#" method="post">
 						<div>
-							<label for="name">Tên</label>
-							<input type="text" id="name">
-							<label for="surname">Họ</label>
-							<input type="text" id="surname"> 
-							<label for="email">Địa chỉ Email</label>
-							<input type="text" id="email">
+							<label for="name">Họ Tên</label>
+							<input type="text" name="txtHoTen">
+							<label for="phone">Điện thoại</label>
+							<input type="number" name="txtDienThoai">
 						</div>
 						<div>
 							<label for="message">Nội dung</label>
-							<textarea name="message" id="message" cols="30" rows="10"></textarea>							
+							<textarea name="txtNoiDung" id="message" cols="30" rows="10"></textarea>							
 						</div>
 						<div style="display: inline-block">
 							<label>Chương trình học</label>
-							<input type="checkbox" name="programs" value="Guitar" style="margin: 10px"> Guitar<br>
-							<input type="checkbox" name="programs" value="Violin"style="margin: 10px"> Violin<br>
-							<input type="checkbox" name="programs" value="Piano" style="margin: 10px"> Piano<br>
-							<input type="checkbox" name="programs" value="Drums" style="margin: 10px"> Trống<br>
-							<input type="checkbox" name="programs" value="voice-lesson" style="margin: 10px"> Luyện Giọng<br>
-							<input type="checkbox" name="programs" value="Saxophone" style="margin: 10px"> Saxophone<br>
+							<input type="checkbox" name="txtChuongTrinhhoc" value="Guitar" style="margin: 10px"> Guitar<br>
+							<input type="checkbox" name="txtChuongTrinhhoc" value="Violin"style="margin: 10px"> Violin<br>
+							<input type="checkbox" name="txtChuongTrinhhoc" value="Piano" style="margin: 10px"> Piano<br>
+							<input type="checkbox" name="txtChuongTrinhhoc" value="Drums" style="margin: 10px"> Trống<br>
+							<input type="checkbox" name="txtChuongTrinhhoc" value="voice-lesson" style="margin: 10px"> Luyện Giọng<br>
+							<input type="checkbox" name="txtChuongTrinhhoc" value="Saxophone" style="margin: 10px"> Saxophone<br>
 						</div>
+						<!--
 						<div style="display: inline-block; margin-left: 150px">
 							<label>Cấp độ</label>
 							<input type="checkbox" name="levels" value="beginner" style="margin: 10px"> Nghiệp dư<br>
 							<input type="checkbox" name="levels" value="immediate"style="margin: 10px"> Bán Chuyên<br>
 							<input type="checkbox" name="levels" value="advanced" style="margin: 10px"> Chuyên nghiệp<br>
-
-						</div>
+						</div> -->
 						<div style="display: inline-block; margin-left: 150px">
 							<label>Thời gian học</label>
 							<label>Thứ</label>
-							<input type="checkbox" name="scheduled" value="Monday" style="margin: 5px"> Thứ 2<br>
-							<input type="checkbox" name="scheduled" value="Tuesday" style="margin: 5px"> Thứ 3<br>
-							<input type="checkbox" name="scheduled" value="Wesnesday" style="margin: 5px"> Thứ 4<br>
-							<input type="checkbox" name="scheduled" value="Thursday" style="margin: 5px"> Thứ 5<br>
-							<input type="checkbox" name="scheduled" value="Friday" style="margin: 5px"> Thứ 6<br>
+							<input type="checkbox" name="txtNgayTrongTuan" value="Thứ 2,4,6" style="margin: 5px"> Thứ 2,4,6<br>
+							<input type="checkbox" name="txtNgayTrongTuan" value="Thứ 3,5,7" style="margin: 5px"> Thứ 3,5,7<br>
 							<label>Thời gian</label>
-							<input type="checkbox" name="times" value="option1" style="margin: 5px">10:00am - 12:00pm<br>
-							<input type="checkbox" name="times" value="option2" style="margin: 5px">1:00am - 3:00pm<br>
+							<input type="checkbox" name="txtBuoiTrongNgay" value="Buổi sáng" style="margin: 5px">Buổi sáng: 08:00am - 11:00pm<br>
+							<input type="checkbox" name="txtBuoiTrongNgay" value="Buổi tối" style="margin: 5px">Buổi tối: 18:00am - 21:00pm<br>
 							<input type="submit" id="submit" value="Gửi" style="float:right; margin-left: 150px; margin-top: 20px;">
 						</div>
-							
 					</form>
 				</div>
 			</div>

@@ -84,9 +84,9 @@
                           <td><?php echo $item["Email"]; ?></td>
                           <td><?php echo $item["ChuyenMon"]; ?></td>
                           <td>
-                            <a href="#">Thêm</a> <br> 
-                            <a href="#">Xoá</a> <br> 
-                              <button type="button" class="btn btn-success" data-toggle="modal" data-target=".<?php echo $item["IDGiaoVien"] ?>" >Sửa thông tin
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target=".<?php echo $item["IDGiaoVien"] ?>" >Xoá
+                              </button><br>
+                              <button type="button" class="btn btn-success" data-toggle="modal" data-target=".<?php echo $item["IDGiaoVien"] ?>" >Sửa
                               </button>
                               <div class="modal fade <?php echo $item["IDGiaoVien"] ?>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
                         <div class="modal-dialog modal-lg" role="document">
