@@ -62,7 +62,7 @@
 		    }
 		    // end upload file
 	      	$db = new Db();
-	      	$sql = "UPDATE giaovien SET HoTenGV='$this->hoTenGV', GioiTinh='$this->gioiTinh',NgaySinh='$this->ngaySinh',CMND='$this->cMND',Email='$this->email',BangCap='$this->bangCap',ChuyenMon='$this->chuyenMon', SDT='$this->soDienThoai', HinhAnhGV = '$filepath' where IDGiaoVien = '$id' ";
+	      	$sql = "UPDATE giaovien SET HoTenGV='$this->hoTenGV', GioiTinh='$this->gioiTinh',NgaySinh='$this->ngaySinh',CMND='$this->cMND',Email='$this->email',BangCap='$this->bangCap',ChuyenMon='$this->chuyenMon', SDT='$this->soDienThoai', HinhAnhGV = '$filepath' ";
 	       	$result = $db->query_execute($sql);
 	       	return $result;
     	}

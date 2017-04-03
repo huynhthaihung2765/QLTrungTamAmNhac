@@ -36,8 +36,6 @@
         $filepath = "public/images/HocVien/user.png";
       }
 
-
-
       $db = new Db();
       $sql = "INSERT INTO hocvien (IDHocVien, HoTenHocVien, GioiTinh, NgaySinh, SDT, NoiOHienTai, Email, HinhAnhHV) VALUES
       ('$this->idHocVien', '$this->hoTenHocVien', '$this->gioiTinh', '$this->ngaySinh', '$this->soDienThoai', '$this->diaChi', '$this->email', '$filepath')";

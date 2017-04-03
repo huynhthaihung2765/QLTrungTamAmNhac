@@ -172,3 +172,4 @@
               </div>
               </div>
               </div>
+              <script src="public/vendors/jquery/dist/jquery.min.js"></script>
