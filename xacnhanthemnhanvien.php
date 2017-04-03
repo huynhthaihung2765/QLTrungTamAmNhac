@@ -1,6 +1,11 @@
 <?php
-if(!isset($_SESSION))
-  {
+include_once("entities/nhanvien.class.php");
+include_once("entities/quyenhan.class.php");
+include_once("entities/taikhoan.class.php");
+?>
+
+<?php
+if(!isset($_SESSION)) {
       session_start();
   }
   if(!isset($_SESSION['TenTaiKhoan'])){
@@ -8,26 +13,34 @@ if(!isset($_SESSION))
   }
   else {
     $tenQuyen = $_SESSION['TenQuyen'];
-    if($tenQuyen != "Quản trị")
-    {
+    if($tenQuyen != "Quản trị") {
       header("location: index.php");
     }
   }
+
+  if (isset($_GET["radmkdnv"]) && isset($_SESSION['randomdknv'])) {
+    $xnrds = $_GET["radmkdnv"];
+    $sessionRandom = $_SESSION['randomdknv'];
+    //kiểm tra random string URL và random string  cua session
+    if($xnrds == $sessionRandom){
+      $idnv = $_GET['idnv'];
+      $hoTenNV = $_GET['htnv'];
+      $cmnd = $_GET['cmnd'];
+      $gioiTinh = $_GET['gt'];
+      $ngaySinh = $_GET['ns'];
+      $email = $_GET['em'];
+      $sdt = $_GET['sdt'];
+      $idChucVu = $_GET['idcv'];
+    }
+    else {
+      header("Location: 404.php");
+    }
+  }
+  else {
+    header("Location: 404.php");
+  }
  ?>
 <?php
-include_once("entities/nhanvien.class.php");
-include_once("entities/quyenhan.class.php");
-include_once("entities/taikhoan.class.php");
-?>
-<?php
-  $idnv = $_GET['idnv'];
-  $hoTenNV = $_GET['htnv'];
-  $cmnd = $_GET['cmnd'];
-  $gioiTinh = $_GET['gt'];
-  $ngaySinh = $_GET['ns'];
-  $email = $_GET['em'];
-  $sdt = $_GET['sdt'];
-  $idChucVu = $_GET['idcv'];
 
   if(isset($_POST["btnsubmit"])){
     $idTaiKhoan = $_POST["txtMaTaiKhoan"];
@@ -87,6 +100,7 @@ include_once("entities/taikhoan.class.php");
               echo "Email: $email<br/>";
               echo "Số dt: $sdt<br/>";
             ?>
+            <hr/>
             <form class="form-horizontal form-label-left" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Mã tài Khoản</label>
@@ -128,17 +142,6 @@ include_once("entities/taikhoan.class.php");
               </div>
               <button type="submit" class="btn btn-primary" name="btnsubmit">Thêm tài khoản</button>
             </form>
-            <div class="clearfix"></div>
-            <hr/>
-            <div class="">
-              <?php
-                echo "Họ tên NV: $hoTenNV<br/>";
-                echo "Giới tính: $gioiTinh<br/>";
-                echo "Ngày sinh: $ngaySinh<br/>";
-                echo "Email: $email<br/>";
-                echo "Số dt: $sdt<br/>";
-              ?>
-            </div>
           </div>
         </div>
       </div>

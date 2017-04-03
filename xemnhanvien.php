@@ -1,3 +1,4 @@
+
 <?php include_once("header.php") ?>
 <div class="right_col" role="main">
           <div class="">
@@ -60,4 +61,4 @@
                 </div>
               </div>
              </div>
-<?php include_once("footer.php") ?>
+<?php include_once("footer.php"); ?>

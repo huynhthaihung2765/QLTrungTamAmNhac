@@ -57,84 +57,27 @@ if(!isset($_SESSION))
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <img src="public/images/img.jpg" alt=""><?php echo $tennhanvien; ?>
-                    <span class=" fa fa-angle-down"></span>
+                    <span class="fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> <?php echo $tenQuyenHan; ?></a></li>
+                    <li><a href="javascript:;">Quyền: <?php echo $tenQuyenHan; ?></a></li>
                     <li>
                       <a href="javascript:;">
                         <span class="badge bg-red pull-right">50%</span>
                         <span>Trạng thái: <?php echo $_SESSION['TrangThaiOnline']; ?></span>
                       </a>
                     </li>
-                    <li><a href="javascript:;"><?php echo $tenChucVu; ?></a></li>
+                    <li><a href="javascript:;">Chức vụ: <?php echo $tenChucVu; ?></a></li>
                     <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a></li>
                   </ul>
                 </li>
 
                 <li role="presentation" class="dropdown">
-                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                  <a href="javascript:;" class="dropdown-toggle info-number cli" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
+                    <span class="badge bg-green countc"></span>
                   </a>
-                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were wherepublic.
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were wherepublic.
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were wherepublic.
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were wherepublic.
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="text-center">
-                        <a>
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
-                  </ul>
+                  <ul id="menu1" class="dropdown-menu dropdown-menuc list-unstyled msg_list" role="menu"></ul>
                 </li>
               </ul>
             </nav>
@@ -178,7 +121,9 @@ if(!isset($_SESSION))
                   <li><a><i class="fa fa-edit"></i> Quản lí học viên <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="xemhocvien.php">Xem học viên</a></li>
-                      <li><a href="themhocvien.php">Thêm học viên</a></li>
+                      <?php if($tenQuyenHan == "Quản trị"){ ?>
+                        <li><a href="themhocvien.php">Thêm học viên</a></li>
+                      <?php } ?>  
                       <li><a href="#">Đăng ký mới</a></li>
                       <li><a href="#">Học viên đã nghỉ</a></li>
                       <li><a href="#">Học viên bảo lưu</a></li>
@@ -187,8 +132,9 @@ if(!isset($_SESSION))
                   </li>
                   <li><a><i class="fa fa-desktop"></i> Quản lí lớp học <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="general_elements.html">Xem lớp học</a></li>
-                      <li><a href="media_gallery.html">Thêm lớp học</a></li>
+                      <?php if($tenQuyenHan == "Quản trị"){ ?>
+                        <li><a href="themlophoc.php">Xem / Thêm lớp học</a></li>
+                      <?php } ?>
                       <li><a href="typography.html">Xem môn học</a></li>
                       <li><a href="icons.html">Xem cấp độ</a></li>
                       <li><a href="glyphicons.html"></a></li>

@@ -49,7 +49,7 @@
 								<div class="w3-display-container mySlides">
 									<img src="userMusicSchool/images/slide/slide2.jpg" style="width:100%">
 								<div class="w3-display-bottomright w3-large w3-container w3-padding-16 w3-black">
-									Bạn đang buồn hay có tâm sự muốn kéo Violin cho giãi tỏa 
+									Bạn đang buồn hay có tâm sự muốn kéo Violin cho giãi tỏa
 								</div>
 								</div>
 
@@ -60,7 +60,7 @@
 								</div>
 								</div>
 
-								
+
 								<button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
 								<button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
 
@@ -130,7 +130,7 @@
 				<div>
 					<a href="userMusicSchool/about.html"><img src="userMusicSchool/images/instructors.jpg" alt=""></a>
 					<p>
-						<strong>Bạn muốn 1 lớp học</strong> dành cho Guitar hay Violin. Lắng nghe chúng tôi , <em> Không nơi nào</em> tốt hơn chúng tôi. 
+						<strong>Bạn muốn 1 lớp học</strong> dành cho Guitar hay Violin. Lắng nghe chúng tôi , <em> Không nơi nào</em> tốt hơn chúng tôi.
 					</p>
 					<a href="userMusicSchool/blog.html" class="more">Xem Thêm</a>
 				</div>
@@ -153,16 +153,15 @@
 					<li>
 						<span>Số Điện Thoại :</span>
 						<p>
-							(84) 123 123 456 
+							(84) 123 123 456
 						</p>
 					</li>
 				</ul>
 			</div>
 			<div class="connect">
-				<a href="#" id="twitter">twitter</a> 
-				<a href="#" id="facebook">facebook</a> 
+				<a href="#" id="twitter">twitter</a>
+				<a href="#" id="facebook">facebook</a>
 				<a href="#" id="googleplus">google</a>
-				<a href="admin.php">Thành viên</a>
 			</div>
 			<p class="footnote">
 				&#169; Copyright 2016. All rights reserved
@@ -181,12 +180,12 @@ function plusDivs(n) {
 function showDivs(n) {
   var i;
   var x = document.getElementsByClassName("mySlides");
-  if (n > x.length) {slideIndex = 1}    
+  if (n > x.length) {slideIndex = 1}
   if (n < 1) {slideIndex = x.length}
   for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";  
+     x[i].style.display = "none";
   }
-  x[slideIndex-1].style.display = "block";  
+  x[slideIndex-1].style.display = "block";
 }
 
 var slideIndex = 0;
@@ -196,11 +195,11 @@ function carousel() {
     var i;
     var x = document.getElementsByClassName("mySlides");
     for (i = 0; i < x.length; i++) {
-      x[i].style.display = "none"; 
+      x[i].style.display = "none";
     }
     slideIndex++;
-    if (slideIndex > x.length) {slideIndex = 1} 
-    x[slideIndex-1].style.display = "block"; 
+    if (slideIndex > x.length) {slideIndex = 1}
+    x[slideIndex-1].style.display = "block";
     setTimeout(carousel, 2000); // Change image every 2 seconds
 }
 </script>

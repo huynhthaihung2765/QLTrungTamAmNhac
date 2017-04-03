@@ -107,7 +107,7 @@ if(!isset($_SESSION))
                        </div>
                      </div>
                    </div>
-                   <?php if ($soluong == 3){ ?>
+                   <?php if ($soluong ==2){ ?>
                      <div class="clearfix"></div>
                      <?php $soluong = 0; ?>
                    <?php } ?>

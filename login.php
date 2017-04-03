@@ -2,35 +2,6 @@
 session_start();
 
 
-/*
-  if(isset($_SESSION['user'])!="")
-  {
-    // người dùng đã đăng nhập, trở về trang chủ
-    header("Location: index.php");
-  }
-  require_once("entities/user.class.php");
-  // kiểm tra giá trị được gửi từ form đăng ký
-  if (isset($_POST['btn_dangky']))
-  {
-    $u_name = $_POST['txtname'];
-    $u_pass = $_POST['txtpass'];
-    $account = new User($u_name, $u_pass);
-    $result = $account->inserUser();
-    if(!$result)
-    {
-      ?>
-      <script>alert('có lỗi xảy ra, vui lòng kiểm tra dữ liệu')</script>
-      <?php
-    }
-    else
-    {
-      // đăng ký thành công, chuyển về trang chủ
-      $SESSION['user'] = $u_name;
-      header("Location: index.php");
-    }
-  }
-*/
-
 include_once("entities/taikhoan.class.php");
 
 if(!isset($_SESSION['TenTaiKhoan'])){
@@ -69,8 +40,7 @@ if(!isset($_SESSION['TenTaiKhoan'])){
          header("Location: admin.php");
       }
       else {
-        header("Location: login.php?failfetch");
-
+        header("Location: login.php?failfetch"); 
       }
    }
    else {
@@ -84,7 +54,7 @@ else {
 
  ?>
 
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

@@ -14,6 +14,8 @@
   <script src="public/vendors/jquery/dist/jquery.min.js"></script>
   <!-- Bootstrap -->
   <script src="public/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
   <!-- FastClick -->
   <script src="public/vendors/fastclick/lib/fastclick.js"></script>
   <!-- NProgress -->
@@ -91,7 +93,28 @@
           jQuery("#result").fadeIn();
       });
     });
-  </script> 
+  </script>
+
+  <script>
+  $('.body').on('click', function(){
+    function load_unseen_notification(view = '')
+    {
+      $.ajax({
+        url:"fetch.php",
+        method:"POST",
+        data:{view:view},
+        dataType:"json",
+        success:function(data){
+          $('.dropdown-menuc').html(data.notification2);
+          if(data.unseen_notification2 > 0){
+            $('.countc').html(data.unseen_notification2);
+          }
+        }
+      });
+    }
+    load_unseen_notification();
+  });
+  </script>
 
 
 </body>

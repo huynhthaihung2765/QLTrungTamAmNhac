@@ -38,7 +38,7 @@
 
     public static function Get_All_MonHoc_In_Lop(){
       $db = new Db();
-      $sql = "SELECT mh.IDMonHoc, mh.TenMonHoc from lophoc lh LEFT JOIN monhoc mh on lh.IDMonHoc = mh.IDMonHoc GROUP by lh.IDMonHoc";
+      $sql = "SELECT mh.IDMonHoc, mh.TenMonHoc, mh.VietTac, mh.HinhAnh from lophoc lh LEFT JOIN monhoc mh on lh.IDMonHoc = mh.IDMonHoc GROUP by lh.IDMonHoc";
       $result = $db->select_to_array($sql);
       return $result;
     }
