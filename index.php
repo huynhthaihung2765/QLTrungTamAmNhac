@@ -23,7 +23,7 @@
 					<a href="userMusicSchool/programs.html">Chương trình học</a>
 				</li>
 				<li>
-					<a href="userMusicSchool/register.php">Đăng ký</a>
+					<a href="hvdangkymoi.php">Đăng ký</a>
 				</li>
 				<li>
 					<a href="userMusicSchool/blog.html">Blog</a>

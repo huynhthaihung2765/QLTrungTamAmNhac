@@ -1,33 +1,57 @@
+<?php require_once("entities/hvdangkymoi.class.php"); ?>
+<?php 
+if (isset($_POST['btnsubmit'])) {
+ 	# code...
+ 	$hoTen = $_POST['txtHoTen'];
+ 	$soDienThoai = $_POST['txtDienThoai'];
+ 	$monHoc = $_POST['txtChuongTrinhhoc'];
+ 	$ngayTrongTuan = $_POST['txtNgayTrongTuan'];
+ 	$buoiTrongNgay = $_POST['txtBuoiTrongNgay'];
+ 	$noiDung = $_POST['txtNoiDung'];
+ 	//
+ 	$newRegister = new HVDangKyMoi($hoTen, $soDienThoai, $monHoc, $ngayTrongTuan, $buoiTrongNgay, $noiDung);
+ 	// lưu xuống CSDL
+ 	$result = $newRegister->them();
+		if(!$result)
+		{
+			// truy vấn lỗi
+			header("Location: hvdangkymoi.php?failure");
+		}
+		else
+		{
+			header("Location: hvdangkymoi.php?inserted");
+		}
+ } ?>
 <!DOCTYPE html>
 <!-- Website template by freewebsitetemplates.com -->
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Contact - Music School Website Template</title>
-	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<title>Contact - Music School Website</title>
+	<link rel="stylesheet" href="userMusicSchool/css/style.css" type="text/css">
 </head>
 <body>
 	<div class="page">
 		<div class="header">
-			<a href="index.html" id="logo"><img src="images/logo.png" alt="logo"></a>
+			<a href="index.php" id="logo"><img src="userMusicSchool/images/logo.png" alt="logo"></a>
 			<ul class="navigation">
 				<li>
 					<a href="./">Trang chủ</a>
 				</li>
 				<li>
-					<a href="about.html">Giới thiệu</a>
+					<a href="userMusicSchool/about.html">Giới thiệu</a>
 				</li>
 				<li>
-					<a href="programs.html">Chương trình học</a>
+					<a href="userMusicSchool/programs.html">Chương trình học</a>
 				</li>
 				<li class="selected">
-					<a href="register.php">Đăng ký</a>
+					<a href="hvdangkymoi.php">Đăng ký</a>
 				</li>
 				<li>
-					<a href="blog.html">Blog</a>
+					<a href="userMusicSchool/blog.html">Blog</a>
 				</li>
 				<li>
-					<a href="contact.html">Liên hệ</a>
+					<a href="userMusicSchool/contact.html">Liên hệ</a>
 				</li>
 			</ul>
 		</div>
@@ -91,7 +115,15 @@
 				</div>
 				<div>
 					<h2 style="color:#ec7500; ">Đăng ký học</h2>
-					<form action="#" method="post">
+					<?php
+		               if (isset($_GET["inserted"])){
+		                 echo "<h2>Thêm thành công</h2>";
+		               }
+		               if(isset($_GET["failure"])) {
+		                 echo "<h2>Thêm thất bại</h2>";
+		               }
+		             ?>
+					<form method="post" enctype="multipart/form-data">
 						<div>
 							<label for="name">Họ Tên</label>
 							<input type="text" name="txtHoTen">
@@ -105,7 +137,7 @@
 						<div style="display: inline-block">
 							<label>Chương trình học</label>
 							<input type="checkbox" name="txtChuongTrinhhoc" value="Guitar" style="margin: 10px"> Guitar<br>
-							<input type="checkbox" name="txtChuongTrinhhoc" value="Violin"style="margin: 10px"> Violin<br>
+							<input type="checkbox" name="txtChuongTrinhhoc" value="Violin" style="margin: 10px"> Violin<br>
 							<input type="checkbox" name="txtChuongTrinhhoc" value="Piano" style="margin: 10px"> Piano<br>
 							<input type="checkbox" name="txtChuongTrinhhoc" value="Drums" style="margin: 10px"> Trống<br>
 							<input type="checkbox" name="txtChuongTrinhhoc" value="voice-lesson" style="margin: 10px"> Luyện Giọng<br>
@@ -126,7 +158,7 @@
 							<label>Thời gian</label>
 							<input type="checkbox" name="txtBuoiTrongNgay" value="Buổi sáng" style="margin: 5px">Buổi sáng: 08:00am - 11:00pm<br>
 							<input type="checkbox" name="txtBuoiTrongNgay" value="Buổi tối" style="margin: 5px">Buổi tối: 18:00am - 21:00pm<br>
-							<input type="submit" id="submit" value="Gửi" style="float:right; margin-left: 150px; margin-top: 20px;">
+							<input type="submit" name="btnsubmit" value="Gửi đăng ký" style="float:right; margin-left: 150px; margin-top: 20px;">
 						</div>
 					</form>
 				</div>
@@ -136,7 +168,7 @@
 			<div class="about">
 				<h3>Giới Thiệu</h3>
 				<div>
-					<a href="about.html"><img src="images/instructors.jpg" alt=""></a>
+					<a href="about.html"><img src="userMusicSchool/images/instructors.jpg" alt=""></a>
 					<p>
 						<strong>Bạn muốn 1 lớp học</strong> dành cho Guitar hay Violin. Lắng nghe chúng tôi , <em> Không nơi nào</em> tốt hơn chúng tôi. 
 					</p>
