@@ -2,10 +2,10 @@
 -- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 28, 2017 at 05:19 AM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 7.1.1
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th4 03, 2017 lúc 07:20 CH
+-- Phiên bản máy phục vụ: 10.1.21-MariaDB
+-- Phiên bản PHP: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `qltrungtamamnhac`
+-- Cơ sở dữ liệu: `qltrungtamamnhac`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `baiviet`
+-- Cấu trúc bảng cho bảng `baiviet`
 --
 
 CREATE TABLE `baiviet` (
@@ -38,7 +38,7 @@ CREATE TABLE `baiviet` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `capdo`
+-- Cấu trúc bảng cho bảng `capdo`
 --
 
 CREATE TABLE `capdo` (
@@ -48,7 +48,7 @@ CREATE TABLE `capdo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `capdo`
+-- Đang đổ dữ liệu cho bảng `capdo`
 --
 
 INSERT INTO `capdo` (`IDCapDo`, `TenCapDo`, `MoTaCapDo`) VALUES
@@ -60,7 +60,7 @@ INSERT INTO `capdo` (`IDCapDo`, `TenCapDo`, `MoTaCapDo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chitiet_pdk_lh`
+-- Cấu trúc bảng cho bảng `chitiet_pdk_lh`
 --
 
 CREATE TABLE `chitiet_pdk_lh` (
@@ -73,7 +73,7 @@ CREATE TABLE `chitiet_pdk_lh` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `chitiet_pdk_lh`
+-- Đang đổ dữ liệu cho bảng `chitiet_pdk_lh`
 --
 
 INSERT INTO `chitiet_pdk_lh` (`IDChiTiet_PDK_LH`, `IDPhieu`, `IDLopHoc`, `NgayBatDauKhoaHoc`, `NgayKetThucKhoaHoc`, `TrangThaiHoc`) VALUES
@@ -96,7 +96,7 @@ INSERT INTO `chitiet_pdk_lh` (`IDChiTiet_PDK_LH`, `IDPhieu`, `IDLopHoc`, `NgayBa
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chucvu`
+-- Cấu trúc bảng cho bảng `chucvu`
 --
 
 CREATE TABLE `chucvu` (
@@ -106,7 +106,7 @@ CREATE TABLE `chucvu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `chucvu`
+-- Đang đổ dữ liệu cho bảng `chucvu`
 --
 
 INSERT INTO `chucvu` (`IDChucVu`, `TenChucVu`, `MoTaChucVu`) VALUES
@@ -118,7 +118,7 @@ INSERT INTO `chucvu` (`IDChucVu`, `TenChucVu`, `MoTaChucVu`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cosovatchat`
+-- Cấu trúc bảng cho bảng `cosovatchat`
 --
 
 CREATE TABLE `cosovatchat` (
@@ -130,7 +130,7 @@ CREATE TABLE `cosovatchat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `cosovatchat`
+-- Đang đổ dữ liệu cho bảng `cosovatchat`
 --
 
 INSERT INTO `cosovatchat` (`IDCSVC`, `IDLoai`, `TenVatChat`, `GiaMua`, `DiaChiMua`) VALUES
@@ -142,7 +142,7 @@ INSERT INTO `cosovatchat` (`IDCSVC`, `IDLoai`, `TenVatChat`, `GiaMua`, `DiaChiMu
 -- --------------------------------------------------------
 
 --
--- Table structure for table `giaovien`
+-- Cấu trúc bảng cho bảng `giaovien`
 --
 
 CREATE TABLE `giaovien` (
@@ -159,11 +159,11 @@ CREATE TABLE `giaovien` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `giaovien`
+-- Đang đổ dữ liệu cho bảng `giaovien`
 --
 
 INSERT INTO `giaovien` (`IDGiaoVien`, `HoTenGV`, `GioiTinh`, `NgaySinh`, `CMND`, `Email`, `BangCap`, `ChuyenMon`, `SDT`, `HinhAnhGV`) VALUES
-(0, 'Nguyễn Văn A', 'Nam', NULL, NULL, 'nguyenvanA@gmail.com', 'Giải nhất trong cuộc thi âm nhạc DNA', 'Guitar', '0988888888', 'DanielSturridge.png'),
+(0, 'Nguyễn Văn AA', 'Nam', '2017-03-16 00:00:00', '1234625386', 'nguyenvanA@gmail.com', 'Giải nhất trong cuộc thi âm nhạc DNA', 'Guitar', '0988888888', 'public/images/GiaoVien/2017032907485017361485_753279704847852_1515796324_n.jpg'),
 (1, 'Nguyễn Văn B', 'Nam', NULL, NULL, 'nguyenvanB@gmail.com', 'Giải nhất trong cuộc thi âm nhạc Nhật', 'Guitar', '0988888887', 'DavidBeckham.png'),
 (2, 'Nguyễn Văn C', 'Nam', NULL, NULL, 'nguyenvanC@gmail.com', 'Giải nhất trong cuộc thi âm nhạc Anh Quốc', 'Guitar', '0988888886', 'DejanLovren.png'),
 (3, 'Nguyễn Văn D', 'Nam', NULL, NULL, 'nguyenvanD@gmail.com', 'Giải nhất trong cuộc thi âm nhạc Hàn Quốc', 'Guitar', '0988888885', 'EricCatona.png'),
@@ -174,12 +174,13 @@ INSERT INTO `giaovien` (`IDGiaoVien`, `HoTenGV`, `GioiTinh`, `NgaySinh`, `CMND`,
 (8, 'Nguyễn Văn I', 'Nam', NULL, NULL, 'nguyenvanI@gmail.com', 'Giải nhất trong cuộc thi âm nhạc DNA', 'Kèn harmonica', '0988888880', 'WayneRooney.png'),
 (9, 'Nguyễn Văn J', 'Nam', NULL, NULL, 'nguyenvanJ@gmail.com', 'Giải nhất trong cuộc thi âm nhạc Việt Nam', 'Kèn harmonica', '0988888801', 'MarcosRojopng.png'),
 (10, 'Nguyễn Văn K', 'Nam', NULL, NULL, 'nguyenvanK@gmail.com', 'Giải nhất trong cuộc thi âm nhạc DNA', 'Kèn harmonica', '0988888802', 'StevenGerrard.png'),
-(11, 'Nguyễn Văn L', 'Nam', NULL, NULL, 'nguyenvanL@gmail.com', 'Giải nhất trong cuộc thi âm nhạc Việt Nam', 'Kèn harmonica', '0988888012', 'MarioBalotelli.png');
+(11, 'Nguyễn Văn L', 'Nam', NULL, NULL, 'nguyenvanL@gmail.com', 'Giải nhất trong cuộc thi âm nhạc Việt Nam', 'Kèn harmonica', '0988888012', 'MarioBalotelli.png'),
+(12, 'Huỳnh Văn A', 'Nam', '2017-04-15 00:00:00', '53745253465', 'A@gmail.com', 'Sư phạm nhạc', 'Piano', '03258786357', 'public/images/GiaoVien/20170401063043TPPH28.2.2017.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hocvien`
+-- Cấu trúc bảng cho bảng `hocvien`
 --
 
 CREATE TABLE `hocvien` (
@@ -194,7 +195,7 @@ CREATE TABLE `hocvien` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `hocvien`
+-- Đang đổ dữ liệu cho bảng `hocvien`
 --
 
 INSERT INTO `hocvien` (`IDHocVien`, `HoTenHocVien`, `GioiTinh`, `NgaySinh`, `SDT`, `NoiOHienTai`, `Email`, `HinhAnhHV`) VALUES
@@ -221,7 +222,31 @@ INSERT INTO `hocvien` (`IDHocVien`, `HoTenHocVien`, `GioiTinh`, `NgaySinh`, `SDT
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lichhoc`
+-- Cấu trúc bảng cho bảng `hvdangkymoi`
+--
+
+CREATE TABLE `hvdangkymoi` (
+  `IDHocVienDK` int(11) NOT NULL,
+  `HoTen` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `SDT` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `MonHoc` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `NgayTrongTuan` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `BuoiTrongNgay` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `NoiDung` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `hvdangkymoi`
+--
+
+INSERT INTO `hvdangkymoi` (`IDHocVienDK`, `HoTen`, `SDT`, `MonHoc`, `NgayTrongTuan`, `BuoiTrongNgay`, `NoiDung`) VALUES
+(1, 'Cuong', '083646', 'guitar', '2,4,6', 'sáng', 'abc'),
+(2, 'Hung', '39274', 'Guitar', '2,4,6', 'sáng', 'abc');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `lichhoc`
 --
 
 CREATE TABLE `lichhoc` (
@@ -231,7 +256,7 @@ CREATE TABLE `lichhoc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `lichhoc`
+-- Đang đổ dữ liệu cho bảng `lichhoc`
 --
 
 INSERT INTO `lichhoc` (`IDLichHoc`, `BuoiTrongNgay`, `NgayTrongTuan`) VALUES
@@ -245,7 +270,7 @@ INSERT INTO `lichhoc` (`IDLichHoc`, `BuoiTrongNgay`, `NgayTrongTuan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lienhe`
+-- Cấu trúc bảng cho bảng `lienhe`
 --
 
 CREATE TABLE `lienhe` (
@@ -259,7 +284,7 @@ CREATE TABLE `lienhe` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `loaicsvc`
+-- Cấu trúc bảng cho bảng `loaicsvc`
 --
 
 CREATE TABLE `loaicsvc` (
@@ -269,7 +294,7 @@ CREATE TABLE `loaicsvc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `loaicsvc`
+-- Đang đổ dữ liệu cho bảng `loaicsvc`
 --
 
 INSERT INTO `loaicsvc` (`IDLoai`, `TenLoai`, `MoTaLoai`) VALUES
@@ -278,7 +303,7 @@ INSERT INTO `loaicsvc` (`IDLoai`, `TenLoai`, `MoTaLoai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lophoc`
+-- Cấu trúc bảng cho bảng `lophoc`
 --
 
 CREATE TABLE `lophoc` (
@@ -291,7 +316,7 @@ CREATE TABLE `lophoc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `lophoc`
+-- Đang đổ dữ liệu cho bảng `lophoc`
 --
 
 INSERT INTO `lophoc` (`IDLopHoc`, `IDMonHoc`, `IDCapDo`, `IDGiaoVien`, `IDLichHoc`, `HocPhi`) VALUES
@@ -335,7 +360,7 @@ INSERT INTO `lophoc` (`IDLopHoc`, `IDMonHoc`, `IDCapDo`, `IDGiaoVien`, `IDLichHo
 -- --------------------------------------------------------
 
 --
--- Table structure for table `monhoc`
+-- Cấu trúc bảng cho bảng `monhoc`
 --
 
 CREATE TABLE `monhoc` (
@@ -347,7 +372,7 @@ CREATE TABLE `monhoc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `monhoc`
+-- Đang đổ dữ liệu cho bảng `monhoc`
 --
 
 INSERT INTO `monhoc` (`IDMonHoc`, `TenMonHoc`, `VietTac`, `HinhAnh`, `MoTaMonHoc`) VALUES
@@ -359,7 +384,7 @@ INSERT INTO `monhoc` (`IDMonHoc`, `TenMonHoc`, `VietTac`, `HinhAnh`, `MoTaMonHoc
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nhanvien`
+-- Cấu trúc bảng cho bảng `nhanvien`
 --
 
 CREATE TABLE `nhanvien` (
@@ -375,7 +400,7 @@ CREATE TABLE `nhanvien` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `nhanvien`
+-- Đang đổ dữ liệu cho bảng `nhanvien`
 --
 
 INSERT INTO `nhanvien` (`IDNhanVien`, `HoTenNV`, `CMND`, `GioiTinh`, `NgaySinh`, `Email`, `SDT`, `IDTaiKhoan`, `IDChucVu`) VALUES
@@ -387,7 +412,7 @@ INSERT INTO `nhanvien` (`IDNhanVien`, `HoTenNV`, `CMND`, `GioiTinh`, `NgaySinh`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `phieuchi`
+-- Cấu trúc bảng cho bảng `phieuchi`
 --
 
 CREATE TABLE `phieuchi` (
@@ -400,7 +425,7 @@ CREATE TABLE `phieuchi` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `phieudangky`
+-- Cấu trúc bảng cho bảng `phieudangky`
 --
 
 CREATE TABLE `phieudangky` (
@@ -411,7 +436,7 @@ CREATE TABLE `phieudangky` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `phieudangky`
+-- Đang đổ dữ liệu cho bảng `phieudangky`
 --
 
 INSERT INTO `phieudangky` (`IDPhieu`, `IDHocVien`, `TenPhieu`, `NgayLapPhieu`) VALUES
@@ -430,7 +455,7 @@ INSERT INTO `phieudangky` (`IDPhieu`, `IDHocVien`, `TenPhieu`, `NgayLapPhieu`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quyenhan`
+-- Cấu trúc bảng cho bảng `quyenhan`
 --
 
 CREATE TABLE `quyenhan` (
@@ -440,7 +465,7 @@ CREATE TABLE `quyenhan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `quyenhan`
+-- Đang đổ dữ liệu cho bảng `quyenhan`
 --
 
 INSERT INTO `quyenhan` (`IDQuyenHan`, `TenQuyenHan`, `MoTaQuyenHan`) VALUES
@@ -452,45 +477,46 @@ INSERT INTO `quyenhan` (`IDQuyenHan`, `TenQuyenHan`, `MoTaQuyenHan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taikhoan`
+-- Cấu trúc bảng cho bảng `taikhoan`
 --
 
 CREATE TABLE `taikhoan` (
   `IDTaiKhoan` int(11) NOT NULL,
   `TenTaiKhoan` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `MatKhau` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `IDQuyenHan` int(11) DEFAULT NULL
+  `IDQuyenHan` int(11) DEFAULT NULL,
+  `TrangThaiOnline` char(10) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `taikhoan`
+-- Đang đổ dữ liệu cho bảng `taikhoan`
 --
 
-INSERT INTO `taikhoan` (`IDTaiKhoan`, `TenTaiKhoan`, `MatKhau`, `IDQuyenHan`) VALUES
-(1, 'ThaiHung', 'Hung123', 1),
-(2, 'PhatCao', 'Phat123', 2),
-(3, 'DuongCuong', 'Cuong123', 3);
+INSERT INTO `taikhoan` (`IDTaiKhoan`, `TenTaiKhoan`, `MatKhau`, `IDQuyenHan`, `TrangThaiOnline`) VALUES
+(1, 'ThaiHung', 'Hung123', 1, 'Online'),
+(2, 'PhatCao', 'Phat123', 2, 'Offline'),
+(3, 'DuongCuong', 'Cuong123', 3, '');
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `baiviet`
+-- Chỉ mục cho bảng `baiviet`
 --
 ALTER TABLE `baiviet`
   ADD PRIMARY KEY (`IDBaiVIet`),
   ADD KEY `IDNhanVien` (`IDNhanVien`);
 
 --
--- Indexes for table `capdo`
+-- Chỉ mục cho bảng `capdo`
 --
 ALTER TABLE `capdo`
   ADD PRIMARY KEY (`IDCapDo`),
   ADD UNIQUE KEY `TenCapDo` (`TenCapDo`);
 
 --
--- Indexes for table `chitiet_pdk_lh`
+-- Chỉ mục cho bảng `chitiet_pdk_lh`
 --
 ALTER TABLE `chitiet_pdk_lh`
   ADD PRIMARY KEY (`IDChiTiet_PDK_LH`),
@@ -498,14 +524,14 @@ ALTER TABLE `chitiet_pdk_lh`
   ADD KEY `IDPhieu` (`IDPhieu`);
 
 --
--- Indexes for table `chucvu`
+-- Chỉ mục cho bảng `chucvu`
 --
 ALTER TABLE `chucvu`
   ADD PRIMARY KEY (`IDChucVu`),
   ADD UNIQUE KEY `TenChucVu` (`TenChucVu`);
 
 --
--- Indexes for table `cosovatchat`
+-- Chỉ mục cho bảng `cosovatchat`
 --
 ALTER TABLE `cosovatchat`
   ADD PRIMARY KEY (`IDCSVC`),
@@ -513,7 +539,7 @@ ALTER TABLE `cosovatchat`
   ADD KEY `IDLoai` (`IDLoai`);
 
 --
--- Indexes for table `giaovien`
+-- Chỉ mục cho bảng `giaovien`
 --
 ALTER TABLE `giaovien`
   ADD PRIMARY KEY (`IDGiaoVien`),
@@ -522,7 +548,7 @@ ALTER TABLE `giaovien`
   ADD UNIQUE KEY `SDT` (`SDT`);
 
 --
--- Indexes for table `hocvien`
+-- Chỉ mục cho bảng `hocvien`
 --
 ALTER TABLE `hocvien`
   ADD PRIMARY KEY (`IDHocVien`),
@@ -530,13 +556,19 @@ ALTER TABLE `hocvien`
   ADD UNIQUE KEY `Email` (`Email`);
 
 --
--- Indexes for table `lichhoc`
+-- Chỉ mục cho bảng `hvdangkymoi`
+--
+ALTER TABLE `hvdangkymoi`
+  ADD PRIMARY KEY (`IDHocVienDK`);
+
+--
+-- Chỉ mục cho bảng `lichhoc`
 --
 ALTER TABLE `lichhoc`
   ADD PRIMARY KEY (`IDLichHoc`);
 
 --
--- Indexes for table `lienhe`
+-- Chỉ mục cho bảng `lienhe`
 --
 ALTER TABLE `lienhe`
   ADD PRIMARY KEY (`IDLienHe`),
@@ -544,14 +576,14 @@ ALTER TABLE `lienhe`
   ADD UNIQUE KEY `Email` (`Email`);
 
 --
--- Indexes for table `loaicsvc`
+-- Chỉ mục cho bảng `loaicsvc`
 --
 ALTER TABLE `loaicsvc`
   ADD PRIMARY KEY (`IDLoai`),
   ADD UNIQUE KEY `TenLoai` (`TenLoai`);
 
 --
--- Indexes for table `lophoc`
+-- Chỉ mục cho bảng `lophoc`
 --
 ALTER TABLE `lophoc`
   ADD PRIMARY KEY (`IDLopHoc`),
@@ -561,14 +593,14 @@ ALTER TABLE `lophoc`
   ADD KEY `IDLichHoc` (`IDLichHoc`);
 
 --
--- Indexes for table `monhoc`
+-- Chỉ mục cho bảng `monhoc`
 --
 ALTER TABLE `monhoc`
   ADD PRIMARY KEY (`IDMonHoc`),
   ADD UNIQUE KEY `TenNonHoc` (`TenMonHoc`);
 
 --
--- Indexes for table `nhanvien`
+-- Chỉ mục cho bảng `nhanvien`
 --
 ALTER TABLE `nhanvien`
   ADD PRIMARY KEY (`IDNhanVien`),
@@ -578,28 +610,28 @@ ALTER TABLE `nhanvien`
   ADD KEY `IDChucVu` (`IDChucVu`);
 
 --
--- Indexes for table `phieuchi`
+-- Chỉ mục cho bảng `phieuchi`
 --
 ALTER TABLE `phieuchi`
   ADD PRIMARY KEY (`IDPhieuCjhi`),
   ADD KEY `IDNhanVien` (`IDNhanVien`);
 
 --
--- Indexes for table `phieudangky`
+-- Chỉ mục cho bảng `phieudangky`
 --
 ALTER TABLE `phieudangky`
   ADD PRIMARY KEY (`IDPhieu`),
   ADD KEY `IDHocVien` (`IDHocVien`);
 
 --
--- Indexes for table `quyenhan`
+-- Chỉ mục cho bảng `quyenhan`
 --
 ALTER TABLE `quyenhan`
   ADD PRIMARY KEY (`IDQuyenHan`),
   ADD UNIQUE KEY `TenQuyenHan` (`TenQuyenHan`);
 
 --
--- Indexes for table `taikhoan`
+-- Chỉ mục cho bảng `taikhoan`
 --
 ALTER TABLE `taikhoan`
   ADD PRIMARY KEY (`IDTaiKhoan`),
@@ -607,99 +639,104 @@ ALTER TABLE `taikhoan`
   ADD KEY `IDQuyenHan` (`IDQuyenHan`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `baiviet`
+-- AUTO_INCREMENT cho bảng `baiviet`
 --
 ALTER TABLE `baiviet`
   MODIFY `IDBaiVIet` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `chitiet_pdk_lh`
+-- AUTO_INCREMENT cho bảng `chitiet_pdk_lh`
 --
 ALTER TABLE `chitiet_pdk_lh`
   MODIFY `IDChiTiet_PDK_LH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
--- AUTO_INCREMENT for table `chucvu`
+-- AUTO_INCREMENT cho bảng `chucvu`
 --
 ALTER TABLE `chucvu`
   MODIFY `IDChucVu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `cosovatchat`
+-- AUTO_INCREMENT cho bảng `cosovatchat`
 --
 ALTER TABLE `cosovatchat`
   MODIFY `IDCSVC` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `giaovien`
+-- AUTO_INCREMENT cho bảng `giaovien`
 --
 ALTER TABLE `giaovien`
-  MODIFY `IDGiaoVien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `IDGiaoVien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
--- AUTO_INCREMENT for table `hocvien`
+-- AUTO_INCREMENT cho bảng `hocvien`
 --
 ALTER TABLE `hocvien`
   MODIFY `IDHocVien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
--- AUTO_INCREMENT for table `lienhe`
+-- AUTO_INCREMENT cho bảng `hvdangkymoi`
+--
+ALTER TABLE `hvdangkymoi`
+  MODIFY `IDHocVienDK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT cho bảng `lienhe`
 --
 ALTER TABLE `lienhe`
   MODIFY `IDLienHe` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `loaicsvc`
+-- AUTO_INCREMENT cho bảng `loaicsvc`
 --
 ALTER TABLE `loaicsvc`
   MODIFY `IDLoai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `lophoc`
+-- AUTO_INCREMENT cho bảng `lophoc`
 --
 ALTER TABLE `lophoc`
   MODIFY `IDLopHoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
--- AUTO_INCREMENT for table `phieuchi`
+-- AUTO_INCREMENT cho bảng `phieuchi`
 --
 ALTER TABLE `phieuchi`
   MODIFY `IDPhieuCjhi` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `phieudangky`
+-- AUTO_INCREMENT cho bảng `phieudangky`
 --
 ALTER TABLE `phieudangky`
   MODIFY `IDPhieu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
--- AUTO_INCREMENT for table `quyenhan`
+-- AUTO_INCREMENT cho bảng `quyenhan`
 --
 ALTER TABLE `quyenhan`
   MODIFY `IDQuyenHan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `taikhoan`
+-- AUTO_INCREMENT cho bảng `taikhoan`
 --
 ALTER TABLE `taikhoan`
   MODIFY `IDTaiKhoan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `baiviet`
+-- Các ràng buộc cho bảng `baiviet`
 --
 ALTER TABLE `baiviet`
   ADD CONSTRAINT `baiviet_ibfk_1` FOREIGN KEY (`IDNhanVien`) REFERENCES `nhanvien` (`IDNhanVien`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `chitiet_pdk_lh`
+-- Các ràng buộc cho bảng `chitiet_pdk_lh`
 --
 ALTER TABLE `chitiet_pdk_lh`
   ADD CONSTRAINT `chitiet_pdk_lh_ibfk_1` FOREIGN KEY (`IDLopHoc`) REFERENCES `lophoc` (`IDLopHoc`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `chitiet_pdk_lh_ibfk_2` FOREIGN KEY (`IDPhieu`) REFERENCES `phieudangky` (`IDPhieu`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `cosovatchat`
+-- Các ràng buộc cho bảng `cosovatchat`
 --
 ALTER TABLE `cosovatchat`
   ADD CONSTRAINT `cosovatchat_ibfk_1` FOREIGN KEY (`IDLoai`) REFERENCES `loaicsvc` (`IDLoai`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `lophoc`
+-- Các ràng buộc cho bảng `lophoc`
 --
 ALTER TABLE `lophoc`
   ADD CONSTRAINT `lophoc_ibfk_1` FOREIGN KEY (`IDGiaoVien`) REFERENCES `giaovien` (`IDGiaoVien`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -708,26 +745,26 @@ ALTER TABLE `lophoc`
   ADD CONSTRAINT `lophoc_ibfk_4` FOREIGN KEY (`IDLichHoc`) REFERENCES `lichhoc` (`IDLichHoc`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `nhanvien`
+-- Các ràng buộc cho bảng `nhanvien`
 --
 ALTER TABLE `nhanvien`
   ADD CONSTRAINT `nhanvien_ibfk_1` FOREIGN KEY (`IDTaiKhoan`) REFERENCES `taikhoan` (`IDTaiKhoan`),
   ADD CONSTRAINT `nhanvien_ibfk_2` FOREIGN KEY (`IDChucVu`) REFERENCES `chucvu` (`IDChucVu`);
 
 --
--- Constraints for table `phieuchi`
+-- Các ràng buộc cho bảng `phieuchi`
 --
 ALTER TABLE `phieuchi`
   ADD CONSTRAINT `phieuchi_ibfk_1` FOREIGN KEY (`IDNhanVien`) REFERENCES `nhanvien` (`IDNhanVien`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `phieudangky`
+-- Các ràng buộc cho bảng `phieudangky`
 --
 ALTER TABLE `phieudangky`
   ADD CONSTRAINT `phieudangky_ibfk_1` FOREIGN KEY (`IDHocVien`) REFERENCES `hocvien` (`IDHocVien`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `taikhoan`
+-- Các ràng buộc cho bảng `taikhoan`
 --
 ALTER TABLE `taikhoan`
   ADD CONSTRAINT `taikhoan_ibfk_1` FOREIGN KEY (`IDQuyenHan`) REFERENCES `quyenhan` (`IDQuyenHan`);
