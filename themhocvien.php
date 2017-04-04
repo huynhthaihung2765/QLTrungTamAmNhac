@@ -1,9 +1,23 @@
+<?php
+  if(!isset($_SESSION)) {
+      session_start();
+  }
+  if(!isset($_SESSION['TenTaiKhoan'])){
+    header("Location: login.php");
+  }
+  else {
+    $tenQuyen = $_SESSION['TenQuyen'];
+    if($tenQuyen != "Quản trị")
+    {
+      header("location: index.php");
+    }
+    $idTaiKhoan = $_SESSION['IDNhanVien'];
+  }
+?>
 <?php include_once("entities/hocvien.class.php"); ?>
 <?php include_once("entities/phieudangky.class.php"); ?>
 <?php date_default_timezone_set('Asia/Ho_Chi_Minh'); ?>
-
 <?php
-session_start();
   if (isset($_POST["btnSubmit"])){
     $maHocVien = $_POST["txtMaHocVien"];
      $hoTenHocVien = $_POST["txtName"];
@@ -14,22 +28,14 @@ session_start();
      $email = $_POST["txtEmail"];
      $picture = $_FILES["txtpic"];
 
-     //$ngayHienTai = $_POST["ngayHienTai"];
-     //$format = 'Y-m-d H:i:s';
-     //$date = DateTime::createFromFormat($format, $ngayHienTai);
-
-     if($_POST['txtCaptcha'] == NULL)
-     {
+     if($_POST['txtCaptcha'] == NULL) {
        header("location: themhocvien.php?failCaptchaNull");
      }
-     else
-     {
-      if($_POST['txtCaptcha'] == $_SESSION['security_code'])
-      {
+     else {
+      if($_POST['txtCaptcha'] == $_SESSION['security_code']) {
         $newHocVien = new Hocvien($maHocVien, $hoTenHocVien, $gioiTinh, $ngaySinh, $soDienThoai, $diaChi, $email, $picture);
         $result = $newHocVien->insert();
-        if(!$result)
-        {
+        if(!$result) {
           header("location: themhocvien.php?failInsert");
         }
         else {
@@ -57,23 +63,14 @@ session_start();
           header("location: themChitiet_PDK_LopHoc.php?inserted&idpdk=$idPDKnext");
         }
       }
-      else
-      {
+      else {
        header("location: themhocvien.php?failCaptchaInput");
       }
      }
   }
 ?>
-
 <?php include_once("header.php") ?>
-
-
-<?php
-  //$hocviens = Hocvien::list_All_HocVien();
-  //$hocvienlearn = HocVien::Get_All_HV_Learn();
-  //$capdos = CapDo::SelectAllCD();
-  $hvLast = Hocvien::Get_Last_HV();
- ?>
+<?php $hvLast = Hocvien::Get_Last_HV(); ?>
 
  <div class="right_col" role="main">
    <div class="">
@@ -107,7 +104,6 @@ session_start();
                if(isset($_GET["failCaptchaNull"])) {
                  echo "<h2>Captcha còn bỏ trống.</h2>";
                }
-               //failCaptchaInput
                if(isset($_GET["failCaptchaInput"])) {
                  echo "<h2>Captcha nhập vào sai.</h2>";
                }
@@ -178,7 +174,6 @@ session_start();
                    <input type="file" name="txtpic" accept=".PNG,.JPG,.GIF" class="form-control col-md-10"/>
                  </div>
                </div>
-
                <div class="form-group">
                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Captcha</label>
                  <div class="col-md-9 col-sm-9 col-xs-12">
@@ -186,46 +181,6 @@ session_start();
                    <img src="random_image.php" />
                  </div>
                </div>
-
-
-               <!--
-               <div class="form-group">
-                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Facebook</label>
-                 <div class="col-md-9 col-sm-9 col-xs-12">
-                   <input type="text" name="country" id="autocomplete-custom-append" class="form-control col-md-10"/>
-                 </div>
-               </div>
-             -->
-               <!--
-               <div class="form-group">
-                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Môn học</label>
-                 <div class="col-md-9 col-sm-9 col-xs-12">
-                   <select name="slcMonHoc" class="form-control">
-                     <?php
-                      foreach ($monhocs as $key => $item) {
-                      ?>
-                     <option value="<?php echo $item['IDLopHoc']; ?>"><?php echo $item['TenLopHoc']; ?></option>
-                     <?php
-                        }
-                      ?>
-                   </select>
-                 </div>
-               </div>
-               <div class="form-group">
-                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Cấp độ</label>
-                 <div class="col-md-9 col-sm-9 col-xs-12">
-                   <select class="select2_single form-control" name="slcCapDo" tabindex="-1">
-                     <?php
-                      foreach ($capdos as $key => $item) {
-                      ?>
-                     <option value="<?php echo $item['IDCapDo']; ?>"><?php echo $item['TenCapDo']; ?></option>
-                     <?php
-                      }
-                      ?>
-                   </select>
-                 </div>
-               </div>
-             -->
                <button type="submit" class="btn btn-success" name="btnSubmit">Đăng ký học viên</button>
              </form>
            </div>
@@ -236,3 +191,23 @@ session_start();
 </div>
 
 <?php include_once("footer.php"); ?>
+<script>
+$('.body').on('click', function(){
+  function load_unseen_notification(view = '')
+  {
+    $.ajax({
+      url:"fetch.php",
+      method:"POST",
+      data:{view:view},
+      dataType:"json",
+      success:function(data){
+        $('.dropdown-menuc').html(data.notification2);
+        if(data.unseen_notification2 > 0){
+          $('.countc').html(data.unseen_notification2);
+        }
+      }
+    });
+  }
+  load_unseen_notification();
+});
+</script>

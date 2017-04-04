@@ -15,6 +15,23 @@ if(!isset($_SESSION))
     $idTaiKhoan = $_SESSION['IDNhanVien'];
   }
  ?>
+
+ <?php
+ function generateRandomString($length) {
+     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+     $charactersLength = strlen($characters);
+     $randomString = '';
+     for ($i = 0; $i < $length; $i++) {
+         $randomString .= $characters[rand(0, $charactersLength - 1)];
+     }
+     return $randomString;
+   }
+   //Lấy 1 chuỗi ký tự bất kỳ 20 phần tử
+   $randomString = generateRandomString(20);
+   //Tạo 1 biến session chứa random string khi trang này dc gọi
+   $_SESSION['randomdknv'] = $randomString;
+  ?>
+
 <?php include_once("entities/nhanvien.class.php"); ?>
 <?php include_once("entities/chucvu.class.php"); ?>
 <?php include_once("entities/taikhoan.class.php"); ?>
@@ -70,7 +87,7 @@ if(!isset($_SESSION))
        }
      }
      else {
-       header("location: xacnhanthemnhanvien.php?idnv=$maNhanVien&htnv=$hoTenNhanVien&cmnd=$CMND&gt=$gioiTinh&ns=$ngaySinh&em=$email&sdt=$soDienThoai&idcv=$idChucVu");
+       header("location: xacnhanthemnhanvien.php?radmkdnv=$randomString&idnv=$maNhanVien&htnv=$hoTenNhanVien&cmnd=$CMND&gt=$gioiTinh&ns=$ngaySinh&em=$email&sdt=$soDienThoai&idcv=$idChucVu");
      }
   }
 ?>
@@ -226,7 +243,7 @@ if(!isset($_SESSION))
                     <h2>Danh sách nhân viên.</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li> 
+                      </li>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
@@ -340,7 +357,7 @@ if(!isset($_SESSION))
                               <div class="modal-content">
                                 <div class="modal-header">
                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                  <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+                                  <h4 class="modal-title" id="exampleModalLabel">Xóa nhân viên</h4>
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
@@ -363,8 +380,8 @@ if(!isset($_SESSION))
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                                   <form class=""  method="post">
-                                    <input type="text" name="txtIDNhanVienXoa" value="<?php echo $idNhanVien; ?>">
-                                    <input type="text" name="txtIDTaiKhoanXoa" value="<?php echo $idTaiKhoan; ?>">
+                                    <input type="hidden" name="txtIDNhanVienXoa" value="<?php echo $idNhanVien; ?>">
+                                    <input type="hidden" name="txtIDTaiKhoanXoa" value="<?php echo $idTaiKhoan; ?>">
                                     <button type="submit" class="btn btn-primary" name="btnsubmitXoaNhanVien">Xóa</button>
                                   </form>
                                 </div>

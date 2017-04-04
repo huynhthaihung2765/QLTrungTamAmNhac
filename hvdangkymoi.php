@@ -1,65 +1,102 @@
-<?php require_once("entities/hvdangkymoi.class.php"); ?>
-<?php 
-if (isset($_POST['btnsubmit'])) {
- 	# code...
- 	$hoTen = $_POST['txtHoTen'];
- 	$soDienThoai = $_POST['txtDienThoai'];
- 	$monHoc = $_POST['txtChuongTrinhhoc'];
- 	$ngayTrongTuan = $_POST['txtNgayTrongTuan'];
- 	$buoiTrongNgay = $_POST['txtBuoiTrongNgay'];
- 	$noiDung = $_POST['txtNoiDung'];
- 	//
- 	$newRegister = new HVDangKyMoi($hoTen, $soDienThoai, $monHoc, $ngayTrongTuan, $buoiTrongNgay, $noiDung);
- 	// lưu xuống CSDL
- 	$result = $newRegister->them();
-		if(!$result)
-		{
-			// truy vấn lỗi
-			header("Location: hvdangkymoi.php?failure");
+<?php
+if(!isset($_SESSION))
+	{
+			session_start();
+	}
+ ?>
+<?php include_once("../entities/lichhoc.class.php"); ?>
+<?php include_once("../entities/monhoc.class.php"); ?>
+<?php include_once("../entities/giaovien.class.php"); ?>
+<?php include_once("../entities/capdo.class.php"); ?>
+<?php include_once("../entities/lophoc.class.php"); ?>
+<?php include_once("../entities/nguoixinnhaphoc.class.php"); ?>
+<?php include_once("../entities/phieuxinnhaphoc.class.php"); ?>
+<?php date_default_timezone_set('Asia/Ho_Chi_Minh'); ?>
+
+<?php
+	if(isset($_POST["btnDangKyNguoiXinNhapHoc"])){
+		$idNguoiXNH = 0;
+		$EmailDangKy = $_POST["txtEmailDangKy"];
+		$MatKhauDangKy = $_POST["txtMatKhauDangKy"];
+		$HoTenDangKy = $_POST["txtHoTenDangKy"];
+		$SDTDangKy = $_POST["txtSDTDangKy"];
+
+		$lastNguoiXinNhapHoc = NguoiXinNhapHoc::Get_Last_NguoiXNH();
+		$soluongNXNH = NguoiXinNhapHoc::Count_NguoiXinNhapHoc();
+
+		foreach ($soluongNXNH as $key => $itemSoLuongNguoiXNH) {
+			$soLuongNguoiXinNhapHoc = $itemSoLuongNguoiXNH['soluongnguoixnh'];
+			if($soLuongNguoiXinNhapHoc == 0){
+				$idNguoiXNH = 1;
+			}
+			else {
+				foreach ($lastNguoiXinNhapHoc as $key => $itemLastNXNH) {
+					$lastIDNguoiXinNhapHoc = $itemLastNXNH['IDNguoiXNH'];
+					$idNguoiXNH = intval($lastIDNguoiXinNhapHoc) + 1;
+				}
+			}
 		}
-		else
-		{
-			header("Location: hvdangkymoi.php?inserted");
+
+		//$idNguoiXNH, $emailNguoiXNH, $matKhauNguoiXNH, $hoTenNguoiXNH, $sdtNguoiXNH, $noiDungXNH
+		$newNguoiXinNhapHoc = new NguoiXinNhapHoc($idNguoiXNH, $EmailDangKy, $MatKhauDangKy, $HoTenDangKy, $SDTDangKy, "");
+		$resultInsertNguoiXNH = $newNguoiXinNhapHoc->insert();
+		if($resultInsertNguoiXNH){
+			$_SESSION['user'] = $EmailDangKy;
 		}
- } ?>
-<!DOCTYPE html>
-<!-- Website template by freewebsitetemplates.com -->
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>Contact - Music School Website</title>
-	<link rel="stylesheet" href="userMusicSchool/css/style.css" type="text/css">
-</head>
-<body>
-	<div class="page">
-		<div class="header">
-			<a href="index.php" id="logo"><img src="userMusicSchool/images/logo.png" alt="logo"></a>
-			<ul class="navigation">
-				<li>
-					<a href="./">Trang chủ</a>
-				</li>
-				<li>
-					<a href="userMusicSchool/about.html">Giới thiệu</a>
-				</li>
-				<li>
-					<a href="userMusicSchool/programs.html">Chương trình học</a>
-				</li>
-				<li class="selected">
-					<a href="hvdangkymoi.php">Đăng ký</a>
-				</li>
-				<li>
-					<a href="userMusicSchool/blog.html">Blog</a>
-				</li>
-				<li>
-					<a href="userMusicSchool/contact.html">Liên hệ</a>
-				</li>
-			</ul>
-		</div>
+		else {
+			?>
+			<script>alert('Có lỗi xảy ra, vui lòng kiểm tra dữ liệu.')</script>
+			<?php
+		}
+	}
+
+	if(isset($_POST["btnDangNhap"])){
+
+		$EmailDangNhap = $_POST["txtEmailDangNhap"];
+		$MatKhauDangNhap = $_POST["txtMatKhauDangNhap"];
+
+		$conn=mysqli_connect("localhost","root","") or die("can't connect");
+    mysqli_select_db($conn,"qltrungtamamnhac");
+    mysqli_set_charset($conn,"utf8");
+    $stmt = $conn->prepare("SELECT nxnh.EmailNguoiXNH from nguoixinnhaphoc nxnh Where nxnh.EmailNguoiXNH = ? and nxnh.MatKhau = ? LIMIT 1");
+    $stmt->bind_param('ss', $EmailDangNhap, $MatKhauDangNhap);
+    $stmt->execute();
+   $stmt->bind_result($emailLogin);
+   $stmt->store_result();
+	 if ($stmt->num_rows == 1) {
+		 if($stmt->fetch()) //fetching the contents of the row
+    	{
+	        $_SESSION['user'] = $emailLogin;
+					header("Location: register.php?success");
+	    }
+			else {
+				header("Location: register.php?failfetch");
+			}
+	 }
+	}
+?>
+<!--Phan dau-->
+<?php include_once("header.php"); ?>
+<?php
+	if (isset($_SESSION['user'])) {
+		//Get_NguoiXinNhapHoc_ByEmail
+		$emailUser = $_SESSION['user'];
+		$newNguoiXinNhapHoc_ByEmail = NguoiXinNhapHoc::Get_NguoiXinNhapHoc_ByEmail($emailUser);
+		foreach ($newNguoiXinNhapHoc_ByEmail as $key => $itemNguoiXinNhapHoc_ByEmail) {
+			$idNguoiXinNhapHoc_ByEmail = $itemNguoiXinNhapHoc_ByEmail["IDNguoiXNH"];
+			$hoTenNguoiXinNhapHoc_ByEmail = $itemNguoiXinNhapHoc_ByEmail["HoTenNguoiXNH"];
+			$sdtNguoiXinNhapHoc_ByEmail = $itemNguoiXinNhapHoc_ByEmail["SDTNguoiXNH"];
+		}
+} ?>
+
+	<!--Phan than-->
 		<div class="body">
+
 			<div class="contact">
+				<!--Khung dau tien-->
 				<div>
 					<div>
-						<h1>Học ngay bây giờ</h1>
+						<h1>Học ngay bây giờ </h1>
 						<p>
 							Hiện tại Trung Tâm đang có rất nhiều chương trình với học Phí ưu đãi...
 						</p>
@@ -83,15 +120,15 @@ if (isset($_POST['btnsubmit'])) {
 						<ul class="last">
 							<li>
 								<a href="saxophone.html">Saxophone</a>
-								<p>Nghiệp dư - Bán Chuyên - Chuyên Nghiệp</p>							
+								<p>Nghiệp dư - Bán Chuyên - Chuyên Nghiệp</p>
 							</li>
 							<li>
 								<a href="drums.html">Drums</a>
-								<p>Nghiệp dư - Bán Chuyên - Chuyên Nghiệp</p>	
+								<p>Nghiệp dư - Bán Chuyên - Chuyên Nghiệp</p>
 							</li>
 							<li>
 								<a href="voice-lesson.html">Luyện giọng</a>
-								<p>Nghiệp dư - Bán Chuyên - Chuyên Nghiệp</p>	
+								<p>Nghiệp dư - Bán Chuyên - Chuyên Nghiệp</p>
 							</li>
 						</ul>
 					</div>
@@ -108,104 +145,192 @@ if (isset($_POST['btnsubmit'])) {
 						<li>
 							<span style="font-weight: bolder">Số điện thoại</span>
 							<p>
-								(84) 123 456 789 <br> (84) 987 654 321 
+								(84) 123 456 789 <br> (84) 987 654 321
 							</p>
 						</li>
 					</ul>
 				</div>
-				<div>
-					<h2 style="color:#ec7500; ">Đăng ký học</h2>
-					<?php
-		               if (isset($_GET["inserted"])){
-		                 echo "<h2>Thêm thành công</h2>";
-		               }
-		               if(isset($_GET["failure"])) {
-		                 echo "<h2>Thêm thất bại</h2>";
-		               }
-		             ?>
-					<form method="post" enctype="multipart/form-data">
-						<div>
-							<label for="name">Họ Tên</label>
-							<input type="text" name="txtHoTen">
-							<label for="phone">Điện thoại</label>
-							<input type="number" name="txtDienThoai">
-						</div>
-						<div>
-							<label for="message">Nội dung</label>
-							<textarea name="txtNoiDung" id="message" cols="30" rows="10"></textarea>							
-						</div>
-						<div style="display: inline-block">
-							<label>Chương trình học</label>
-							<input type="checkbox" name="txtChuongTrinhhoc" value="Guitar" style="margin: 10px"> Guitar<br>
-							<input type="checkbox" name="txtChuongTrinhhoc" value="Violin" style="margin: 10px"> Violin<br>
-							<input type="checkbox" name="txtChuongTrinhhoc" value="Piano" style="margin: 10px"> Piano<br>
-							<input type="checkbox" name="txtChuongTrinhhoc" value="Drums" style="margin: 10px"> Trống<br>
-							<input type="checkbox" name="txtChuongTrinhhoc" value="voice-lesson" style="margin: 10px"> Luyện Giọng<br>
-							<input type="checkbox" name="txtChuongTrinhhoc" value="Saxophone" style="margin: 10px"> Saxophone<br>
-						</div>
-						<!--
-						<div style="display: inline-block; margin-left: 150px">
-							<label>Cấp độ</label>
-							<input type="checkbox" name="levels" value="beginner" style="margin: 10px"> Nghiệp dư<br>
-							<input type="checkbox" name="levels" value="immediate"style="margin: 10px"> Bán Chuyên<br>
-							<input type="checkbox" name="levels" value="advanced" style="margin: 10px"> Chuyên nghiệp<br>
-						</div> -->
-						<div style="display: inline-block; margin-left: 150px">
-							<label>Thời gian học</label>
-							<label>Thứ</label>
-							<input type="checkbox" name="txtNgayTrongTuan" value="Thứ 2,4,6" style="margin: 5px"> Thứ 2,4,6<br>
-							<input type="checkbox" name="txtNgayTrongTuan" value="Thứ 3,5,7" style="margin: 5px"> Thứ 3,5,7<br>
-							<label>Thời gian</label>
-							<input type="checkbox" name="txtBuoiTrongNgay" value="Buổi sáng" style="margin: 5px">Buổi sáng: 08:00am - 11:00pm<br>
-							<input type="checkbox" name="txtBuoiTrongNgay" value="Buổi tối" style="margin: 5px">Buổi tối: 18:00am - 21:00pm<br>
-							<input type="submit" name="btnsubmit" value="Gửi đăng ký" style="float:right; margin-left: 150px; margin-top: 20px;">
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-		<div class="footer">
-			<div class="about">
-				<h3>Giới Thiệu</h3>
-				<div>
-					<a href="about.html"><img src="userMusicSchool/images/instructors.jpg" alt=""></a>
-					<p>
-						<strong>Bạn muốn 1 lớp học</strong> dành cho Guitar hay Violin. Lắng nghe chúng tôi , <em> Không nơi nào</em> tốt hơn chúng tôi. 
-					</p>
-					<a href="blog.html" class="more">Xem Thêm</a>
-				</div>
-			</div>
-			<div class="contact">
-				<h3>Liên hệ</h3>
-				<ul>
-					<li>
-						<span>Địa chỉ :</span>
-						<p>
-							Quận Thủ Đức ,Thành Phố Hồ Chí Minh, VN
-						</p>
-					</li>
-					<li>
-						<span>Email :</span>
-						<p>
-							<a href="hr@musiccenter.com">Email</a>
-						</p>
-					</li>
-					<li>
-						<span>Số Điện Thoại :</span>
-						<p>
-							(84) 123 123 456 
-						</p>
-					</li>
-				</ul>
-			</div>
-			<div class="connect">
-				<a href="http://freewebsitetemplates.com/go/twitter/" id="twitter">twitter</a> <a href="http://freewebsitetemplates.com/go/facebook/" id="facebook">facebook</a> <a href="http://freewebsitetemplates.com/go/googleplus/" id="googleplus">google+</a>
-			</div>
-			<p class="footnote">
-				&#169; Copyright 2016. All rights reserved
-			</p>
-		</div>
-	</div>
 
-</body>
-</html>
+				<!--Khung Thu Hai-->
+				<div>
+
+				</div>
+			</div>
+
+			<div class="row">
+				<?php if (!isset($_SESSION['user'])) {?>
+					<!--Đang Ky-->
+					<div class="col-md-6">
+						<h2 style="color:#ec7500; ">Đăng ký học</h2>
+						<form method="post">
+							<div class="form-group">
+						    <label for="exampleInputEmail1">Email:</label>
+						    <input type="email" class="form-control" id="exampleInputEmail1" name="txtEmailDangKy" placeholder="Email">
+						  </div>
+						  <div class="form-group">
+						    <label for="exampleInputPassword1">Mật khẩu:</label>
+						    <input type="password" class="form-control" id="exampleInputPassword1" name="txtMatKhauDangKy" placeholder="Password">
+						  </div>
+							<div class="form-group">
+						    <label for="exampleInputEmail1">Họ tên:</label>
+						    <input type="text" class="form-control" id="exampleInputEmail1" name="txtHoTenDangKy" placeholder="Email">
+						  </div>
+							<div class="form-group">
+						    <label for="exampleInputEmail1">Số điện thoại:</label>
+						    <input type="text" class="form-control" id="exampleInputEmail1" name="txtSDTDangKy" placeholder="Email">
+						  </div>
+						  <button type="submit" name="btnDangKyNguoiXinNhapHoc" class="btn btn-default">Đăng ký</button>
+						</form>
+					</div>
+					<!--Đang nhap-->
+					<div class="col-md-6">
+						<h2 style="color:#ec7500; ">Đăng nhập</h2>
+						<form method="post">
+							<div class="form-group">
+						    <label for="exampleInputEmail1">Email:</label>
+						    <input type="email" class="form-control" id="exampleInputEmail1" name="txtEmailDangNhap" placeholder="Email">
+						  </div>
+						  <div class="form-group">
+						    <label for="exampleInputPassword1">Mật khẩu:</label>
+						    <input type="password" class="form-control" id="exampleInputPassword1" name="txtMatKhauDangNhap" placeholder="Password">
+						  </div>
+						  <button type="submit" name="btnDangNhap" class="btn btn-default">Đăng nhập</button>
+						</form>
+					</div>
+				<?php } ?>
+			</div>
+
+			<?php if (!isset($_SESSION['user'])) {?>
+				<h2 style="color: red;">Bạn cần đăng nhập để có thể Đăng ký môn học</h2>
+			<?php } else { ?>
+				<h2 style="color: red;">Bạn có thể đăng ký môn học.</h2>
+
+				<!--Khung load danh sach cac khoa hoc de dang ky-->
+				<?php $allMonHocInLop = MonHoc::Get_All_MonHoc_In_Lop(); ?>
+				<?php foreach ($allMonHocInLop as $key => $itemMonHocInLopHoc) {
+					$idMonHocInLop = $itemMonHocInLopHoc['IDMonHoc'];
+					$tenMonHocInLop = $itemMonHocInLopHoc['TenMonHoc'];
+					$_SESSION["TenMonHoc"] = $tenMonHocInLop;
+					$tenMonHocVTInLop = $itemMonHocInLopHoc['VietTac'];
+					$hinhAnhMonHocInLop = $itemMonHocInLopHoc['HinhAnh'];
+				?>
+					<div class="home">
+						<div class="content">
+							<div class="section">
+								<h3><?php echo $tenMonHocInLop; ?></h3>
+								<div class="">
+									<ul>
+										<?php $allCapDoInLopHocByIdMonHoc = CapDo::Get_All_Capo_By_IdMonHOc_InLopHoc($idMonHocInLop); ?>
+										<?php foreach ($allCapDoInLopHocByIdMonHoc as $key => $itemCapDoInLopHocByIdMonHoc) {
+											$idCapDoInLopHocByIdMonHoc = $itemCapDoInLopHocByIdMonHoc['IDCapDo'];
+											$tenCapDoInLopHocByIdMonHoc = $itemCapDoInLopHocByIdMonHoc['TenCapDo'];
+										?>
+											<li>
+												<span><?php echo $tenCapDoInLopHocByIdMonHoc; ?></span>
+												<a data-toggle="modal" href="" data-target="#<?php echo $idMonHocInLop; ?><?php echo $idCapDoInLopHocByIdMonHoc; ?>"><img src="../public/images/VatLieu/<?php echo $tenMonHocVTInLop; ?>/<?php echo $hinhAnhMonHocInLop; ?>" style="height: 173px; width: 138px" alt=""></a>
+												<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#<?php echo $idMonHocInLop; ?><?php echo $idCapDoInLopHocByIdMonHoc; ?>" >Xem buổi học/đăng ký</button>
+												<div class="modal fade" id="<?php echo $idMonHocInLop; ?><?php echo $idCapDoInLopHocByIdMonHoc; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+												  <div class="modal-dialog" role="document">
+												    <div class="modal-content">
+												      <div class="modal-header">
+												        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+												        <h4 class="modal-title" id="exampleModalLabel">Lớp học: <?php echo $tenMonHocInLop; ?> cấp độ <?php echo $tenCapDoInLopHocByIdMonHoc; ?></h4>
+												      </div>
+												      <div class="modal-body">
+
+																<div class="clearfix">
+																</div>
+																<table class="table table-bordered table-hover">
+																	<thead>
+																		<tr>
+																			<th>Buổi học</th>
+																			<th>Các thứ trong tuần</th>
+																			<th>Giáo viên</th>
+																			<th>Đăng ký</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<?php //Get_All_LichGiaoVien_ByIdMonVsIdCapDo
+																		 $allLichGiaoVienByIdMonVsIdCapDo = GiaoVien::Get_All_LichGiaoVien_ByIdMonVsIdCapDo($idMonHocInLop, $idCapDoInLopHocByIdMonHoc);
+																		?>
+																		<?php foreach ($allLichGiaoVienByIdMonVsIdCapDo as $key => $itemLichGiaoVien) {
+																			$idLopHoc = $itemLichGiaoVien['IDLopHoc'];
+																			$idGiaoVienInLop = $itemLichGiaoVien['IDGiaoVien'];
+																			$idLichHocInLop = $itemLichGiaoVien['IDLichHoc'];
+																			$tenGiaoVienInLop = $itemLichGiaoVien['HoTenGV'];
+																			$buoiTrongNgayInLop = $itemLichGiaoVien['BuoiTrongNgay'];
+																			$ngayTrongTuanInLop = $itemLichGiaoVien['NgayTrongTuan'];
+																		?>
+																			<tr>
+																				<td><?php echo $buoiTrongNgayInLop; ?></td>
+																				<td><?php echo $ngayTrongTuanInLop; ?></td>
+																				<td><?php echo $tenGiaoVienInLop; ?></td>
+																				<td>
+																					<form method="post" class="comment_form">
+																						<input type="hidden" name="subject" id="subject" value="<?php echo $idLopHoc; ?>">
+																						<input type="hidden" name="comment" id="comment" value="<?php echo $idNguoiXinNhapHoc_ByEmail; ?>">
+																						<input type="hidden" name="tennguoixin" id="tennguoixin" value="<?php echo $hoTenNguoiXinNhapHoc_ByEmail; ?>">
+																						<input type="hidden" name="tenmonhoc" id="tenmonhoc" value="<?php echo $tenMonHocInLop; ?>">
+																						<input type="hidden" name="capdo" id="capdo" value="<?php echo $tenCapDoInLopHocByIdMonHoc; ?>">
+																						<input type="hidden" name="buoitrongngay" id="buoitrongngay" value="<?php echo $buoiTrongNgayInLop; ?>">
+																						<input type="hidden" name="ngaytrongtuan" id="ngaytrongtuan" value="<?php echo $ngayTrongTuanInLop; ?>">
+																						<input type="hidden" name="giaovien" id="giaovien" value="<?php echo $tenGiaoVienInLop; ?>">
+																						<input type="submit" name="post" id="post" class="btn btn-info" value="Đăng ký"/>
+																					</form>
+																				</td>
+																			</tr>
+																		<?php } ?>
+																	</tbody>
+																</table>
+																<div class="clearfix">
+																</div>
+																<button type="button" class="btn btn-primary cli" name="button">xem lớp đăng ký</button>
+																<span class="badge bg-green countc"></span>
+																<div class="table-responsive">
+																<table class="table table-bordered table-hover"	 >
+																	<tbody class="dropdown-menuuh">
+																	</tbody>
+																</table>
+															</div>
+												      </div>
+												      <div class="modal-footer">
+																<div class="nav_menu">
+																</div>
+												        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+												      </div>
+												    </div>
+												  </div>
+												</div>
+											</li>
+									<?php } ?>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				<?php } ?>
+			<?php } ?>
+		</div>
+	<!--Phan cuoi-->
+<?php include_once("footer.php"); ?>
+<?php include_once("script.php"); ?>
+<script>
+$('.cli').on('click', function(){
+  function load_unseen_notification(view = '')
+  {
+    $.ajax({
+      url:"fetch.php",
+      method:"POST",
+      data:{view:view},
+      dataType:"json",
+      success:function(data){
+        $('.dropdown-menuuh').html(data.notification2);
+        if(data.unseen_notification2 > 0){
+          $('.countc').html(data.unseen_notification2);
+        }
+      }
+    });
+  }
+  load_unseen_notification();
+});
+</script>

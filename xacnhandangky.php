@@ -210,17 +210,7 @@ session_start();
                   </div>
                 </div>
               <?php } ?>
-            </div>
-            <br/>
-            <hr/>
-            <hr/>
-            <h2>random url: <?php echo $xnrds; ?></h2>
-            <h2>random trước : <?php echo $sessionRandom; ?></h2>
-            <h2>id phieu dang ky : <?php echo $xnidpdk ?> </h2>
-            <h2>id mon hoc: <?php echo $xnidmh ?> </h2>
-            <h2>id cap do: <?php echo $xnidcd ?> </h2>
-            <h2>id lich hoc: <?php echo $xnidlh ?> </h2>
-            <h2>id giao vien: <?php echo $xnidgv ?> </h2>
+            </div> 
           </div>
         </div>
       </div>

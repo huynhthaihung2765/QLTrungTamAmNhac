@@ -1,6 +1,5 @@
 <?php
-if(!isset($_SESSION))
-  {
+  if(!isset($_SESSION)) {
       session_start();
   }
   if(!isset($_SESSION['TenTaiKhoan'])){
@@ -225,8 +224,7 @@ if (isset($_POST["btnSubmit"])){
                                            $tenGiaoVienInLop = $itemLichGiaoVien['HoTenGV'];
                                            $buoiTrongNgayInLop = $itemLichGiaoVien['BuoiTrongNgay'];
                                            $ngayTrongTuanInLop = $itemLichGiaoVien['NgayTrongTuan'];
-                                         } ?>
-                                         <?php for ($soluonggiaovien=1; $soluonggiaovien <= 3; $soluonggiaovien++) { ?>
+                                          ?>
                                            <tr>
                                              <td><?php echo $tenGiaoVienInLop; ?></td>
                                              <td><?php echo $buoiTrongNgayInLop; ?></td>
