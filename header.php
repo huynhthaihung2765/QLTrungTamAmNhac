@@ -124,10 +124,7 @@ if(!isset($_SESSION))
                       <?php if($tenQuyenHan == "Quản trị"){ ?>
                         <li><a href="themhocvien.php">Thêm học viên</a></li>
                       <?php } ?>  
-                      <li><a href="#">Đăng ký mới</a></li>
-                      <li><a href="#">Học viên đã nghỉ</a></li>
-                      <li><a href="#">Học viên bảo lưu</a></li>
-                      <li><a href="#">Form Buttons</a></li>
+                      <li><a href="xemhvdangkymoi.php">Đăng ký mới</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-desktop"></i> Quản lí lớp học <span class="fa fa-chevron-down"></span></a>

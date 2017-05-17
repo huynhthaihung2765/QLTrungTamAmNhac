@@ -141,7 +141,14 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Chuyên môn</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" name="txtChuyenMon" id="autocomplete-custom-append" class="form-control col-md-10" />
+                        <select name="txtChuyenMon">
+                        <?php $getAllChuyenmon = Giaovien::Get_AllChuyenMon(); ?>
+                        <?php foreach ($getAllChuyenmon as $key => $itemChuyenMon) {?>
+                        <?php $chuyenmon = $itemChuyenMon['ChuyenMon'] ?>
+                          <option value="<?php echo $chuyenmon; ?>"><?php echo $chuyenmon; ?></option>
+                        <?php } ?>
+                        </select>
+                          <!--<input type="text"  id="autocomplete-custom-append" class="form-control col-md-10" -->/>
                         </div>
                       </div>
 

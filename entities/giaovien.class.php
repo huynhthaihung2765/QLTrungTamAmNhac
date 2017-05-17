@@ -157,5 +157,13 @@
 	      $result = $db->select_to_array($sql);
 	      return $result;
 	    }
+
+
+	    public static function Get_AllChuyenMon(){
+	      $db = new Db();
+	      $sql = "SELECT gv.ChuyenMon from giaovien gv  group by gv.ChuyenMon";
+	      $result = $db->select_to_array($sql);
+	      return $result;
+	    }
 	}
  ?>
